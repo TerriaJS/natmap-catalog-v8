@@ -10,10 +10,21 @@ module.exports = {
       members: [
         {
           name: "Agriculture",
+          id: "6EKwTvLj",
           type: "group",
           members: [
-            ...getFromCatalogPath(natmap20200903v8, ["National Datasets","Agriculture"])
+            ...getFromCatalogPath(natmap20200903v8, ["National Datasets", "Agriculture"])
               .members.filter(m => m.name !== "Land Use and Cover in South Australia")
+          ]
+        },
+        {
+          name: "Communications",
+          id: "EjSkCmuD",
+          type: "group",
+          members: [
+            ...getFromCatalogPath(natmap20200903v8, ["National Datasets", "Communications"]).members
+              .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
+              .filter(m => m.name !== "ABC Photo Stories by date")
           ]
         }
       ]

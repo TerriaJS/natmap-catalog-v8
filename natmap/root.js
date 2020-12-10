@@ -1,6 +1,15 @@
 "use strict";
+const _ = require('lodash');
 const getFromCatalogPath = require('../helpers/getFromCatalogPath');
 const natmap20200903v8 = require('./in/natmap-2020-09-03-v8.json');
+
+const Agriculture = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Agriculture"]));
+Agriculture.members = Agriculture.members.filter(m => m.name !== "Land Use and Cover in South Australia");
+
+const Communications = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Communications"]));
+Communications.members = Communications.members
+                            .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
+                            .filter(m => m.name !== "ABC Photo Stories by date");
 
 module.exports = {
   catalog: [
@@ -12,20 +21,13 @@ module.exports = {
           name: "Agriculture",
           id: "6EKwTvLj",
           type: "group",
-          members: [
-            ...getFromCatalogPath(natmap20200903v8, ["National Datasets", "Agriculture"])
-              .members.filter(m => m.name !== "Land Use and Cover in South Australia")
-          ]
+          members: Agriculture.members
         },
         {
           name: "Communications",
           id: "EjSkCmuD",
           type: "group",
-          members: [
-            ...getFromCatalogPath(natmap20200903v8, ["National Datasets", "Communications"]).members
-              .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
-              .filter(m => m.name !== "ABC Photo Stories by date")
-          ]
+          members: Communications.members
         }
       ]
     }

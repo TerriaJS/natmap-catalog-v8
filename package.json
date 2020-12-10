@@ -18,5 +18,8 @@
   "homepage": "https://github.com/TerriaJS/natmap-catalog-v8#readme",
   "devDependencies": {
     "prettier": "2.2.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
   }
 }

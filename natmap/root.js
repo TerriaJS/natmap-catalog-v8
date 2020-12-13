@@ -22,7 +22,10 @@ const Elevation = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Da
 const nidemId = getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation",
                   "Intertidal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"])
                   .id;
-Elevation.members = Elevation.members.filter(m => m.name !== "Intertidal");
+Elevation.members = Elevation.members
+                      .filter(m => m.name !== "Intertidal")
+                      .filter(m => m.name !== "Aspect")
+                      .filter(m => m.name !== "Land slope in percent");
 
 
 // assemble the National Datasets group

@@ -17,11 +17,7 @@ Communications.members = Communications.members
 
 
 const Elevation = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]));
-// TODO: can we keep the shareKey of the deleted NIDEM and add it to another occurrence of the layer?
 // remove Intertidial/NIDEM layer
-const nidemId = getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation",
-                  "Intertidal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"])
-                  .id;
 // move Terrain subgroup from Land Cover
 const Terrain = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use", "Terrain"]));
 Terrain.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]));
@@ -33,6 +29,15 @@ Elevation.members = Elevation.members
                       .filter(m => m.name !== "Intertidal")
                       .filter(m => m.name !== "Aspect")
                       .filter(m => m.name !== "Land slope in percent");
+
+
+// Marine & Oceans
+// TODO: can we keep the shareKey of the deleted NIDEM and add it to another occurrence of the layer?
+// yes we can, add this to `shareKeys`:
+// "Root Group/National Data Sets/Elevation/Intertidal/Intertidal elevation model/NIDEM - Intertidal elevation model"
+// const nidemId = getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation",
+//                   "Intertidal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"])
+//                   .id;
 
 
 // TODO: remove Terrain subgroup from Land Cover group

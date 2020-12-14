@@ -1,9 +1,11 @@
 "use strict";
+const _ = require('lodash');
+
 /*
   json: Complete catalog file.
   path: array of path name elements to be navigated in order, top down.
 */
-function getFromCatalogPath(json, path) {
+function cloneFromCatalogPath(json, path) {
   const catalog = json.catalog;
   if (!catalog) {
     throw new Error("No catalog found");
@@ -13,7 +15,7 @@ function getFromCatalogPath(json, path) {
   if (!item) {
     throw new Error("Could not find catalog item for path: " + path.join(","));
   }
-  return item;
+  return _.cloneDeep(item);
 }
 
 function findInMembers(members, path) {
@@ -36,4 +38,4 @@ function findInMembers(members, path) {
   return undefined;
 }
 
-module.exports = getFromCatalogPath;
+module.exports = cloneFromCatalogPath;

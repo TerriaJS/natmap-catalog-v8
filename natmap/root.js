@@ -31,7 +31,8 @@ Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets"
 Terrain.members = sortItemsByName(Terrain.members);
 const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]);
 Elevation.members.push(Terrain);
-findInMembers(Elevation.members, ["Horizontal Control Points"]).layers = "5,6";
+findInMembers(Elevation.members, ["Horizontal Control Points"]).layers = "5,6"; // fix bad MapServer requiring numerical layer name
+findInMembers(Elevation.members, ["Spot Elevations"]).layers = "2,4,3"; // fix bad MapServer requiring numerical layer name
 Elevation.members = sortItemsByName(Elevation.members
                       .filter(m => m.name !== "Intertidal")
                       .filter(m => m.name !== "Aspect")

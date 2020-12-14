@@ -1,6 +1,7 @@
 "use strict";
 const _ = require('lodash');
 const cloneFromCatalogPath = require('../helpers/cloneFromCatalogPath');
+const findInMembers = require('../helpers/findInMembers');
 const sortItemsByName = require('../helpers/sortItemsByName');
 const natmap20200903v8 = require('./in/natmap-2020-09-03-v8.json');
 
@@ -16,6 +17,7 @@ const Communications = cloneFromCatalogPath(natmap20200903v8, ["National Dataset
 Communications.members = sortItemsByName(Communications.members
                               .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
                               .filter(m => m.name !== "ABC Photo Stories by date"));
+// TODO: "Telecommunications in New Developments" is broken - not specifying a CKAN layer correctly?
 
 
 const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]);
@@ -37,17 +39,17 @@ Elevation.members = sortItemsByName(Elevation.members
 
 
 // Energy group
-const OilAndGasLayer = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Utility", "Oil and Gas Pipelines"]);
-OilAndGasLayer.layers = "4"; // fix weirdness with different styling from the Esri MapServer
 const Energy = {
   type: "group",
   name: "Energy",
   members: sortItemsByName([
     cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Electricity Transmission Lines"]),
     cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Electricity Transmission Substations"]),
-    OilAndGasLayer
+    cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Utility", "Oil and Gas Pipelines"])
   ])
 }
+// fix weirdness where we have to specify layer by number for the MapServer to give correct data
+findInMembers(Energy.members, ["Oil and Gas Pipelines"]).layers = "4";
 
 
 // Environment group
@@ -55,6 +57,27 @@ const Environment = cloneFromCatalogPath(natmap20200903v8, ["National Datasets",
 // TODO: State of the Environment 2016 group should be isPromoted, but v8 doesn't support it yet
 Environment.members = sortItemsByName(Environment.members);
 
+
+// Habitation group
+const Habitation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Habitation"]);
+Habitation.members = sortItemsByName(Habitation.members);
+
+// Boundaries
+// Framework - Australian mainland   moves to Boundaries
+// Framework - Coastlines - islands  moves to Boundaries
+// Framework - Large area features   moves to Boundaries
+// Framework - Northern Australia Infrastructure facility  moves to Boundaries
+// Framework - State borders move to Boundaries
+// Framework - Prohibited areas (defence related, but with more information than Defence Prohibited Areas) move to Boundaries or remove completely the datasets
+
+
+
+// Water - Surface
+// Framework - Water supply reserves move to Water - Surface
+
+
+// Utilities
+// Framework - Onshore gas pipelines, onshore oil pipelines  move to utilities
 
 
 // Marine & Oceans
@@ -65,6 +88,7 @@ Environment.members = sortItemsByName(Environment.members);
 //                   "Intertidal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"])
 //                   .id;
 // TODO: add Offshore Rocks and Reefs from Elevation
+// Framework - Ocean and sea names moves to Marine & Oceans
 
 
 // TODO: remove Terrain subgroup from Land Cover group
@@ -76,7 +100,8 @@ NationalDatasets.members = sortItemsByName([
     Communications,
     Elevation,
     Energy,
-    Environment
+    Environment,
+    Habitation
 ]);
 
 // put the National Datasets into the catalog

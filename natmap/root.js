@@ -1,19 +1,21 @@
 "use strict";
 const _ = require('lodash');
 const getFromCatalogPath = require('../helpers/getFromCatalogPath');
+const sortItemsByName = require('../helpers/sortItemsByName');
 const natmap20200903v8 = require('./in/natmap-2020-09-03-v8.json');
 
 
 // remove "Land Use" subgroup from Agriculture
 const Agriculture = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Agriculture"]));
-Agriculture.members = Agriculture.members.filter(m => m.name !== "Land Use and Cover in South Australia");
+Agriculture.members = sortItemsByName(Agriculture.members
+                        .filter(m => m.name !== "Land Use and Cover in South Australia"));
 
 
 // remove ABC Photo Stories from Communications
 const Communications = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Communications"]));
-Communications.members = Communications.members
-                            .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
-                            .filter(m => m.name !== "ABC Photo Stories by date");
+Communications.members = sortItemsByName(Communications.members
+                              .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
+                              .filter(m => m.name !== "ABC Photo Stories by date"));
 
 
 const Elevation = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]));
@@ -23,14 +25,15 @@ const Terrain = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Data
 Terrain.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]));
 Terrain.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]));
 Terrain.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
+Terrain.members = sortItemsByName(Terrain.members);
 Elevation.members.push(Terrain);
 // remove Intertidal, also Aspect & Slope as they are already in Terrain subgroup
-Elevation.members = Elevation.members
+Elevation.members = sortItemsByName(Elevation.members
                       .filter(m => m.name !== "Intertidal")
                       .filter(m => m.name !== "Aspect")
                       .filter(m => m.name !== "Land slope in percent")
                       .filter(m => m.name !== "Offshore Rocks and Wrecks")
-                      .filter(m => m.name !== "Reefs and Shoals");
+                      .filter(m => m.name !== "Reefs and Shoals"));
 
 
 // Marine & Oceans
@@ -47,11 +50,11 @@ Elevation.members = Elevation.members
 
 // assemble the National Datasets group
 const NationalDatasets = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets"]));
-NationalDatasets.members = [
+NationalDatasets.members = sortItemsByName([
     Agriculture,
     Communications,
     Elevation
-]
+]);
 
 // put the National Datasets into the catalog
 const complete = _.cloneDeep(natmap20200903v8);

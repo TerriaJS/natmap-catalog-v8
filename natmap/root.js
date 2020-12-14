@@ -24,7 +24,9 @@ const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "
 // remove Intertidial/NIDEM layer
 // move Terrain subgroup from Land Cover
 const Terrain = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use", "Terrain"]);
-Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]));
+const Contours = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]);
+Contours.layers = "14,13"; // fix bad MapServer requiring numerical layer name
+Terrain.members.push(Contours);
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]));
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
 Terrain.members = sortItemsByName(Terrain.members);
@@ -35,7 +37,10 @@ Elevation.members = sortItemsByName(Elevation.members
                       .filter(m => m.name !== "Aspect")
                       .filter(m => m.name !== "Land slope in percent")
                       .filter(m => m.name !== "Offshore Rocks and Wrecks")
-                      .filter(m => m.name !== "Reefs and Shoals"));
+                      .filter(m => m.name !== "Reefs and Shoals")
+                      .filter(m => m.name !== "Contours")
+                      .filter(m => m.name !== "Cuttings")
+                      .filter(m => m.name !== "Embankments"));
 
 
 // Energy group
@@ -48,7 +53,7 @@ const Energy = {
     cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Utility", "Oil and Gas Pipelines"])
   ])
 }
-// fix weirdness where we have to specify layer by number for the MapServer to give correct data
+// fix bad MapServer requiring numerical layer name
 findInMembers(Energy.members, ["Oil and Gas Pipelines"]).layers = "4";
 
 

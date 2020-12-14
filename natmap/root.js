@@ -28,6 +28,16 @@ Contours.layers = "14,13"; // fix bad MapServer requiring numerical layer name
 Terrain.members.push(Contours);
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]));
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
+findInMembers(Terrain.members, ["Caves"]).layers = "0"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Cliffs"]).layers = "7"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Craters"]).layers = "15"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Cuttings"]).layers = "8"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Distorted Surfaces"]).layers = "17"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Embankments"]).layers = "9"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Outcrops"]).layers = "18"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Pinnacles"]).layers = "1"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Sandridges"]).layers = "11,10"; // fix bad MapServer requiring numerical layer name
+findInMembers(Terrain.members, ["Sands"]).layers = "16"; // fix bad MapServer requiring numerical layer name
 Terrain.members = sortItemsByName(Terrain.members);
 const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]);
 Elevation.members.push(Terrain);

@@ -23,7 +23,11 @@ const nidemId = getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elev
                   "Intertidal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"])
                   .id;
 // move Terrain subgroup from Land Cover
-Elevation.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use", "Terrain"]));
+const Terrain = _.cloneDeep(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use", "Terrain"]));
+Terrain.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]));
+Terrain.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]));
+Terrain.members.push(getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
+Elevation.members.push(Terrain);
 // remove Intertidal, also Aspect & Slope as they are already in Terrain subgroup
 Elevation.members = Elevation.members
                       .filter(m => m.name !== "Intertidal")

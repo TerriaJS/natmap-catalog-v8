@@ -80,6 +80,10 @@ const Habitation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", 
 const Cemeteries = findInMembers(Habitation.members, ["Cemetery Points"]);
 Cemeteries.name = "Cemeteries";
 Cemeteries.layers = "2,9"; // fix bad MapServer requiring numerical layer name
+findInMembers(Habitation.members, ["Homesteads"]).layers = "24,23"; // fix bad MapServer requiring numerical layer name
+findInMembers(Habitation.members, ["Populated Places"]).layers = "8,7,6,5,4"; // fix bad MapServer requiring numerical layer name
+findInMembers(Habitation.members, ["Recreation Areas"]).layers = "8"; // fix bad MapServer requiring numerical layer name
+findInMembers(Habitation.members, ["Urban Landscapes"]).layers = "10"; // fix bad MapServer requiring numerical layer name
 Habitation.members = sortItemsByName(Habitation.members
                         .filter(m => m.name !== "Cemetery Areas"));
 

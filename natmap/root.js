@@ -36,6 +36,7 @@ Elevation.members = sortItemsByName(Elevation.members
                       .filter(m => m.name !== "Reefs and Shoals"));
 
 
+// Energy group
 const OilAndGasLayer = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Utility", "Oil and Gas Pipelines"]);
 OilAndGasLayer.layers = "4"; // fix weirdness with different styling from the Esri MapServer
 const Energy = {
@@ -47,8 +48,12 @@ const Energy = {
     OilAndGasLayer
   ])
 }
-// TODO: did not find "Environment/Energy supply & generation" as specified in spreadsheet?
 
+
+// Environment group
+const Environment = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Environment"]);
+// TODO: State of the Environment 2016 group should be isPromoted, but v8 doesn't support it yet
+Environment.members = sortItemsByName(Environment.members);
 
 
 
@@ -70,7 +75,8 @@ NationalDatasets.members = sortItemsByName([
     Agriculture,
     Communications,
     Elevation,
-    Energy
+    Energy,
+    Environment
 ]);
 
 // put the National Datasets into the catalog

@@ -65,7 +65,12 @@ Environment.members = sortItemsByName(Environment.members);
 
 // Habitation group
 const Habitation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Habitation"]);
-Habitation.members = sortItemsByName(Habitation.members);
+// combine Cemetery Points and Areas into one layer
+const Cemeteries = findInMembers(Habitation.members, ["Cemetery Points"]);
+Cemeteries.name = "Cemeteries";
+Cemeteries.layers = "2,9"; // fix bad MapServer requiring numerical layer name
+Habitation.members = sortItemsByName(Habitation.members
+                        .filter(m => m.name !== "Cemetery Areas"));
 
 // Boundaries
 // Framework - Australian mainland   moves to Boundaries
@@ -73,7 +78,8 @@ Habitation.members = sortItemsByName(Habitation.members);
 // Framework - Large area features   moves to Boundaries
 // Framework - Northern Australia Infrastructure facility  moves to Boundaries
 // Framework - State borders move to Boundaries
-// Framework - Prohibited areas (defence related, but with more information than Defence Prohibited Areas) move to Boundaries or remove completely the datasets
+// Framework - Prohibited areas (defence related, but with more information than Defence Prohibited Areas)
+//        move to Boundaries or remove completely the datasets
 
 
 

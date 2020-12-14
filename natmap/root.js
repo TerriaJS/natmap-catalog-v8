@@ -20,8 +20,7 @@ Communications.members = sortItemsByName(Communications.members
 // TODO: "Telecommunications in New Developments" is broken - not specifying a CKAN layer correctly?
 
 
-const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]);
-// remove Intertidial/NIDEM layer
+// Elevation
 // move Terrain subgroup from Land Cover
 const Terrain = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use", "Terrain"]);
 const Contours = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]);
@@ -30,8 +29,9 @@ Terrain.members.push(Contours);
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]));
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
 Terrain.members = sortItemsByName(Terrain.members);
+const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]);
 Elevation.members.push(Terrain);
-// remove Intertidal, also Aspect & Slope as they are already in Terrain subgroup
+findInMembers(Elevation.members, ["Horizontal Control Points"]).layers = "5,6";
 Elevation.members = sortItemsByName(Elevation.members
                       .filter(m => m.name !== "Intertidal")
                       .filter(m => m.name !== "Aspect")

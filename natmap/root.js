@@ -28,7 +28,9 @@ Elevation.members.push(Terrain);
 Elevation.members = Elevation.members
                       .filter(m => m.name !== "Intertidal")
                       .filter(m => m.name !== "Aspect")
-                      .filter(m => m.name !== "Land slope in percent");
+                      .filter(m => m.name !== "Land slope in percent")
+                      .filter(m => m.name !== "Offshore Rocks and Wrecks")
+                      .filter(m => m.name !== "Reefs and Shoals");
 
 
 // Marine & Oceans
@@ -38,6 +40,7 @@ Elevation.members = Elevation.members
 // const nidemId = getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation",
 //                   "Intertidal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"])
 //                   .id;
+// TODO: add Offshore Rocks and Reefs from Elevation
 
 
 // TODO: remove Terrain subgroup from Land Cover group

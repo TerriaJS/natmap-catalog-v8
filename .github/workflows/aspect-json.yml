@@ -1,0 +1,17 @@
+name: assemble-aspect-json
+
+on: push
+jobs:
+  aspect:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+
+    - run: node ./saas-about-pages/assemble-aspect-json.js
+      
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update terria-saas-about-pages.json

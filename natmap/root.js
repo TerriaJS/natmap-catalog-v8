@@ -14,6 +14,8 @@ Agriculture.members = sortItemsByName(Agriculture.members
 
 // remove ABC Photo Stories from Communications
 const Communications = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Communications"]);
+const TelecomsInNewDev = findInMembers(Communications.members, ["Telecommunications in New Developments"]);
+TelecomsInNewDev.resourceId = "647f6ef4-61fe-45c1-a857-0c789cc4062e"; // update CKAN resource id to one that works
 Communications.members = sortItemsByName(Communications.members
                               .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
                               .filter(m => m.name !== "ABC Photo Stories by date"));

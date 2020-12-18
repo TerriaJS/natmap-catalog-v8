@@ -173,6 +173,50 @@ const SatelliteImages = cloneFromCatalogPath(natmap20200903v8, ["National Datase
 // Social and Economic
 const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Social and Economic"]);
 
+SocialEconomic.members.push({
+  type: "sdmx-group",
+  name: "ABS",
+  id: "DPYjz1cT",
+  url: "https://api.data.abs.gov.au",
+  conceptOverrides: [
+    {
+      id:
+        "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_TYPE",
+      type: "region-type",
+      selectedId: "SA3",
+    },
+    {
+      id:
+        "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION",
+      type: "region",
+    },
+    {
+      id:
+        "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_SA1",
+      type: "region",
+      regionType: "SA1",
+    },
+    {
+      id:
+        "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).STATE_TERR",
+      type: "region",
+      regionType: "STE_2016",
+    },
+    {
+      id:
+        "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).IND_REGION",
+      type: "region",
+      regionType: "IREG",
+    },
+    {
+      id:
+        "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).STATE",
+      disable: true,
+      allowUndefined: true,
+    },
+  ],
+});
+
 // Transport
 const Transport = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Transport"]);
 

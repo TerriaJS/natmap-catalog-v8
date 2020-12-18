@@ -19,7 +19,6 @@ TelecomsInNewDev.resourceId = "647f6ef4-61fe-45c1-a857-0c789cc4062e"; // update 
 Communications.members = sortItemsByName(Communications.members
                               .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
                               .filter(m => m.name !== "ABC Photo Stories by date"));
-// TODO: "Telecommunications in New Developments" is broken - not specifying a CKAN layer correctly?
 
 
 // Elevation
@@ -81,10 +80,29 @@ const Infrastructure = cloneFromCatalogPath(natmap20200903v8, ["National Dataset
 Infrastructure.members = sortItemsByName(Infrastructure.members
                             .filter(m => m.name !== "Vertical Obstructions"));
 
-// TODO: remove Terrain subgroup from Land Cover group
+
+// Land Cover and Land Use
 const LandCover = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use"]);
 LandCover.members = sortItemsByName(LandCover.members
                             .filter(m => m.name !== "Terrain"));
+
+
+// Marine and Oceans
+// TODO: add Offshore Rocks and Reefs from Elevation
+// Framework - Ocean and sea names moves to Marine & Oceans
+const MarineOceans = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Marine and Oceans"]);
+// add the shareKey of the removed NIDEM layer from Elevation
+const NIDEM = findInMembers(
+                findInMembers(
+                  findInMembers(
+                    MarineOceans.members,
+                    ["Coastal"]).members,
+                    ["Intertidal elevation model"]).members,
+                    ["NIDEM - Intertidal elevation model"]);
+NIDEM["shareKeys"] = ["Root Group/National Data Sets/Elevation/Intertidal/Intertidal elevation model/NIDEM - Intertidal elevation model"];
+MarineOceans.members = sortItemsByName(MarineOceans.members);
+
+
 
 // Boundaries
 // Framework - Australian mainland   moves to Boundaries
@@ -105,16 +123,6 @@ LandCover.members = sortItemsByName(LandCover.members
 // Framework - Onshore gas pipelines, onshore oil pipelines  move to utilities
 
 
-// Marine & Oceans
-// TODO: can we keep the shareKey of the deleted NIDEM and add it to another occurrence of the layer?
-// yes we can, add this to `shareKeys`:
-// "Root Group/National Data Sets/Elevation/Intertidal/Intertidal elevation model/NIDEM - Intertidal elevation model"
-// const nidemId = getFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation",
-//                   "Intertidal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"])
-//                   .id;
-// TODO: add Offshore Rocks and Reefs from Elevation
-// Framework - Ocean and sea names moves to Marine & Oceans
-
 
 
 // assemble the National Datasets group
@@ -128,7 +136,8 @@ NationalDatasets.members = sortItemsByName([
     Habitation,
     Health,
     Infrastructure,
-    LandCover
+    LandCover,
+    MarineOceans
 ]);
 
 // put the National Datasets into the catalog

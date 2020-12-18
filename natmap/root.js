@@ -99,13 +99,71 @@ MarineOceans.members.push(
 
 
 // Boundaries
-// Framework - Australian mainland   moves to Boundaries
-// Framework - Coastlines - islands  moves to Boundaries
-// Framework - Large area features   moves to Boundaries
-// Framework - Northern Australia Infrastructure facility  moves to Boundaries
-// Framework - State borders move to Boundaries
-// Framework - Prohibited areas (defence related, but with more information than Defence Prohibited Areas)
-//        move to Boundaries or remove completely the datasets
+const Boundaries = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "National Boundaries"]);
+Boundaries.name = "Boundaries";
+Boundaries.members = [
+  {
+    name: "Statistical boundaries",
+    type: "group",
+    members: cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Statistical Boundaries"]).members
+  },
+  {
+    name: "Jurisdictional boundaries",
+    type: "group",
+    members: [
+      findInMembers(Boundaries.members, ["Local Government Areas (2011)"]),
+      findInMembers(Boundaries.members, ["Local Government Areas (2019)"]),
+      findInMembers(Boundaries.members, ["State Suburbs"]),
+      findInMembers(Boundaries.members, ["States & Territories"]),
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Australian Mainland"]),
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "State Borders"])
+    ]
+  },
+  {
+    name: "Electoral boundaries",
+    type: "group",
+    members: [
+      findInMembers(Boundaries.members, ["Commonwealth Electoral Divisions (2019)"]),
+      findInMembers(Boundaries.members, ["Commonwealth Electoral Divisions (2016)"]),
+      findInMembers(Boundaries.members, ["Commonwealth Electoral Divisions (2011)"]),
+      findInMembers(Boundaries.members, ["State Electoral Divisions (2018)"])
+    ]
+  },
+  {
+    name: "Maritime boundaries",
+    type: "group",
+    members: [
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Coastline - Islands"]),
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Marine Parks"])
+    ]
+  },
+  {
+    name: "Native title boundaries",
+    type: "group",
+    members: [
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Indigenous Reserves"])
+    ]
+  },
+  {
+    name: "Other areas ",
+    type: "group",
+    members: [
+      findInMembers(Boundaries.members, ["Postal Areas (2011)"]),
+      findInMembers(Boundaries.members, ["Postal Areas (2016)"]),
+      findInMembers(Boundaries.members, ["Australian Drainage Divisions"]),
+      findInMembers(Boundaries.members, ["Natural Resource Management Regions"]),
+      findInMembers(Boundaries.members, ["Tourism Regions"]),
+      findInMembers(Boundaries.members, ["ASGS Remoteness Area (2016)"]),
+      findInMembers(Boundaries.members, ["ASGS Remoteness Area (2011)"]),
+      findInMembers(Boundaries.members, ["CDP Regions (2017)"]),
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Large Area Features"]),
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Northern Australia Infrastructure Facility Boundary"]),
+      cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Prohibited Areas"])
+    ]
+  }
+]
+
+
 
 
 
@@ -131,7 +189,8 @@ NationalDatasets.members = recursivelySortMembersByName([
     Health,
     Infrastructure,
     LandCover,
-    MarineOceans
+    MarineOceans,
+    Boundaries
 ]);
 
 // put the National Datasets into the catalog

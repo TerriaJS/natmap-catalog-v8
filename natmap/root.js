@@ -2,23 +2,23 @@
 const _ = require('lodash');
 const cloneFromCatalogPath = require('../helpers/cloneFromCatalogPath');
 const findInMembers = require('../helpers/findInMembers');
-const sortItemsByName = require('../helpers/sortItemsByName');
+const recursivelySortMembersByName = require('../helpers/recursivelySortMembersByName');
 const natmap20200903v8 = require('./in/natmap-2020-09-03-v8.json');
 
 
 // remove "Land Use" subgroup from Agriculture
 const Agriculture = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Agriculture"]);
-Agriculture.members = sortItemsByName(Agriculture.members
-                        .filter(m => m.name !== "Land Use and Cover in South Australia"));
+Agriculture.members = Agriculture.members
+                        .filter(m => m.name !== "Land Use and Cover in South Australia");
 
 
 // remove ABC Photo Stories from Communications
 const Communications = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Communications"]);
 const TelecomsInNewDev = findInMembers(Communications.members, ["Telecommunications in New Developments"]);
 TelecomsInNewDev.resourceId = "647f6ef4-61fe-45c1-a857-0c789cc4062e"; // update CKAN resource id to one that works
-Communications.members = sortItemsByName(Communications.members
+Communications.members = Communications.members
                               .filter(m => m.name !== "ABC Photo Stories (2009-2014)")
-                              .filter(m => m.name !== "ABC Photo Stories by date"));
+                              .filter(m => m.name !== "ABC Photo Stories by date");
 
 
 // Elevation
@@ -27,10 +27,9 @@ const Terrain = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "La
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]));
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]));
 Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
-Terrain.members = sortItemsByName(Terrain.members);
 const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]);
 Elevation.members.push(Terrain);
-Elevation.members = sortItemsByName(Elevation.members
+Elevation.members = Elevation.members
                       .filter(m => m.name !== "Intertidal")
                       .filter(m => m.name !== "Aspect")
                       .filter(m => m.name !== "Land slope in percent")
@@ -38,25 +37,24 @@ Elevation.members = sortItemsByName(Elevation.members
                       .filter(m => m.name !== "Reefs and Shoals")
                       .filter(m => m.name !== "Contours")
                       .filter(m => m.name !== "Cuttings")
-                      .filter(m => m.name !== "Embankments"));
+                      .filter(m => m.name !== "Embankments");
 
 
 // Energy group
 const Energy = {
   type: "group",
   name: "Energy",
-  members: sortItemsByName([
+  members: [
     cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Electricity Transmission Lines"]),
     cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Electricity Transmission Substations"]),
     cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Utility", "Oil and Gas Pipelines"])
-  ])
+  ]
 }
 
 
 // Environment group
 const Environment = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Environment"]);
 // TODO: State of the Environment 2016 group should be isPromoted, but v8 doesn't support it yet
-Environment.members = sortItemsByName(Environment.members);
 
 
 // Habitation group
@@ -65,26 +63,26 @@ const Habitation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", 
 const Cemeteries = findInMembers(Habitation.members, ["Cemetery Points"]);
 Cemeteries.name = "Cemeteries";
 Cemeteries.layers = "Cemetery_Areas,Cemetery_Points"; // fix bad MapServer requiring numerical layer name
-Habitation.members = sortItemsByName(Habitation.members
-                        .filter(m => m.name !== "Cemetery Areas"));
+Habitation.members = Habitation.members
+                        .filter(m => m.name !== "Cemetery Areas");
 
 
 // Health group
 const Health = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Health"]);
-Health.members = sortItemsByName(Health.members
-                    .filter(m => m.name !== "Victorian Local Government Area Stage 4 Lockdown 2 August 2020"));
+Health.members = Health.members
+                    .filter(m => m.name !== "Victorian Local Government Area Stage 4 Lockdown 2 August 2020");
 
 
 // Infrastructure group
 const Infrastructure = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Infrastructure"]);
-Infrastructure.members = sortItemsByName(Infrastructure.members
-                            .filter(m => m.name !== "Vertical Obstructions"));
+Infrastructure.members = Infrastructure.members
+                            .filter(m => m.name !== "Vertical Obstructions");
 
 
 // Land Cover and Land Use
 const LandCover = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use"]);
-LandCover.members = sortItemsByName(LandCover.members
-                            .filter(m => m.name !== "Terrain"));
+LandCover.members = LandCover.members
+                            .filter(m => m.name !== "Terrain");
 
 
 // Marine and Oceans
@@ -100,7 +98,6 @@ const NIDEM = findInMembers(
                     ["Intertidal elevation model"]).members,
                     ["NIDEM - Intertidal elevation model"]);
 NIDEM["shareKeys"] = ["Root Group/National Data Sets/Elevation/Intertidal/Intertidal elevation model/NIDEM - Intertidal elevation model"];
-MarineOceans.members = sortItemsByName(MarineOceans.members);
 
 
 
@@ -127,7 +124,7 @@ MarineOceans.members = sortItemsByName(MarineOceans.members);
 
 // assemble the National Datasets group
 const NationalDatasets = cloneFromCatalogPath(natmap20200903v8, ["National Datasets"]);
-NationalDatasets.members = sortItemsByName([
+NationalDatasets.members = recursivelySortMembersByName([
     Agriculture,
     Communications,
     Elevation,

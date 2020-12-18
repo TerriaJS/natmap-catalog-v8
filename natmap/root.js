@@ -76,6 +76,9 @@ Health.members = Health.members
 
 // Infrastructure group
 const Infrastructure = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Infrastructure"]);
+Infrastructure.members.push(
+
+);
 Infrastructure.members = Infrastructure.members
                             .filter(m => m.name !== "Vertical Obstructions");
 
@@ -164,6 +167,20 @@ Boundaries.members = [
 ]
 
 
+// Satellite Images
+const SatelliteImages = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Satellite Images"]);
+
+// Social and Economic
+const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Social and Economic"]);
+
+// Transport
+ const Transport = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Transport"]);
+
+// Vegetation
+ const Vegetation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Vegetation"]);
+
+// Water
+ const Water = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Water"]);
 
 
 
@@ -190,7 +207,12 @@ NationalDatasets.members = recursivelySortMembersByName([
     Infrastructure,
     LandCover,
     MarineOceans,
-    Boundaries
+    Boundaries,
+    SatelliteImages,
+    SocialEconomic,
+    Transport,
+    Vegetation,
+    Water
 ]);
 
 // put the National Datasets into the catalog

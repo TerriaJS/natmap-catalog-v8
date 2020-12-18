@@ -184,11 +184,6 @@ const Water = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Wate
 const Surface = findInMembers(Water.members, ["Surface Water"]);
 Surface.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Water Supply Reserves"]));
 
-
-
-
-
-
 // assemble the National Datasets group
 const NationalDatasets = cloneFromCatalogPath(natmap20200903v8, ["National Datasets"]);
 NationalDatasets.members = recursivelySortMembersByName([
@@ -210,8 +205,113 @@ NationalDatasets.members = recursivelySortMembersByName([
     Water
 ]);
 
-// put the National Datasets into the catalog
+// Data.gov.au
+const DGA = cloneFromCatalogPath(natmap20200903v8, ["Data.gov.au"]);
+
+// New South Wales Government
+const NSW = cloneFromCatalogPath(natmap20200903v8, ["New South Wales Government"]);
+const NSWLGA = cloneFromCatalogPath(natmap20200903v8, ["Local Government", "New South Wales"]);
+NSWLGA.name = "Local government data";
+NSW.members = [
+  NSWLGA,
+  {
+    name: "State data",
+    type: "group",
+    members: recursivelySortMembersByName(NSW.members)
+  }
+];
+
+// Northern Territory Government
+const NT_old = cloneFromCatalogPath(natmap20200903v8, ["Northern Territory Government"]);
+NT_old.name = "State data"
+const NTLGA = cloneFromCatalogPath(natmap20200903v8, ["Local Government", "Northern Territory"]);
+NTLGA.name = "Local government data";
+const NT = {
+  name: "Northern Territory Government",
+  type: "group",
+  members: [NTLGA, NT_old]
+}
+
+// Queensland Government
+const QLD = cloneFromCatalogPath(natmap20200903v8, ["Queensland Government"]);
+const QLDLGA = cloneFromCatalogPath(natmap20200903v8, ["Local Government", "Queensland"]);
+QLDLGA.name = "Local government data";
+QLD.members = [
+  QLDLGA,
+  {
+    name: "State data",
+    type: "group",
+    members: recursivelySortMembersByName(QLD.members)
+  }
+];
+
+// South Australian Government
+const SA_old = cloneFromCatalogPath(natmap20200903v8, ["South Australian Government (BETA)"]);
+SA_old.name = "State data"
+const SALGA = cloneFromCatalogPath(natmap20200903v8, ["Local Government", "South Australia"]);
+SALGA.name = "Local government data";
+const SA = {
+  name: "South Australia Government",
+  type: "group",
+  members: [SALGA, SA_old]
+}
+
+// Tasmanian Government
+const TAS = cloneFromCatalogPath(natmap20200903v8, ["Tasmanian Government"]);
+const TASLGA = cloneFromCatalogPath(natmap20200903v8, ["Local Government", "Tasmania"]);
+TASLGA.name = "Local government data";
+TAS.members = [
+  TASLGA,
+  {
+    name: "State data",
+    type: "group",
+    members: recursivelySortMembersByName(TAS.members)
+  }
+];
+
+// Victorian Government
+const VIC_old = cloneFromCatalogPath(natmap20200903v8, ["Victorian Government"]);
+VIC_old.name = "State data"
+const VICLGA = cloneFromCatalogPath(natmap20200903v8, ["Local Government", "Victoria"]);
+VICLGA.name = "Local government data";
+const VIC = {
+  name: "Victoria Government",
+  type: "group",
+  members: [VICLGA, VIC_old]
+}
+
+// Western Australian Government
+const WA_old = cloneFromCatalogPath(natmap20200903v8, ["Western Australian Government"]);
+WA_old.name = "State data"
+const WALGA = cloneFromCatalogPath(natmap20200903v8, ["Local Government", "Western Australia"]);
+WALGA.name = "Local government data";
+const WA = {
+  name: "Western Australia Government",
+  type: "group",
+  members: [WALGA, WA_old]
+}
+
+// Australian Capital Territory Government
+const ACT = {
+  name: "Australian Capital Territory Government",
+  type: "group",
+  members: []
+}
+
+
+// assemble the catalogue
 const complete = _.cloneDeep(natmap20200903v8);
-complete.catalog = [NationalDatasets];
+complete.catalog = [
+  NationalDatasets,
+  DGA,
+  ACT,
+  NSW,
+  NT,
+  QLD,
+  SA,
+  TAS,
+  VIC,
+  WA
+];
 
 module.exports = complete;

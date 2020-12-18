@@ -132,7 +132,7 @@ We use the information we collect from your browsing of this website for statist
 
 In order to give you a better experience, we use a URL shortening service provided by a third party. That service may also track the clicks and referrers (sharers) of NationalMap.
 
-No attempt will be made to identify users due to their browsing activities on this website, except in the unlikely event of an investigation, for example, where a law enforcement agency may exercise a warrant or subpoena. The information we collect from your browsing of this website will only be disclosed to a third party if it is required or authorised by law.
+No attempt will be made to identify users due to their browsing activities on this website, except in the event of an investigation, for example, where a law enforcement agency may exercise a warrant or subpoena. The information we collect from your browsing of this website will only be disclosed to a third party if it is required or authorised by law.
 
 ## Cookies
 

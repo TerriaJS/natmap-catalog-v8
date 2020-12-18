@@ -81,7 +81,10 @@ const Infrastructure = cloneFromCatalogPath(natmap20200903v8, ["National Dataset
 Infrastructure.members = sortItemsByName(Infrastructure.members
                             .filter(m => m.name !== "Vertical Obstructions"));
 
-
+// TODO: remove Terrain subgroup from Land Cover group
+const LandCover = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use"]);
+LandCover.members = sortItemsByName(LandCover.members
+                            .filter(m => m.name !== "Terrain"));
 
 // Boundaries
 // Framework - Australian mainland   moves to Boundaries
@@ -113,7 +116,6 @@ Infrastructure.members = sortItemsByName(Infrastructure.members
 // Framework - Ocean and sea names moves to Marine & Oceans
 
 
-// TODO: remove Terrain subgroup from Land Cover group
 
 // assemble the National Datasets group
 const NationalDatasets = cloneFromCatalogPath(natmap20200903v8, ["National Datasets"]);
@@ -125,7 +127,8 @@ NationalDatasets.members = sortItemsByName([
     Environment,
     Habitation,
     Health,
-    Infrastructure
+    Infrastructure,
+    LandCover
 ]);
 
 // put the National Datasets into the catalog

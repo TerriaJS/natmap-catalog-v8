@@ -50,8 +50,6 @@ const Energy = {
     cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Utility", "Oil and Gas Pipelines"])
   ])
 }
-// fix bad MapServer requiring numerical layer name
-findInMembers(Energy.members, ["Oil and Gas Pipelines"]).layers = "4";
 
 
 // Environment group
@@ -68,6 +66,20 @@ Cemeteries.name = "Cemeteries";
 Cemeteries.layers = "Cemetery_Areas,Cemetery_Points"; // fix bad MapServer requiring numerical layer name
 Habitation.members = sortItemsByName(Habitation.members
                         .filter(m => m.name !== "Cemetery Areas"));
+
+
+// Health group
+const Health = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Health"]);
+Health.members = sortItemsByName(Health.members
+                    .filter(m => m.name !== "Victorian Local Government Area Stage 4 Lockdown 2 August 2020"));
+
+
+// Infrastructure group
+const Infrastructure = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Infrastructure"]);
+Infrastructure.members = sortItemsByName(Infrastructure.members
+                            .filter(m => m.name !== "Vertical Obstructions"));
+
+
 
 // Boundaries
 // Framework - Australian mainland   moves to Boundaries
@@ -109,7 +121,9 @@ NationalDatasets.members = sortItemsByName([
     Elevation,
     Energy,
     Environment,
-    Habitation
+    Habitation,
+    Health,
+    Infrastructure
 ]);
 
 // put the National Datasets into the catalog

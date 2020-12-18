@@ -174,22 +174,17 @@ const SatelliteImages = cloneFromCatalogPath(natmap20200903v8, ["National Datase
 const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Social and Economic"]);
 
 // Transport
- const Transport = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Transport"]);
+const Transport = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Transport"]);
 
 // Vegetation
- const Vegetation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Vegetation"]);
+const Vegetation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Vegetation"]);
 
 // Water
- const Water = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Water"]);
+const Water = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Water"]);
+const Surface = findInMembers(Water.members, ["Surface Water"]);
+Surface.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Water Supply Reserves"]));
 
 
-
-// Water - Surface
-// Framework - Water supply reserves move to Water - Surface
-
-
-// Utilities
-// Framework - Onshore gas pipelines, onshore oil pipelines  move to utilities
 
 
 

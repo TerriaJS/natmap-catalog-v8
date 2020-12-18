@@ -1,6 +1,6 @@
 $ curl http://static.nationalmap.nicta.com.au/init/2020-09-03.json -o natmap-2020-09-03.json --compressed
 $ ./bin/cli.js --noprint-all --generate-random-ids --id-length 8 --aggregate-stats natmap-2020-09-03.json natmap-2020-09-03-v8.json
-Succeeded with 364 errors and 1162 warnings
+Succeeded with 364 errors and 1153 warnings
 Error stats:
 {
   "unknownProps": 0,
@@ -10,16 +10,16 @@ Error stats:
 }
 Warning stats:
 {
-  "unknownProps": 1162,
+  "unknownProps": 1153,
   "missingRequiredProps": 0,
   "unknownTypes": 0,
   "inputNotPlainObjects": 0
 }
 Unknown types: {
-  "sdmx-json": 346,
   "wfs-getCapabilities": 1,
   "esri-group": 16,
-  "socrata": 1
+  "socrata": 1,
+  "sdmx-json": 346
 }
 Unknown properties: {
   "EsriMapServerCatalogItem": {
@@ -37,8 +37,7 @@ Unknown properties: {
   "WebMapServiceCatalogItem": {
     "dataUrl": 32,
     "dataUrlType": 32,
-    "useOwnClock": 46,
-    "shareKeys": 9
+    "useOwnClock": 46
   },
   "WebMapServiceCatalogGroup": {
     "dataUrl": 1,

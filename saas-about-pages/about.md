@@ -12,9 +12,9 @@ Today National Map is managed by the Digital Transformation Agency (DTA) in coll
 
 _All metrics in the previous paragraphs based on statistics for 2020._
 
-*NationalMap* is an online map-based tool to allow easy access to spatial data from Australian government agencies and is based on a fully open architecture. When you access data through it, you are typically accessing the data directly from the government department or agency who are the custodians of that data.
+**NationalMap** is an online map-based tool to allow easy access to spatial data from Australian government agencies and is based on a fully open architecture. When you access data through it, you are typically accessing the data directly from the government department or agency who are the custodians of that data.
 
-*NationalMap*...
+**NationalMap**...
 
 * provides easy access to authoritative and other spatial data to government, business and the public
 * facilitates the opening of data by federal, state and local government bodies

@@ -90,13 +90,7 @@ LandCover.members = LandCover.members
 // Framework - Ocean and sea names moves to Marine & Oceans
 const MarineOceans = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Marine and Oceans"]);
 // add the shareKey of the removed NIDEM layer from Elevation
-const NIDEM = findInMembers(
-                findInMembers(
-                  findInMembers(
-                    MarineOceans.members,
-                    ["Coastal"]).members,
-                    ["Intertidal elevation model"]).members,
-                    ["NIDEM - Intertidal elevation model"]);
+const NIDEM = findInMembers(MarineOceans.members, ["Coastal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"]);
 NIDEM["shareKeys"] = ["Root Group/National Data Sets/Elevation/Intertidal/Intertidal elevation model/NIDEM - Intertidal elevation model"];
 
 

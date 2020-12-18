@@ -24,9 +24,10 @@ Communications.members = Communications.members
 // Elevation
 // move Terrain subgroup from Land Cover
 const Terrain = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Land Cover and Land Use", "Terrain"]);
-Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]));
-Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]));
-Terrain.members.push(cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
+Terrain.members.push(
+  cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Contours"]),
+  cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Cuttings"]),
+  cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Embankments"]));
 const Elevation = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation"]);
 Elevation.members.push(Terrain);
 Elevation.members = Elevation.members
@@ -86,13 +87,15 @@ LandCover.members = LandCover.members
 
 
 // Marine and Oceans
-// TODO: add Offshore Rocks and Reefs from Elevation
-// Framework - Ocean and sea names moves to Marine & Oceans
 const MarineOceans = cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Marine and Oceans"]);
 // add the shareKey of the removed NIDEM layer from Elevation
 const NIDEM = findInMembers(MarineOceans.members, ["Coastal", "Intertidal elevation model", "NIDEM - Intertidal elevation model"]);
 NIDEM["shareKeys"] = ["Root Group/National Data Sets/Elevation/Intertidal/Intertidal elevation model/NIDEM - Intertidal elevation model"];
-
+MarineOceans.members.push(
+  cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Reefs and Shoals"]),
+  cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Elevation", "Offshore Rocks and Wrecks"]),
+  cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Ocean and Sea Names"]),
+  cloneFromCatalogPath(natmap20200903v8, ["National Datasets", "Framework", "Marine Parks"]));
 
 
 // Boundaries

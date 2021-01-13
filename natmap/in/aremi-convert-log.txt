@@ -1,0 +1,88 @@
+catalog-converter commit: 6a8049f614
+$ curl http://static.aremi.data61.io/init/aremi-2020-08-18c-ec4e77ce0307a0ad95e0bc00ad5aca88e19b582d.json -o aremi-2020-09-22.json --compressed
+$ ./bin/cli.js --noprint-all --generate-random-ids --id-length 8 --aggregate-stats aremi-2020-09-22.json aremi-2020-09-22-v8.json
+Succeeded with 47 errors and 387 warnings
+Error stats:
+{
+  "unknownProps": 0,
+  "missingRequiredProps": 0,
+  "unknownTypes": 47,
+  "inputNotPlainObjects": 0
+}
+Warning stats:
+{
+  "unknownProps": 387,
+  "missingRequiredProps": 0,
+  "unknownTypes": 0,
+  "inputNotPlainObjects": 0
+}
+Unknown types: {
+  "kml": 32,
+  "csw": 1,
+  "wps-getCapabilities": 1,
+  "nsw-traffic-hourly-volume": 1,
+  "nsw-traffic-volume": 1,
+  "esri-group": 1,
+  "abs-itt-dataset-list": 1,
+  "abs-itt": 9
+}
+Unknown properties: {
+  "CatalogGroup": {
+    "preserveOrder": 68,
+    "itemProperties": 1,
+    "isPromoted": 1,
+    "initialMessage": 1
+  },
+  "CsvCatalogItem": {
+    "showWarnings": 17,
+    "initialMessage": 6,
+    "preserveOrder": 6,
+    "idColumns": 2,
+    "timeColumn": 1,
+    "useOwnClock": 1,
+    "isSampled": 1
+  },
+  "EsriMapServerCatalogItem": {
+    "dataUrl": 8,
+    "dataUrlType": 8,
+    "keepOnTop": 3,
+    "ignoreUnknownTileErrors": 79,
+    "legendUrls": 1,
+    "tableStyle": 5,
+    "legendUrl": 7
+  },
+  "CkanCatalogGroup": {
+    "csvResourceFormat": 46,
+    "ignoreUnknownTileErrors": 17,
+    "ungroupedTitle": 1,
+    "itemProperties": 1,
+    "catalogMaintainerMetadataDatasetName": 26,
+    "showWarnings": 4
+  },
+  "GeoJsonCatalogItem": {
+    "legendUrl": 2,
+    "initialMessage": 2
+  },
+  "WebMapServiceCatalogItem": {
+    "attribution": 3,
+    "initialMessage": 4,
+    "getFeatureInfoFormats": 4,
+    "dataUrl": 4,
+    "dataUrlType": 6,
+    "useOwnClock": 16
+  },
+  "EsriFeatureServerCatalogItem": {
+    "itemProperties": 18,
+    "ignoreUnknownTileErrors": 9
+  },
+  "WebMapServiceCatalogGroup": {
+    "itemProperties": 1,
+    "blacklist": 1
+  },
+  "MapboxVectorTileCatalogItem": {
+    "dataUrl": 2,
+    "dataUrlType": 1,
+    "ignoreUnknownTileErrors": 2,
+    "treat403AsError": 1
+  }
+}

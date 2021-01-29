@@ -2051,7 +2051,7 @@
               "defaultStyle": {
                 "time": {},
                 "color": {
-                  "colorPalette": "9-class RdYlGn"
+                  "colorPalette": "RdYlGn"
                 }
               },
               "featureInfoTemplate": {
@@ -8627,7 +8627,7 @@
                   "type": "ckan-item",
                   "name": "Cereal straw",
                   "id": "306dd5a9",
-                  "url": "http://catalogue.beta.data.wa.gov.au",
+                  "url": "http://catalogue.data.wa.gov.au",
                   "dataCustodian": "[Department of Agriculture and Food, Western Australia](https://www.agric.wa.gov.au/)",
                   "datasetId": "cereal-straw-residues",
                   "itemProperties": {
@@ -8671,17 +8671,6 @@
                     ],
                     "styles": [],
                     "activeStyle": "TOTAL_RESIDUES",
-                    "defaultStyle": {
-                      "time": {},
-                      "color": {
-                        "binColors": [
-                          "rgb(254,232,200)",
-                          "rgb(239,101,72)",
-                          "rgb(127,0,0)"
-                        ],
-                        "numberOfBins": 3
-                      }
-                    },
                     "featureInfoTemplate": {
                       "name": "{{LGA_NAME_2015}}: {{#terria.formatNumber}}{useGrouping:true}{{Average Shire Yield of Cereal Residue in Tonnes}}{{/terria.formatNumber}} tonnes",
                       "template": "<div style='max-width: 40em'>  <h3>{{LGA_NAME_2015}}</h3>  <style type='text/css'>    table.wa-bio tr td:nth-child(1) {      white-space: nowrap;      padding-right: 0.5em;    }  </style>  <p>    <table class='wa-bio'>      <tr>        <td>Straw Yield /Ha Cereal Crop Average over 5 years:</td>        <td> <strong>{{Straw Yield /Ha Cereal Crop Average over 5 years}}</strong> </td>      </tr>      <tr>        <td>Average Shire Yield of Cereal Residue in Tonnes:</td>        <td> <strong>{{#terria.formatNumber}}{useGrouping:true}{{Average Shire Yield of Cereal Residue in Tonnes}}{{/terria.formatNumber}}</strong> </td>      </tr>    </table>  </p></div>"
@@ -8705,7 +8694,7 @@
                   "type": "ckan-item",
                   "name": "Oil Mallee stems",
                   "id": "7dd49cd8",
-                  "url": "http://catalogue.beta.data.wa.gov.au",
+                  "url": "http://catalogue.data.wa.gov.au",
                   "dataCustodian": "[Department of Agriculture and Food, Western Australia](https://www.agric.wa.gov.au/)",
                   "datasetId": "oil-mallee-stems-planted-per-shire",
                   "itemProperties": {
@@ -8803,7 +8792,7 @@
                   "type": "ckan-item",
                   "name": "Grape Marc",
                   "id": "f3203139",
-                  "url": "http://catalogue.beta.data.wa.gov.au",
+                  "url": "http://catalogue.data.wa.gov.au",
                   "dataCustodian": "[Department of Agriculture and Food, Western Australia](https://www.agric.wa.gov.au/)",
                   "datasetId": "grape-marc-estimate",
                   "itemProperties": {
@@ -8945,7 +8934,7 @@
                   "type": "ckan-item",
                   "name": "Seaweed Wrack",
                   "id": "9f041004",
-                  "url": "http://catalogue.beta.data.wa.gov.au",
+                  "url": "http://catalogue.data.wa.gov.au",
                   "dataCustodian": "[Department of Agriculture and Food, Western Australia](https://www.agric.wa.gov.au/)",
                   "datasetId": "seaweed-wrack",
                   "itemProperties": {
@@ -12648,31 +12637,12 @@
               "name": "Registrations",
               "title": "Total Registrations per postcode"
             },
-            {
-              "name": "Postcode",
-              "type": "hidden"
-            }
           ],
           "styles": [
             {
               "id": "Registrations",
               "color": {
-                "binMaximums": [
-                  3,
-                  10,
-                  15,
-                  20,
-                  25,
-                  30,
-                  50,
-                  75,
-                  100
-                ],
-                "binColors": [
-                  "FloralWhite",
-                  "blue"
-                ],
-                "numberOfBins": 2
+                "colorPalette": "Blues"
               }
             }
           ],
@@ -17280,43 +17250,43 @@
                     {
                       "id": "TotalActiveEnergy_MWh",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "MinimumPower_MW",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "MaximumPower_MW",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "MeanPower_MW",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "MedianPower_MW",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "StdDeviation",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "coefficient_variation",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     }
                   ],
@@ -17477,73 +17447,73 @@
                     {
                       "id": "Dwellings",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Persons",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Residential",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Commercial",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Industrial",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Primary Production",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Education",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Hospital/Medical",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Transport",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Parkland",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Water",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     },
                     {
                       "id": "Other",
                       "color": {
-                        "colorPalette": "8-class Reds"
+                        "colorPalette": "Reds"
                       }
                     }
                   ],
@@ -17558,11 +17528,7 @@
                     ]
                   },
                   "defaultStyle": {
-                    "time": {
-                      "idColumns": [
-                        "energy_asset"
-                      ]
-                    },
+                    "time": {},
                     "color": {
                       "nullColor": "rgba(150,135,135, 0.3)",
                       "nullLabel": "N/A"

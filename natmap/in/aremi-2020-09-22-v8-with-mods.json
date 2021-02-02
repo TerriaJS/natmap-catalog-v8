@@ -1629,48 +1629,6 @@
               "shareKeys": [
                 "Root Group/Electricity Infrastructure/Generation/All Power Stations"
               ]
-            },
-            {
-              "type": "ckan-item",
-              "name": "Diesel Generators - South Australia",
-              "id": "bc878b8e",
-              "url": "https://data.sa.gov.au/data",
-              "rectangle": {
-                "west": 128.5,
-                "south": -40.3,
-                "east": 141.4,
-                "north": -25.1
-              },
-              "datasetId": "diesel-generation-plants",
-              "itemProperties": {
-                "columns": [
-                  {
-                    "name": "OBJECTID",
-                    "type": "hidden"
-                  },
-                  {
-                    "name": "Plant ID",
-                    "type": "hidden"
-                  },
-                  {
-                    "name": "Original ID",
-                    "type": "hidden"
-                  }
-                ],
-                "activeStyle": "On or Off Grid"
-              },
-              "supportedResourceFormats": [
-                {
-                  "id": "CSV",
-                  "formatRegex": "CSV",
-                  "definition": {
-                    "type": "csv"
-                  }
-                }
-              ],
-              "shareKeys": [
-                "Root Group/Electricity Infrastructure/Generation/Diesel Generators - South Australia"
-              ]
             }
           ],
           "shareKeys": [
@@ -1891,30 +1849,6 @@
               ]
             },
             {
-              "type": "wms",
-              "name": "Distance to Transmission Lines",
-              "id": "54071602",
-              "url": "http://services.ga.gov.au/gis/services/Proximity_To_Transmission_Infrastructure_Lines_WM/MapServer/WMSServer",
-              "opacity": 1,
-              "rectangle": {
-                "west": 112,
-                "south": -48,
-                "east": 155,
-                "north": -5
-              },
-              "layers": "Distance_to_Transmission_Lines_Contours",
-              "featureInfoTemplate": {
-                "name": "{{distance}} km",
-                "template": "{{distance}} km from the nearest transmission line."
-              },
-              "tileErrorHandlingOptions": {
-                "ignoreUnknownTileErrors": true
-              },
-              "shareKeys": [
-                "Root Group/Electricity Infrastructure/Transmission/Distance to Transmission Lines"
-              ]
-            },
-            {
               "type": "esri-mapServer",
               "name": "Substations",
               "id": "54071616",
@@ -1930,30 +1864,6 @@
               "keepOnTop": true,
               "shareKeys": [
                 "Root Group/Electricity Infrastructure/Transmission/Substations"
-              ]
-            },
-            {
-              "type": "wms",
-              "name": "Distance to Transmission Substations",
-              "id": "54071620",
-              "url": "http://services.ga.gov.au/gis/services/Proximity_To_Transmission_Infrastructure_Substations_WM/MapServer/WMSServer",
-              "opacity": 1,
-              "rectangle": {
-                "west": 112,
-                "south": -48,
-                "east": 155,
-                "north": -5
-              },
-              "layers": "Distance_to_Transmission_Substations_Contours",
-              "featureInfoTemplate": {
-                "name": "{{distance}} km",
-                "template": "{{distance}} km from the nearest substation."
-              },
-              "tileErrorHandlingOptions": {
-                "ignoreUnknownTileErrors": true
-              },
-              "shareKeys": [
-                "Root Group/Electricity Infrastructure/Transmission/Distance to Transmission Substations"
               ]
             }
           ],
@@ -8555,81 +8465,6 @@
                 },
                 {
                   "type": "ckan-item",
-                  "name": "Cereal straw",
-                  "id": "306dd5a9",
-                  "url": "http://catalogue.data.wa.gov.au.au",
-                  "dataCustodian": "[Department of Agriculture and Food, Western Australia](https://www.agric.wa.gov.au/)",
-                  "datasetId": "cereal-straw-residues",
-                  "itemProperties": {
-                    "info": [
-                      {
-                        "name": "Licensing, Terms & Conditions",
-                        "content": "Copyright © Western Australia Agriculture Authority, 2016"
-                      },
-                      {
-                        "name": "Disclaimer",
-                        "content": "While all reasonable care has been taken in the preparation of the material in this file, the Western Australian Government and its officers accept no responsibility for any errors or omissions it may contain, whether caused by negligence, or otherwise, or for any loss, however caused, sustained by any person who relies on it."
-                      }
-                    ],
-                    "rectangle": {
-                      "west": 113,
-                      "south": -35.8,
-                      "east": 125,
-                      "north": -26.8
-                    },
-                    "columns": [
-                      {
-                        "name": "RESIDUE_TYPE",
-                        "type": "hidden"
-                      },
-                      {
-                        "name": "RESIDUE_DESCRIPTION",
-                        "type": "hidden"
-                      },
-                      {
-                        "name": "RESIDUE_UNIT",
-                        "type": "hidden"
-                      },
-                      {
-                        "name": "PERIOD",
-                        "type": "hidden"
-                      },
-                      {
-                        "name": "TOTAL_RESIDUES",
-                        "title": "Total Residues"
-                      }
-                    ],
-                    "activeStyle": "TOTAL_RESIDUES",
-                    "defaultStyle": {
-                      "color": {
-                        "binColors": [
-                          "rgb(254,232,200)",
-                          "rgb(239,101,72)",
-                          "rgb(127,0,0)"
-                        ],
-                        "numberOfBins": 3
-                      }
-                    },
-                    "featureInfoTemplate": {
-                      "name": "{{LGA_NAME_2015}}: {{#terria.formatNumber}}{useGrouping:true}{{Average Shire Yield of Cereal Residue in Tonnes}}{{/terria.formatNumber}} tonnes",
-                      "template": "<div style='max-width: 40em'>  <h3>{{LGA_NAME_2015}}</h3>  <style type='text/css'>    table.wa-bio tr td:nth-child(1) {      white-space: nowrap;      padding-right: 0.5em;    }  </style>  <p>    <table class='wa-bio'>      <tr>        <td>Straw Yield /Ha Cereal Crop Average over 5 years:</td>        <td> <strong>{{Straw Yield /Ha Cereal Crop Average over 5 years}}</strong> </td>      </tr>      <tr>        <td>Average Shire Yield of Cereal Residue in Tonnes:</td>        <td> <strong>{{#terria.formatNumber}}{useGrouping:true}{{Average Shire Yield of Cereal Residue in Tonnes}}{{/terria.formatNumber}}</strong> </td>      </tr>    </table>  </p></div>"
-                    }
-                  },
-                  "supportedResourceFormats": [
-                    {
-                      "id": "CSV",
-                      "formatRegex": "CSV",
-                      "definition": {
-                        "type": "csv"
-                      }
-                    }
-                  ],
-                  "shareKeys": [
-                    "Root Group/Renewable Energy/Bioenergy/Western Australia/Cereal straw"
-                  ]
-                },
-                {
-                  "type": "ckan-item",
                   "name": "Oil Mallee stems",
                   "id": "7dd49cd8",
                   "url": "http://catalogue.data.wa.gov.au.au",
@@ -8721,65 +8556,6 @@
                   ],
                   "shareKeys": [
                     "Root Group/Renewable Energy/Bioenergy/Western Australia/Oil Mallee stems"
-                  ]
-                },
-                {
-                  "type": "ckan-item",
-                  "name": "Grape Marc",
-                  "id": "f3203139",
-                  "url": "http://catalogue.data.wa.gov.au.au",
-                  "dataCustodian": "[Department of Agriculture and Food, Western Australia](https://www.agric.wa.gov.au/)",
-                  "datasetId": "grape-marc-estimate",
-                  "itemProperties": {
-                    "info": [
-                      {
-                        "name": "Licensing, Terms & Conditions",
-                        "content": "Copyright © Western Australia Agriculture Authority, 2016"
-                      },
-                      {
-                        "name": "Disclaimer",
-                        "content": "While all reasonable care has been taken in the preparation of the material in this file, the Western Australian Government and its officers accept no responsibility for any errors or omissions it may contain, whether caused by negligence, or otherwise, or for any loss, however caused, sustained by any person who relies on it."
-                      }
-                    ],
-                    "columns": [
-                      {
-                        "name": "PERIOD",
-                        "type": "hidden"
-                      },
-                      {
-                        "name": "RESIDUE_UNIT",
-                        "type": "hidden"
-                      },
-                      {
-                        "name": "LOCATION",
-                        "type": "hidden"
-                      }
-                    ],
-                    "defaultStyle": {
-                      "color": {
-                        "binColors": [
-                          "rgb(224,236,244)",
-                          "rgb(140,150,199)",
-                          "rgb(77,0,75)"
-                        ],
-                        "numberOfBins": 3
-                      }
-                    },
-                    "featureInfoTemplate": {
-                      "name": "{{Location}} {{Estimated Tonnes / year wet weight Grape Marc}} t/y"
-                    }
-                  },
-                  "supportedResourceFormats": [
-                    {
-                      "id": "CSV",
-                      "formatRegex": "CSV",
-                      "definition": {
-                        "type": "csv"
-                      }
-                    }
-                  ],
-                  "shareKeys": [
-                    "Root Group/Renewable Energy/Bioenergy/Western Australia/Grape Marc"
                   ]
                 },
                 {

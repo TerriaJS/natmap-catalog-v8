@@ -5,6 +5,7 @@ const findInMembers = require("../helpers/findInMembers");
 const recursivelySortMembersByName = require("../helpers/recursivelySortMembersByName");
 const natmap20200903v8 = require("./in/natmap-2020-09-03-v8.json");
 const aremi20200922v8 = require("./in/aremi-2020-09-22-v8-with-mods.json");
+const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 
 // remove "Land Use" subgroup from Agriculture
 const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
@@ -67,6 +68,12 @@ Elevation.members = Elevation.members
   .filter((m) => m.name !== "Cuttings")
   .filter((m) => m.name !== "Embankments");
 
+const ElectricVehicle = cloneFromCatalogPath(aremi20200922v8, [
+  "Electric Vehicle",
+]);
+
+ElectricVehicle.members.push(...aremiEvTraffic);
+
 // Energy group
 const Energy = {
   type: "group",
@@ -76,6 +83,7 @@ const Energy = {
   members: [
     cloneFromCatalogPath(aremi20200922v8, ["Electricity Infrastructure"]),
     cloneFromCatalogPath(aremi20200922v8, ["Renewable Energy"]),
+    ElectricVehicle,
     cloneFromCatalogPath(natmap20200903v8, [
       "National Datasets",
       "Framework",

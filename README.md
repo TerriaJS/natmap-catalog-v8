@@ -27,6 +27,7 @@ This approach is not ideal, but will let you see changes using a diff-tool. Thes
   
  ## Deploy
  
- We are storing NationalMap catalogs at `https://tiles.terria.io/static/natmap-prod-2021-02-01-1406-converted-v8.json`, which is an S3 bucket here - https://s3.console.aws.amazon.com/s3/buckets/tiles.terria.io?region=ap-southeast-2&prefix=static/
+ We are storing NationalMap catalogs at https://tiles.terria.io/static/natmap-prod-2021-02-01-1406-converted-v8.json, 
+ which is an S3 bucket here - https://s3.console.aws.amazon.com/s3/buckets/tiles.terria.io?region=ap-southeast-2&prefix=static/
  
  So upload latest catalog (with timestamp), and then update `initializationUrls` in SaaS `map-config`

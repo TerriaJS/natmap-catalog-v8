@@ -21,13 +21,13 @@ This approach is not ideal, but will let you see changes using a diff-tool. Thes
 
 1. Run `catalog-converter` on nationalmap/aremi catalog
 2. Copy input (v7) and output (v8) to `natmap\in` and rename to match naming patterns:
-  - `natmap-2020-09-03.json`
-  - `natmap-2020-09-03-v8.json`
+  - `natmap\in\natmap-2020-09-03.json`
+  - `natmap\in\natmap-2020-09-03-v8.json`
   
   
  ## Deploy
  
- We are storing NationalMap catalogs at https://tiles.terria.io/static/natmap-prod-2021-02-01-1406-converted-v8.json, 
+ Currently, we are storing NationalMap catalogs at https://tiles.terria.io/static/natmap-prod-2021-02-01-1406-converted-v8.json, 
  which is an S3 bucket here - https://s3.console.aws.amazon.com/s3/buckets/tiles.terria.io?region=ap-southeast-2&prefix=static/
  
  So upload latest catalog (with timestamp), and then update `initializationUrls` in SaaS `map-config`

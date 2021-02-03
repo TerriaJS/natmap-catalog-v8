@@ -319,7 +319,7 @@ SocialEconomic.members.push({
       id:
         "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_TYPE",
       type: "region-type",
-      selectedId: "SA3",
+      selectedId: "SA2",
     },
     {
       id:

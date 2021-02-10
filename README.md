@@ -20,10 +20,13 @@ Catalog will be saved to `./out.json`
  Currently, we are storing NationalMap catalogs at https://tiles.terria.io/static/natmap-prod-2021-02-01-1406-converted-v8.json, 
  which is an S3 bucket here - https://s3.console.aws.amazon.com/s3/buckets/tiles.terria.io?region=ap-southeast-2&prefix=static/
  
- To deploy, rename `out.json` to follow something like `natmap-prod-2021-02-01-1406-converted-v8.json` pattern - and then update URL in `initializationUrls` in SaaS `map-config`  
- - **Dev:** https://dev.saas.terria.io/record-editor/map-config-nationalmap
- - **Test:** https://test.saas.terria.io/record-editor/map-config-nationalmap
- - **Prod:** https://saas.terria.io/record-editor/map-config-nationalmap
+ To deploy: 
+ 1. Rename `out.json` to follow something like `natmap-prod-2021-02-01-1406-converted-v8.json` pattern
+ 2. Upload to `tiles.terria.io/static` bucket
+ 3. Update URL in `initializationUrls` in SaaS `map-config`  
+    - **Dev:** https://dev.saas.terria.io/record-editor/map-config-nationalmap
+    - **Test:** https://test.saas.terria.io/record-editor/map-config-nationalmap
+    - **Prod:** https://saas.terria.io/record-editor/map-config-nationalmap
 
 ## AREMI catalog
 

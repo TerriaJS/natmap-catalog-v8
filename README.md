@@ -41,6 +41,10 @@ Run
 
 which will produce catalog file `natmap/out.json`. Please upload this file to the `s3` bucket with different name to be used by national map config.
 
+| *s3 file name* | *commit version* |
+|----------------|------------------|
+| natmap-2021-02-10-v8.json | 5c89cb54f73d4cab4cf5f079d0151ac5f7822a1b |
+
 ## Deploy
  
  Currently, we are storing NationalMap catalogs at https://tiles.terria.io/static/natmap-prod-2021-02-01-1406-converted-v8.json, 

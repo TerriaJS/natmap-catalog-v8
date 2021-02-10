@@ -526,8 +526,40 @@ const ACT = {
   members: [],
 };
 
+const AnalysisTools = {
+  name: "Analysis Tools",
+  type: "group",
+  members: [
+    {
+      name: "YourDataYourRegions (requires login)",
+      id: "ydyr",
+      type: "ydyr",
+      parameters: {
+        apiUrl: "https://ydyr.info/api/v1/",
+        "Negative Binomial": true,
+        "Population Weighted": false,
+        "Poisson Linear": false,
+        "Ridge Regressor": false,
+        "Output Geography": "ABS - 2016 Statistical Areas Level 4",
+      },
+    },
+  ],
+};
+
 // assemble the catalogue
 const complete = _.cloneDeep(natmap20200903v8);
-complete.catalog = [NationalDatasets, DGA, ACT, NSW, NT, QLD, SA, TAS, VIC, WA];
+complete.catalog = [
+  NationalDatasets,
+  DGA,
+  ACT,
+  NSW,
+  NT,
+  QLD,
+  SA,
+  TAS,
+  VIC,
+  WA,
+  AnalysisTools,
+];
 
 module.exports = complete;

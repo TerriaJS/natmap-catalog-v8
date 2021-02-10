@@ -1,0 +1,95 @@
+{
+  "catalog":
+  [
+    {
+      "type": "esri-mapServer",
+      "name": "Australian Shoreline",
+      "catalogPath": ["Boundaries", "Maritime boundaries"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Australian_Shoreline/MapServer",
+      "id": "kdFawos",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Maritime boundaries/Australian Shoreline"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "Surface Hydrology",
+      "catalogPath": ["Water", "Surface Water", "Individual Hydrology and Marine Layers"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Surface_Hydrology/MapServer",
+      "id": "aiIUaag",
+      "shareKeys": [
+        "Root Group/National Datasets/Water/Surface Water/Individual Hydrology and Marine Layers/Surface Hydrology"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "Australian Maritime Boundary Treaties AMB2014a",
+      "catalogPath": ["Boundaries", "Maritime boundaries"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Treaties_Australian_Maritime_Boundaries_AMB2014a/MapServer",
+      "id": "auTWEww",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Maritime boundaries/Australian Maritime Boundary Treaties AMB2014a"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "CWTH CW Act 1980 Coastal Waters AMB2014a",
+      "catalogPath": ["Boundaries", "Maritime boundaries"],
+      "url": "https://services.ga.gov.au/gis/rest/services/CW_1970_1980_AMB2014a/MapServer",
+      "id": "sjuAErs",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Maritime boundaries/CWTH CW Act 1980 Coastal Waters AMB2014a"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "CWTH OMA 1994 Mineral Blocks AMB2014a",
+      "catalogPath": ["Boundaries", "Other areas"],
+      "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks_AMB2014a/MapServer",
+      "id": "pUTdjtT",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Other areas/CWTH OMA 1994 Mineral Blocks AMB2014a"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "CWTH OPGGSA 2006 Petroleum Blocks AMB2001a",
+      "catalogPath": ["Boundaries", "Other areas"],
+      "url": "https://services.ga.gov.au/gis/rest/services/CWTH_OPGGSA_2006_Petroleum_Blocks_AMB2001a/MapServer",
+      "id": "pduSsJS",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks AMB2001a"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "CWTH OPGGSA 2006 Petroleum Blocks AMB2014a",
+      "catalogPath": ["Boundaries", "Other areas"],
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks_AMB2014a/MapServer",
+      "id": "EyRYwed",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks AMB2014a"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "CWTH OPGGSA 2006 AMB2014a",
+      "catalogPath": ["Boundaries", "Other areas"],
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Areas_AMB2014a/MapServer",
+      "id": "ERYawyB",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 AMB2014a"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "SSLA 1973 AMB2014a",
+      "catalogPath": ["Boundaries", "Other areas"],
+      "url": "https://services.ga.gov.au/gis/rest/services/SSLA_1973_AMB2014a/MapServer",
+      "id": "GHutFsD",
+      "shareKeys": [
+        "Root Group/National Datasets/Boundaries/Other areas/SSLA 1973 AMB2014a"
+      ]
+    }
+  ]
+}

@@ -413,6 +413,7 @@ gaNewLayers["catalog"].map(m => {
   const group = findInMembers(NationalDatasets.members, path);
   delete m.catalogPath;
   group.members.push(m);
+  group.members = recursivelySortMembersByName(group.members);
 })
 
 // Data.gov.au

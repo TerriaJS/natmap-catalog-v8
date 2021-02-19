@@ -6,6 +6,7 @@ const recursivelySortMembersByName = require("../helpers/recursivelySortMembersB
 const natmap20200903v8 = require("./in/natmap-2020-09-03-v8.json");
 const aremi20200922v8 = require("./in/aremi-2020-09-22-v8-with-mods.json");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
+const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
 
 // remove "Land Use" subgroup from Agriculture
 const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
@@ -14,7 +15,12 @@ const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
 ]);
 Agriculture.members = Agriculture.members.filter(
   (m) => m.name !== "Land Use and Cover in South Australia"
-);
+).map(m => {
+  if (m.name === "Agricultural Exposure"){
+    m.url = "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
+  }
+  return m;
+});
 
 // remove ABC Photo Stories from Communications
 const Communications = cloneFromCatalogPath(natmap20200903v8, [
@@ -265,7 +271,7 @@ Boundaries.members = [
     ],
   },
   {
-    name: "Other areas ",
+    name: "Other areas",
     type: "group",
     members: [
       findInMembers(Boundaries.members, ["Postal Areas (2011)"]),
@@ -401,6 +407,14 @@ NationalDatasets.members = recursivelySortMembersByName([
   Vegetation,
   Water,
 ]);
+
+gaNewLayers["catalog"].map(m => {
+  const path = m.catalogPath;
+  const group = findInMembers(NationalDatasets.members, path);
+  delete m.catalogPath;
+  group.members.push(m);
+  group.members = recursivelySortMembersByName(group.members);
+})
 
 // Data.gov.au
 const DGA = cloneFromCatalogPath(natmap20200903v8, ["Data.gov.au"]);

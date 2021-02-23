@@ -2147,6 +2147,15 @@
                   "shareKeys": [
                     "Root Group/National Datasets/Marine and Oceans/Bathymetry/Geoscience Australia Marine Data (WMS)"
                   ]
+                },
+                {
+                  "type": "wfs-group",
+                  "name": "Geoscience Australia Marine Data (WFS)",
+                  "url": "http://marine.ga.gov.au/geoserver/marine/wfs",
+                  "id": "qN84qg",
+                  "shareKeys": [
+                    "Root Group/National Datasets/Marine and Oceans/Bathymetry/Geoscience Australia Marine Data (WFS)"
+                  ]
                 }
               ],
               "shareKeys": [

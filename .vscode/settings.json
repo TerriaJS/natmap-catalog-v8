@@ -1,0 +1,6 @@
+{
+    "debug.javascript.pickAndAttachOptions": {
+    "smartStep": true
+    },
+    "debug.javascript.autoAttachFilter": "smart"
+}

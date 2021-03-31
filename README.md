@@ -7,7 +7,7 @@ This branch will build a customised static catalog for Vic DT. Do not merge this
 
     | *s3 file name* | *commit version* |
     |----------------|------------------|
-    | national-energy-water-satellite-vic-reorganised-v8-2021-03-31.json |  |
+    | national-energy-water-satellite-vic-reorganised-v8-2021-03-31.json | 63d897408a656baf4af3b2f2d6e7902688449ef7 |
     | `<new catalog file name>` | `<commit version>` |
 
 

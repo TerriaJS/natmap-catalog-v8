@@ -1,3 +1,16 @@
+***Branch Note***
+This branch will build a customised static catalog for Vic DT. Do not merge this branch to the main.
+
+1. After building an updated catalog, rename the output `./natmap/out.json` to something meaningful, e.g., `./natmap/national-energy-water-satellite-vic-reorganised-v8-2021-03-31.json`, then upload it to `https://s3.console.aws.amazon.com/s3/buckets/tiles.terria.io?region=ap-southeast-2&prefix=static/victoria-digitaltwin/`.<br><br>
+
+2. Record the history in the following table.
+
+    | *s3 file name* | *commit version* |
+    |----------------|------------------|
+    | national-energy-water-satellite-vic-reorganised-v8-2021-03-31.json |  |
+    | `<new catalog file name>` | `<commit version>` |
+
+
 # V8 National Map Catalog !
 
 ## How to build

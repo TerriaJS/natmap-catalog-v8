@@ -5,10 +5,11 @@ This branch will build a customised static catalog for Vic DT. Do not merge this
 
 2. Record the history in the following table.
     ***Vic DT Catalog History***
-    | *s3 file name* | *commit version* |
-    |----------------|------------------|
-    | national-energy-water-satellite-vic-reorganised-v8-2021-03-31.json | 63d897408a656baf4af3b2f2d6e7902688449ef7 |
-    | `<new catalog file name>` | `<commit version>` |
+    | *s3 file name* | *commit version* | *note* |
+    |----------------|------------------|------------------|
+    | national-energy-water-satellite-vic-reorganised-v8-2021-03-31.json | 63d897408a656baf4af3b2f2d6e7902688449ef7 | Initial auto built catalog |
+    | national-energy-water-satellite-vic-reorganised-v8-2021-03-31b.json |  | Fix structure for local government datasets |
+    | `<new catalog file name>` | `<commit version>` | `<new note>` |
 
 --------------
 # V8 National Map Catalog !

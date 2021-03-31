@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const root = require("./root");
-import recursivelySortMembersByName from "../helpers/recursivelySortMembersByName";
+const recursivelySortMembersByName  = require( "../helpers/recursivelySortMembersByName");
 
 function buildCatalog() {
   const NationalDatasets = root.catalog.filter(m => m.name === "National Datasets");
@@ -59,7 +59,8 @@ function buildCatalog() {
 
   const Water = NationalDatasets[0].members.filter( m => m.name === "Water")[0];
   const VictoriaGovernment = root.catalog.filter( m => m.name === "Victoria Government")[0];
-  VictoriaGovernment.name = "Local government datasets";
+  const VictoriaLocalGovernment = VictoriaGovernment.members.filter( m => m.name === "Local government data")[0];
+  VictoriaLocalGovernment.name = "Local government datasets";
   const VicCatalog = {
     "catalog": [
       {
@@ -68,7 +69,7 @@ function buildCatalog() {
         "name": "National datasets",
         "members": [Energy, SatelliteImages, Water]
       },
-      VictoriaGovernment
+      VictoriaLocalGovernment
     ]
   };
 

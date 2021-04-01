@@ -4,12 +4,26 @@ const fs = require("fs");
 const path = require("path");
 const root = require("./root");
 const recursivelySortMembersByName  = require( "../helpers/recursivelySortMembersByName");
+const findInMembers = require("../helpers/findInMembers")
 
 function buildCatalog() {
   const NationalDatasets = root.catalog.filter(m => m.name === "National Datasets");
   const Energy = NationalDatasets[0].members.filter( m => m.name === "Energy")[0];
-  Energy.members = Energy.members.filter(m => m.name !== "Electricity Transmission Lines" && m.name !== "Electricity Transmission Substations");
-  
+
+  // Filter out duplicates as they are already in group "Transmission".
+  Energy.members = Energy.members.filter(m =>  m.name !== "Electricity Transmission Lines" && m.name !== "Electricity Transmission Substations");
+
+  // Filter out group "Western Australia" because it requires access credentials and we don't have permission yet.
+  Energy.members.map(m => {
+    if (m.name === "Electricity Infrastructure"){
+      m.members.map(m => {
+        if (m.name === "Transmission"){
+          m.members = m.members.filter(m => m.name !== "Western Australia");
+        }
+      })
+    }
+  })
+
   const SatelliteImager10m = {
     "id": "IYHodsgs1",
     "type": "group",

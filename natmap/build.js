@@ -13,28 +13,19 @@ function buildCatalog() {
   // Filter out duplicates as they are already in group "Transmission".
   Energy.members = Energy.members.filter(m =>  m.name !== "Electricity Transmission Lines" && m.name !== "Electricity Transmission Substations");
 
+  // Filter out some datasets because they require access credentials and we don't have permission yet.
   Energy.members.map(m => {
     if (m.name === "Electricity Infrastructure"){
       m.members.map(m => {
         if (m.name === "Transmission"){
-          // Filter out group "Western Australia" because it requires access credentials and we don't have permission yet.
           m.members = m.members.filter(m => m.name !== "Western Australia");
         }
-      })
+      });
     }
     
     if (m.name === "Electric Vehicle"){
-      // Filter out the datasets that require access credentials and we don't have permission yet.
       m.members = m.members.filter(m => m.name !== "Average Daily Traffic Volume" && m.name !== "Average Hourly Weekday Traffic Volume");
-
-      m.members.map(m => {
-        if (m.name === "Places of Interest"){
-          // Filter out the dataset that requires access credentials and we don't have permission yet.
-          m.members = m.members.filter(m => m.name !== "Petrol Stations")
-        }
-      })
     }
-
   });
 
   const SatelliteImager10m = {

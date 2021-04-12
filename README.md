@@ -45,6 +45,7 @@ which will produce catalog file `natmap/out.json`. Please upload this file to th
 | *s3 file name* | *commit version* |
 |----------------|------------------|
 | natmap-2021-02-10-v8.json | 9c1194b45b7e77df7e40efd9aae94e86a97e95f6 |
+| natmap-2021-03-30-v8.json | 92f0b1744aa77eb8be9e894a775f27fabc98f873 |
 
 ## Deploy
  

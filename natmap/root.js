@@ -108,6 +108,33 @@ const Energy = {
   ],
 };
 
+Energy.members.map(m => {
+  if (m.name === "Electricity Infrastructure"){
+    m.members.map(m => {
+      if (m.name === "Generation") {
+        m.members.map(m => {
+          if (m.name === "All Power Stations"){
+            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+            m.layers = "0"
+          }
+        })
+      }
+      else if (m.name === "Transmission") {
+        m.members.map(m => {
+          if (m.name === "Substations"){
+            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+            m.layers = "1";
+          }
+          else if (m.name === "Transmission Lines"){
+            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer"
+            m.layers = "2";
+          }
+        })
+      }
+    })
+  }
+})
+
 // Environment group
 const Environment = cloneFromCatalogPath(natmap20200903v8, [
   "National Datasets",

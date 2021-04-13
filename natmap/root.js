@@ -44,9 +44,34 @@ Agriculture.members = Agriculture.members.filter(
     m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
     m.layers = "1";
   }
-  
+
   return m;
 });
+
+// Add two new layers.
+Agriculture.members = [
+  ...Agriculture.members,
+  {
+    "type": "esri-mapServer",
+    "name": "Catchment Scale Land Use 2020 [Date of mapping]",
+    "url": "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+    "layers": "5",
+    "id": "pa47KiLde",
+    "shareKeys": [
+      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Date of mapping]"
+    ]
+  },
+  {
+    "type": "esri-mapServer",
+    "name": "Catchment Scale Land Use 2020 [Scale of mapping]",
+    "url": "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+    "layers": "6",
+    "id": "psdTWs72q",
+    "shareKeys": [
+      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Scale of mapping]"
+    ]
+  }
+];
 
 // remove ABC Photo Stories from Communications
 const Communications = cloneFromCatalogPath(natmap20200903v8, [
@@ -133,6 +158,10 @@ const Energy = {
     ]),
   ],
 };
+
+
+// Filter out duplicates as they are already in group "Electricity Infrastructure" -> "Transmission".
+Energy.members = Energy.members.filter(m =>  m.name !== "Electricity Transmission Lines" && m.name !== "Electricity Transmission Substations");
 
 Energy.members.map(m => {
   if (m.name === "Electricity Infrastructure"){

@@ -19,6 +19,31 @@ Agriculture.members = Agriculture.members.filter(
   if (m.name === "Agricultural Exposure"){
     m.url = "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
   }
+  else if (m.name === "Catchment Scale Land Use 2018 [18 class classification]") {
+    m.name = "Catchment Scale Land Use 2020 [18 class classification]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "2";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Agricultural industries]") {
+    m.name = "Catchment Scale Land Use 2020 [Agricultural industries]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "4";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Agriculture]") {
+    m.name = "Catchment Scale Land Use 2020 [Agriculture]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "3";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Primary classification]") {
+    m.name = "Catchment Scale Land Use 2020 [Primary classification]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "0";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Secondary classification]") {
+    m.name = "Catchment Scale Land Use 2020 [Secondary classification]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "1";
+  }
   return m;
 });
 
@@ -107,33 +132,6 @@ const Energy = {
     ]),
   ],
 };
-
-Energy.members.map(m => {
-  if (m.name === "Electricity Infrastructure"){
-    m.members.map(m => {
-      if (m.name === "Generation") {
-        m.members.map(m => {
-          if (m.name === "All Power Stations"){
-            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
-            m.layers = "0"
-          }
-        })
-      }
-      else if (m.name === "Transmission") {
-        m.members.map(m => {
-          if (m.name === "Substations"){
-            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
-            m.layers = "1";
-          }
-          else if (m.name === "Transmission Lines"){
-            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer"
-            m.layers = "2";
-          }
-        })
-      }
-    })
-  }
-})
 
 // Environment group
 const Environment = cloneFromCatalogPath(natmap20200903v8, [

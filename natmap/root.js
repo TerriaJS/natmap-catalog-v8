@@ -136,10 +136,11 @@ const Energy = {
   type: "group",
   name: "Energy",
   description:
-    "The **Electricity Infrastructure** and **Renewable Energy** data groups seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
+    "The **Electricity Infrastructure**, **Renewable Energy** and **Research** data groups seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
   members: [
     cloneFromCatalogPath(aremi20200922v8, ["Electricity Infrastructure"]),
     cloneFromCatalogPath(aremi20200922v8, ["Renewable Energy"]),
+    cloneFromCatalogPath(aremi20200922v8, ["Research"]),
     ElectricVehicle,
     cloneFromCatalogPath(natmap20200903v8, [
       "National Datasets",

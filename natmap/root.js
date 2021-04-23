@@ -131,6 +131,44 @@ const ElectricVehicle = cloneFromCatalogPath(aremi20200922v8, [
 
 ElectricVehicle.members.push(...aremiEvTraffic);
 
+const LandParcelAndProperty = {
+  type: "group",
+  name: "Land Parcel and Property",
+  description:
+    "The **Land Parcel and Property** is the new name of **Cadastre and Land Tenure** data group seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
+  members: [
+    cloneFromCatalogPath(aremi20200922v8, ["Boundaries", "Cadastre and Land Tenure", "By State"]),
+  ]
+};
+
+LandParcelAndProperty.members.map(m => {
+  if (m.name === "By State") {
+    m.members.map(m => {
+      if (m.name === "Cadastral Parcels - New South Wales") {
+        m.name = "NSW";
+      }
+      else if (m.name === "Cadastral Parcels - Tasmania") {
+        m.name = "TAS";
+        m.rectangle = {
+          "west": 143.7,
+          "south": -43.8,
+          "east": 148.7,
+          "north": -40.3
+        };
+      }
+      else if (m.name === "Cadastral Parcels - Western Australia") {
+        m.name = "WA"
+      }
+      else if (m.name === "Northern Territory") {
+        m.name = "NT";
+      }
+      else if (m.name === "Queensland") {
+        m.name = "QLD";
+      }
+    })
+  }
+})
+
 // Energy group
 const Energy = {
   type: "group",
@@ -141,6 +179,7 @@ const Energy = {
     cloneFromCatalogPath(aremi20200922v8, ["Electricity Infrastructure"]),
     cloneFromCatalogPath(aremi20200922v8, ["Renewable Energy"]),
     cloneFromCatalogPath(aremi20200922v8, ["Research"]),
+    LandParcelAndProperty,
     ElectricVehicle,
     cloneFromCatalogPath(natmap20200903v8, [
       "National Datasets",

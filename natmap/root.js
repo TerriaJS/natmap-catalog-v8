@@ -13,64 +13,75 @@ const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
   "National Datasets",
   "Agriculture",
 ]);
-Agriculture.members = Agriculture.members.filter(
-  (m) => m.name !== "Land Use and Cover in South Australia"
-).map(m => {
-  if (m.name === "Agricultural Exposure"){
-    m.url = "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
-  }
-  else if (m.name === "Catchment Scale Land Use 2018 [18 class classification]") {
-    m.name = "Catchment Scale Land Use 2020 [18 class classification]";
-    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-    m.layers = "2";
-  }
-  else if (m.name === "Catchment Scale Land Use 2018 [Agricultural industries]") {
-    m.name = "Catchment Scale Land Use 2020 [Agricultural industries]";
-    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-    m.layers = "4";
-  }
-  else if (m.name === "Catchment Scale Land Use 2018 [Agriculture]") {
-    m.name = "Catchment Scale Land Use 2020 [Agriculture]";
-    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-    m.layers = "3";
-  }
-  else if (m.name === "Catchment Scale Land Use 2018 [Primary classification]") {
-    m.name = "Catchment Scale Land Use 2020 [Primary classification]";
-    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-    m.layers = "0";
-  }
-  else if (m.name === "Catchment Scale Land Use 2018 [Secondary classification]") {
-    m.name = "Catchment Scale Land Use 2020 [Secondary classification]";
-    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-    m.layers = "1";
-  }
+Agriculture.members = Agriculture.members
+  .filter((m) => m.name !== "Land Use and Cover in South Australia")
+  .map((m) => {
+    if (m.name === "Agricultural Exposure") {
+      m.url =
+        "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
+    } else if (
+      m.name === "Catchment Scale Land Use 2018 [18 class classification]"
+    ) {
+      m.name = "Catchment Scale Land Use 2020 [18 class classification]";
+      m.url =
+        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+      m.layers = "2";
+    } else if (
+      m.name === "Catchment Scale Land Use 2018 [Agricultural industries]"
+    ) {
+      m.name = "Catchment Scale Land Use 2020 [Agricultural industries]";
+      m.url =
+        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+      m.layers = "4";
+    } else if (m.name === "Catchment Scale Land Use 2018 [Agriculture]") {
+      m.name = "Catchment Scale Land Use 2020 [Agriculture]";
+      m.url =
+        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+      m.layers = "3";
+    } else if (
+      m.name === "Catchment Scale Land Use 2018 [Primary classification]"
+    ) {
+      m.name = "Catchment Scale Land Use 2020 [Primary classification]";
+      m.url =
+        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+      m.layers = "0";
+    } else if (
+      m.name === "Catchment Scale Land Use 2018 [Secondary classification]"
+    ) {
+      m.name = "Catchment Scale Land Use 2020 [Secondary classification]";
+      m.url =
+        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+      m.layers = "1";
+    }
 
-  return m;
-});
+    return m;
+  });
 
 // Add two new layers.
 Agriculture.members = [
   ...Agriculture.members,
   {
-    "type": "esri-mapServer",
-    "name": "Catchment Scale Land Use 2020 [Date of mapping]",
-    "url": "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
-    "layers": "5",
-    "id": "pa47KiLde",
-    "shareKeys": [
-      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Date of mapping]"
-    ]
+    type: "esri-mapServer",
+    name: "Catchment Scale Land Use 2020 [Date of mapping]",
+    url:
+      "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+    layers: "5",
+    id: "pa47KiLde",
+    shareKeys: [
+      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Date of mapping]",
+    ],
   },
   {
-    "type": "esri-mapServer",
-    "name": "Catchment Scale Land Use 2020 [Scale of mapping]",
-    "url": "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
-    "layers": "6",
-    "id": "psdTWs72q",
-    "shareKeys": [
-      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Scale of mapping]"
-    ]
-  }
+    type: "esri-mapServer",
+    name: "Catchment Scale Land Use 2020 [Scale of mapping]",
+    url:
+      "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+    layers: "6",
+    id: "psdTWs72q",
+    shareKeys: [
+      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Scale of mapping]",
+    ],
+  },
 ];
 
 // remove ABC Photo Stories from Communications
@@ -137,37 +148,37 @@ const LandParcelAndProperty = {
   description:
     "The **Land Parcel and Property** is the new name of **Cadastre and Land Tenure** data group seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
   members: [
-    cloneFromCatalogPath(aremi20200922v8, ["Boundaries", "Cadastre and Land Tenure", "By State"]),
-  ]
+    cloneFromCatalogPath(aremi20200922v8, [
+      "Boundaries",
+      "Cadastre and Land Tenure",
+      "By State",
+    ]),
+  ],
 };
 
-LandParcelAndProperty.members.map(m => {
+LandParcelAndProperty.members.map((m) => {
   if (m.name === "By State") {
-    m.members.map(m => {
+    m.members.map((m) => {
       if (m.name === "Cadastral Parcels - New South Wales") {
         m.name = "NSW";
-      }
-      else if (m.name === "Cadastral Parcels - Tasmania") {
+      } else if (m.name === "Cadastral Parcels - Tasmania") {
         m.name = "TAS";
         m.rectangle = {
-          "west": 143.7,
-          "south": -43.8,
-          "east": 148.7,
-          "north": -40.3
+          west: 143.7,
+          south: -43.8,
+          east: 148.7,
+          north: -40.3,
         };
-      }
-      else if (m.name === "Cadastral Parcels - Western Australia") {
-        m.name = "WA"
-      }
-      else if (m.name === "Northern Territory") {
+      } else if (m.name === "Cadastral Parcels - Western Australia") {
+        m.name = "WA";
+      } else if (m.name === "Northern Territory") {
         m.name = "NT";
-      }
-      else if (m.name === "Queensland") {
+      } else if (m.name === "Queensland") {
         m.name = "QLD";
       }
-    })
+    });
   }
-})
+});
 
 // Energy group
 const Energy = {
@@ -199,36 +210,40 @@ const Energy = {
   ],
 };
 
-
 // Filter out duplicates as they are already in group "Electricity Infrastructure" -> "Transmission".
-Energy.members = Energy.members.filter(m =>  m.name !== "Electricity Transmission Lines" && m.name !== "Electricity Transmission Substations");
+Energy.members = Energy.members.filter(
+  (m) =>
+    m.name !== "Electricity Transmission Lines" &&
+    m.name !== "Electricity Transmission Substations"
+);
 
-Energy.members.map(m => {
-  if (m.name === "Electricity Infrastructure"){
-    m.members.map(m => {
+Energy.members.map((m) => {
+  if (m.name === "Electricity Infrastructure") {
+    m.members.map((m) => {
       if (m.name === "Generation") {
-        m.members.map(m => {
-          if (m.name === "All Power Stations"){
-            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
-            m.layers = "0"
+        m.members.map((m) => {
+          if (m.name === "All Power Stations") {
+            m.url =
+              "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+            m.layers = "0";
           }
-        })
-      }
-      else if (m.name === "Transmission") {
-        m.members.map(m => {
-          if (m.name === "Substations"){
-            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+        });
+      } else if (m.name === "Transmission") {
+        m.members.map((m) => {
+          if (m.name === "Substations") {
+            m.url =
+              "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
             m.layers = "1";
-          }
-          else if (m.name === "Transmission Lines"){
-            m.url = "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer"
+          } else if (m.name === "Transmission Lines") {
+            m.url =
+              "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
             m.layers = "2";
           }
-        })
+        });
       }
-    })
+    });
   }
-})
+});
 
 // Environment group
 const Environment = cloneFromCatalogPath(natmap20200903v8, [
@@ -530,13 +545,13 @@ NationalDatasets.members = recursivelySortMembersByName([
   Water,
 ]);
 
-gaNewLayers["catalog"].map(m => {
+gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;
   const group = findInMembers(NationalDatasets.members, path);
   delete m.catalogPath;
   group.members.push(m);
   group.members = recursivelySortMembersByName(group.members);
-})
+});
 
 // Data.gov.au
 const DGA = cloneFromCatalogPath(natmap20200903v8, ["Data.gov.au"]);

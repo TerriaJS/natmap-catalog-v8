@@ -19,8 +19,59 @@ Agriculture.members = Agriculture.members.filter(
   if (m.name === "Agricultural Exposure"){
     m.url = "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
   }
+  else if (m.name === "Catchment Scale Land Use 2018 [18 class classification]") {
+    m.name = "Catchment Scale Land Use 2020 [18 class classification]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "2";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Agricultural industries]") {
+    m.name = "Catchment Scale Land Use 2020 [Agricultural industries]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "4";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Agriculture]") {
+    m.name = "Catchment Scale Land Use 2020 [Agriculture]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "3";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Primary classification]") {
+    m.name = "Catchment Scale Land Use 2020 [Primary classification]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "0";
+  }
+  else if (m.name === "Catchment Scale Land Use 2018 [Secondary classification]") {
+    m.name = "Catchment Scale Land Use 2020 [Secondary classification]";
+    m.url = "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
+    m.layers = "1";
+  }
+
   return m;
 });
+
+// Add two new layers.
+Agriculture.members = [
+  ...Agriculture.members,
+  {
+    "type": "esri-mapServer",
+    "name": "Catchment Scale Land Use 2020 [Date of mapping]",
+    "url": "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+    "layers": "5",
+    "id": "pa47KiLde",
+    "shareKeys": [
+      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Date of mapping]"
+    ]
+  },
+  {
+    "type": "esri-mapServer",
+    "name": "Catchment Scale Land Use 2020 [Scale of mapping]",
+    "url": "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+    "layers": "6",
+    "id": "psdTWs72q",
+    "shareKeys": [
+      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Scale of mapping]"
+    ]
+  }
+];
 
 // remove ABC Photo Stories from Communications
 const Communications = cloneFromCatalogPath(natmap20200903v8, [
@@ -85,10 +136,11 @@ const Energy = {
   type: "group",
   name: "Energy",
   description:
-    "The **Electricity Infrastructure** and **Renewable Energy** data groups seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
+    "The **Electricity Infrastructure**, **Renewable Energy** and **Research** data groups seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
   members: [
     cloneFromCatalogPath(aremi20200922v8, ["Electricity Infrastructure"]),
     cloneFromCatalogPath(aremi20200922v8, ["Renewable Energy"]),
+    cloneFromCatalogPath(aremi20200922v8, ["Research"]),
     ElectricVehicle,
     cloneFromCatalogPath(natmap20200903v8, [
       "National Datasets",
@@ -107,6 +159,10 @@ const Energy = {
     ]),
   ],
 };
+
+
+// Filter out duplicates as they are already in group "Electricity Infrastructure" -> "Transmission".
+Energy.members = Energy.members.filter(m =>  m.name !== "Electricity Transmission Lines" && m.name !== "Electricity Transmission Substations");
 
 Energy.members.map(m => {
   if (m.name === "Electricity Infrastructure"){

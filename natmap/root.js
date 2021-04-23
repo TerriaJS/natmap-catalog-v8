@@ -681,4 +681,100 @@ const ACT = {
 const complete = _.cloneDeep(natmap20200903v8);
 complete.catalog = [NationalDatasets, DGA, ACT, NSW, NT, QLD, SA, TAS, VIC, WA];
 
+complete.baseMapId = "basemap-bing-aerial-with-labels";
+complete.previewBaseMapId = "basemap-positron";
+complete.baseMaps = [
+  {
+    item: {
+      id: "basemap-australian-topography",
+      type: "esri-mapServer",
+      name: "Australian Topography",
+      url:
+        "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
+      opacity: 1.0,
+    },
+    image: "images/basemaps/australian-topo.png",
+  },
+  {
+    item: {
+      id: "basemap-bing-aerial-with-labels",
+      name: "Bing Maps Aerial with Labels",
+      type: "bing-maps",
+      mapStyle: "AerialWithLabelsOnDemand",
+      opacity: 1.0,
+    },
+    image: "images/basemaps/bing-aerial-labels.png",
+  },
+  {
+    item: {
+      id: "basemap-bing-aerial",
+      name: "Bing Maps Aerial",
+      type: "bing-maps",
+      mapStyle: "Aerial",
+      opacity: 1.0,
+    },
+    image: "images/basemaps/bing-aerial.png",
+  },
+  {
+    item: {
+      id: "basemap-bing-roads",
+      name: "Bing Maps Roads",
+      type: "bing-maps",
+      mapStyle: "RoadOnDemand",
+      opacity: 1.0,
+    },
+    image: "images/basemaps/bing-maps-roads.png",
+  },
+  {
+    item: {
+      id: "basemap-natural-earth-II",
+      name: "Natural Earth II",
+      type: "wms",
+      url:
+        "http://geoserver.nationalmap.nicta.com.au/imagery/natural-earth-ii/wms",
+      layers: "NE2_HR_LC_SR_W_DR",
+      opacity: 1.0,
+    },
+    image: "images/basemaps/natural-earth.png",
+  },
+  {
+    item: {
+      id: "basemap-black-marble",
+      name: "NASA Black Marble",
+      type: "wms",
+      url:
+        "http://geoserver.nationalmap.nicta.com.au/imagery/nasa-black-marble/wms",
+      layers: "nasa-black-marble:dnb_land_ocean_ice.2012.54000x27000_geo",
+      opacity: 1.0,
+    },
+    image: "images/basemaps/black-marble.png",
+  },
+  {
+    item: {
+      id: "basemap-positron",
+      name: "Positron (Light)",
+      type: "open-street-map",
+      url: "https://basemaps.cartocdn.com/light_all/",
+      attribution:
+        "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
+      subdomains: ["a", "b", "c", "d"],
+      opacity: 1.0,
+    },
+    image: "images/basemaps/positron.png",
+  },
+  {
+    item: {
+      id: "basemap-darkmatter",
+      name: "Dark Matter",
+      type: "open-street-map",
+      url: "https://basemaps.cartocdn.com/dark_all/",
+      attribution:
+        "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
+      subdomains: ["a", "b", "c", "d"],
+      opacity: 1.0,
+    },
+    image: "images/basemaps/dark-matter.png",
+  },
+];
+
 module.exports = complete;

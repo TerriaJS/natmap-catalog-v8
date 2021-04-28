@@ -41,7 +41,7 @@ Run
 
 which will produce catalog file `natmap/out.json`. Please upload this file to the `s3` bucket with different name to be used by national map config.
 
-**Catalogue history**
+**Catalogue history (in S3)**
 | *s3 file name* | *commit version* |
 |----------------|------------------|
 | natmap-2021-02-10-v8.json | 9c1194b45b7e77df7e40efd9aae94e86a97e95f6 |
@@ -49,16 +49,25 @@ which will produce catalog file `natmap/out.json`. Please upload this file to th
 | natmap-2021-04-13-v8.json | 5a5e99f5acc92907381dbcdd256e5a0490225f59 |
 | natmap-2021-04-14-v8.json | 128bf155564c009ff091b84efd8445271e1e8289 |
 | natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
+| natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
+
+**Catalogue history (in GitHub)**
+| *catalog commit* | *this repo commit* |
+|----------------|------------------|
+| https://github.com/TerriaJS/saas-catalogs-public/commit/facb398ba31cf9b68ccfb92a227a566b6592555f | https://github.com/TerriaJS/natmap-catalog-v8/commit/061b2cbcbebd1fae24cfda0cf60f5886a57b0cda |
 
 ## Deploy
  
- Currently, we are storing NationalMap catalogs at https://tiles.terria.io/static/natmap-prod-2021-02-01-1406-converted-v8.json, 
- which is an S3 bucket here - https://s3.console.aws.amazon.com/s3/buckets/tiles.terria.io?region=ap-southeast-2&prefix=static/
+**UPDATE** catalogs are now stored in https://github.com/TerriaJS/saas-catalogs-public/tree/main/nationalmap:
+
+- https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/dev.json
+- https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/test.json
+- https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/prod.json
  
  To deploy: 
- 1. Rename `out.json` to follow something like `natmap-prod-2021-02-01-1406-converted-v8.json` pattern
- 2. Upload to `tiles.terria.io/static` bucket
- 3. Update URL in `initializationUrls` in SaaS `map-config`  
+ 1. Update files in https://github.com/TerriaJS/saas-catalogs-public/tree/main/nationalmap
+ 2. Update URL in `initializationUrls` in SaaS `map-config`  
     - **Dev:** https://dev.saas.terria.io/record-editor/map-config-nationalmap
     - **Test:** https://test.saas.terria.io/record-editor/map-config-nationalmap
     - **Prod:** https://saas.terria.io/record-editor/map-config-nationalmap
+ 3. Manually update `map-config-nationalmap` Magda record

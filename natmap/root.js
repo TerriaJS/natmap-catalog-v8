@@ -693,7 +693,7 @@ complete.baseMaps = [
       name: "Australian Topography",
       url:
         "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
-      opacity: 1.0,
+      opacity: 1,
     },
     image: "images/basemaps/australian-topo.png",
   },
@@ -703,7 +703,7 @@ complete.baseMaps = [
       name: "Bing Maps Aerial with Labels",
       type: "bing-maps",
       mapStyle: "AerialWithLabelsOnDemand",
-      opacity: 1.0,
+      opacity: 1,
     },
     image: "images/basemaps/bing-aerial-labels.png",
   },
@@ -713,43 +713,9 @@ complete.baseMaps = [
       name: "Bing Maps Aerial",
       type: "bing-maps",
       mapStyle: "Aerial",
-      opacity: 1.0,
+      opacity: 1,
     },
     image: "images/basemaps/bing-aerial.png",
-  },
-  {
-    item: {
-      id: "basemap-bing-roads",
-      name: "Bing Maps Roads",
-      type: "bing-maps",
-      mapStyle: "RoadOnDemand",
-      opacity: 1.0,
-    },
-    image: "images/basemaps/bing-maps-roads.png",
-  },
-  {
-    item: {
-      id: "basemap-natural-earth-II",
-      name: "Natural Earth II",
-      type: "wms",
-      url:
-        "http://geoserver.nationalmap.nicta.com.au/imagery/natural-earth-ii/wms",
-      layers: "NE2_HR_LC_SR_W_DR",
-      opacity: 1.0,
-    },
-    image: "images/basemaps/natural-earth.png",
-  },
-  {
-    item: {
-      id: "basemap-black-marble",
-      name: "NASA Black Marble",
-      type: "wms",
-      url:
-        "http://geoserver.nationalmap.nicta.com.au/imagery/nasa-black-marble/wms",
-      layers: "nasa-black-marble:dnb_land_ocean_ice.2012.54000x27000_geo",
-      opacity: 1.0,
-    },
-    image: "images/basemaps/black-marble.png",
   },
   {
     item: {
@@ -760,7 +726,7 @@ complete.baseMaps = [
       attribution:
         "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
       subdomains: ["a", "b", "c", "d"],
-      opacity: 1.0,
+      opacity: 1,
     },
     image: "images/basemaps/positron.png",
   },
@@ -773,9 +739,27 @@ complete.baseMaps = [
       attribution:
         "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
       subdomains: ["a", "b", "c", "d"],
-      opacity: 1.0,
+      opacity: 1,
     },
     image: "images/basemaps/dark-matter.png",
+  },
+  {
+    item: {
+      id: "basemap-voyager",
+      type: "open-street-map",
+      name: "Voyager",
+      url: "https://global.ssl.fastly.net/rastertiles/voyager/",
+      attribution: "© OpenStreetMap contributors ODbL, © CartoDB CC-BY 3.0",
+      opacity: 1.0,
+      subdomains: [
+        "cartodb-basemaps-a",
+        "cartodb-basemaps-b",
+        "cartodb-basemaps-c",
+        "cartodb-basemaps-d",
+      ],
+    },
+    image:
+      "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
   },
 ];
 

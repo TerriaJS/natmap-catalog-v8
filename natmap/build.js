@@ -76,6 +76,15 @@ function buildCatalog() {
   SatelliteImages.members = recursivelySortMembersByName([...SatelliteImages.members, SatelliteImager10m]);
 
   const Water = NationalDatasets[0].members.filter( m => m.name === "Water")[0];
+
+  const Environment = NationalDatasets[0].members.filter( m => m.name === "Environment")[0];
+  Environment.members = Environment.members.filter( m => m.name === "EPBC Referrals" || m.name === "Conservation Management Zones" || m.name === "Australian World Heritage Areas" || m.name == "State of the Environment 2016");
+  Environment.members.map( m => {
+    if (m.name === "State of the Environment 2016"){
+      m.members = m.members.filter(m => m.name === "Biodiversity Map" || m.name === "Coasts Map");
+    }
+  });
+
   const VictoriaGovernment = root.catalog.filter( m => m.name === "Victoria Government")[0];
   const VictoriaLocalGovernment = VictoriaGovernment.members.filter( m => m.name === "Local government data")[0];
   VictoriaLocalGovernment.name = "Local government datasets";
@@ -85,7 +94,7 @@ function buildCatalog() {
         "id": "Root Group/National Data Sets",
         "type": "group",
         "name": "National datasets",
-        "members": [Energy, SatelliteImages, Water]
+        "members": [Energy, Environment, SatelliteImages, Water]
       },
       VictoriaLocalGovernment
     ]

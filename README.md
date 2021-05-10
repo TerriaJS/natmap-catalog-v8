@@ -11,6 +11,7 @@ This branch will build a customised static catalog for Vic DT. Do not merge this
     | national-energy-water-satellite-vic-reorganised-v8-2021-03-31b.json | b0d4bdab0ad8410a256928f23b6f1fea079d311e | Fix group structure for local government datasets. |
     | national-energy-water-satellite-vic-reorganised-v8-2021-04-01.json | 4f213cc855e848b81375ec746c022d04a34171dc | Filter out group "Western Australia" in Energy group.|
     | national-energy-water-satellite-vic-reorganised-v8-2021-04-08.json | 53bd358903e848a2cf04a8a3823dd89f9141cbf8 | Filter out datasets that require api.transport.nsw.gov.au access credentials. |
+    | national-vic-reorganised-v8-2021-05-07.json | tba | Merged from main and add some environment data. |
     | `<new catalog file name>` | `<commit version>` | `<new note>` |
 
 --------------

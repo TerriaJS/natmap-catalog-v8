@@ -70,4 +70,4 @@ which will produce catalog file `natmap/out.json`. Please upload this file to th
     - **Dev:** https://dev.saas.terria.io/record-editor/map-config-nationalmap
     - **Test:** https://test.saas.terria.io/record-editor/map-config-nationalmap
     - **Prod:** https://saas.terria.io/record-editor/map-config-nationalmap
- 3. Manually update `map-config-nationalmap` Magda record
+ 3. Manually update map-config.json files in https://github.com/TerriaJS/saas-catalogs-public

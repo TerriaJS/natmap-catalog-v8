@@ -89,11 +89,6 @@ function buildCatalog() {
   Agriculture.members = Agriculture.members.filter(m => m.name === "Forests of Australia (2018)");
 
   const Habitation = NationalDatasets[0].members.filter(m => m.name === "Habitation")[0];
-  Habitation.members.map(m => {
-    if (m.name === "Australia Post Locations"){
-      m.url = "https://tiles.terria.io/static/auspost-locations.csv";
-    }
-  })
 
   const LandCover = NationalDatasets[0].members.filter(m => m.name === "Land Cover and Land Use")[0];
   LandCover.members = LandCover.members.filter(m => m.name === "Land Use and Cover");
@@ -113,14 +108,8 @@ function buildCatalog() {
   SocialEconomic.members = SocialEconomic.members.filter(m => m.name === "Population Estimates");
 
   const Boundaries = NationalDatasets[0].members.filter(m => m.name === "Boundaries")[0];
-
   const Communications = NationalDatasets[0].members.filter(m => m.name === "Communications")[0];
-  Communications.members.map(m => {
-    if (m.name === "Radio Licenses - ACMA"){
-      m.url = m.url.replace("http://", "https://");
-    }
-  })
-
+  
   const Elevation = NationalDatasets[0].members.filter(m => m.name === "Elevation")[0];
   Elevation.members = Elevation.members.filter(m => m.name === "Spot Elevations" || m.name === "Horizontal Control Points" || m.name === "LiDAR 5m DEM");
 

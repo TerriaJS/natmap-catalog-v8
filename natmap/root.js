@@ -97,6 +97,10 @@ Communications.members = Communications.members
   .filter((m) => m.name !== "ABC Photo Stories (2009-2014)")
   .filter((m) => m.name !== "ABC Photo Stories by date");
 
+const RadionLicenses = findInMembers(Communications.members, ["Radio Licenses - ACMA"]);
+RadionLicenses.url = RadionLicenses.url.replace("http://", "https://");
+RadionLicenses.legends = undefined;
+
 // Elevation
 // move Terrain subgroup from Land Cover
 const Terrain = cloneFromCatalogPath(natmap20200903v8, [
@@ -264,6 +268,8 @@ Cemeteries.layers = "Cemetery_Areas,Cemetery_Points"; // fix bad MapServer requi
 Habitation.members = Habitation.members.filter(
   (m) => m.name !== "Cemetery Areas"
 );
+
+findInMembers(Habitation.members, ["Australia Post Locations"]).url = "https://tiles.terria.io/static/auspost-locations.csv";
 
 // Health group
 const Health = cloneFromCatalogPath(natmap20200903v8, [

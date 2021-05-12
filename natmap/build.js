@@ -72,29 +72,74 @@ function buildCatalog() {
     ]
   };
 
-  const SatelliteImages = NationalDatasets[0].members.filter( m => m.name === "Satellite Images")[0];
+  const SatelliteImages = NationalDatasets[0].members.filter(m => m.name === "Satellite Images")[0];
   SatelliteImages.members = recursivelySortMembersByName([...SatelliteImages.members, SatelliteImager10m]);
 
-  const Water = NationalDatasets[0].members.filter( m => m.name === "Water")[0];
+  const Water = NationalDatasets[0].members.filter(m => m.name === "Water")[0];
 
-  const Environment = NationalDatasets[0].members.filter( m => m.name === "Environment")[0];
-  Environment.members = Environment.members.filter( m => m.name === "EPBC Referrals" || m.name === "Conservation Management Zones" || m.name === "Australian World Heritage Areas" || m.name == "State of the Environment 2016");
+  const Environment = NationalDatasets[0].members.filter(m => m.name === "Environment")[0];
+  Environment.members = Environment.members.filter(m => m.name === "EPBC Referrals" || m.name === "Conservation Management Zones" || m.name === "Australian World Heritage Areas" || m.name == "State of the Environment 2016");
   Environment.members.map( m => {
     if (m.name === "State of the Environment 2016"){
       m.members = m.members.filter(m => m.name === "Biodiversity Map" || m.name === "Coasts Map");
     }
   });
 
-  const VictoriaGovernment = root.catalog.filter( m => m.name === "Victoria Government")[0];
-  const VictoriaLocalGovernment = VictoriaGovernment.members.filter( m => m.name === "Local government data")[0];
+  const Agriculture = NationalDatasets[0].members.filter(m => m.name === "Agriculture")[0];
+  Agriculture.members = Agriculture.members.filter(m => m.name === "Forests of Australia (2018)");
+
+  const Habitation = NationalDatasets[0].members.filter(m => m.name === "Habitation")[0];
+  Habitation.members.map(m => {
+    if (m.name === "Australia Post Locations"){
+      m.url = "https://tiles.terria.io/static/auspost-locations.csv";
+    }
+  })
+
+  const LandCover = NationalDatasets[0].members.filter(m => m.name === "Land Cover and Land Use")[0];
+  LandCover.members = LandCover.members.filter(m => m.name === "Land Use and Cover");
+
+  const MarineOceans = NationalDatasets[0].members.filter(m => m.name === "Marine and Oceans")[0];
+  MarineOceans.members = MarineOceans.members.filter(m => m.name === "Coastal" || m.name === "Marine Parks" || m.name === "Reefs and Shoals");
+  MarineOceans.members.map( m => {
+    if (m.name === "Coastal"){
+      m.members = m.members.filter(m => m.name === "High tide satellite image" || m.name === "Low tide satellite image");
+      m.members.map( m => m.members = m.members.filter(m => m.name === "Imagery"));
+    }
+  });
+
+  const Health = NationalDatasets[0].members.filter(m => m.name === "Health")[0];
+
+  const SocialEconomic = NationalDatasets[0].members.filter(m => m.name === "Social and Economic")[0];
+  SocialEconomic.members = SocialEconomic.members.filter(m => m.name === "Population Estimates");
+
+  const Boundaries = NationalDatasets[0].members.filter(m => m.name === "Boundaries")[0];
+
+  const Communications = NationalDatasets[0].members.filter(m => m.name === "Communications")[0];
+  Communications.members.map(m => {
+    if (m.name === "Radio Licenses - ACMA"){
+      m.url = m.url.replace("http://", "https://");
+    }
+  })
+
+  const Elevation = NationalDatasets[0].members.filter(m => m.name === "Elevation")[0];
+  Elevation.members = Elevation.members.filter(m => m.name === "Spot Elevations" || m.name === "Horizontal Control Points" || m.name === "LiDAR 5m DEM");
+
+  const Infrastructure = NationalDatasets[0].members.filter(m => m.name === "Infrastructure")[0];
+
+  const Transport = NationalDatasets[0].members.filter(m => m.name === "Transport")[0];
+  Transport.members = Transport.members.filter(m => m.name === "Airfields" || m.name === "Key Freight Routes");
+
+  const VictoriaGovernment = root.catalog.filter(m => m.name === "Victoria Government")[0];
+  const VictoriaLocalGovernment = VictoriaGovernment.members.filter(m => m.name === "Local government data")[0];
   VictoriaLocalGovernment.name = "Local government datasets";
+
   const VicCatalog = {
     "catalog": [
       {
         "id": "Root Group/National Data Sets",
         "type": "group",
         "name": "National datasets",
-        "members": [Energy, Environment, SatelliteImages, Water]
+        "members": [Agriculture, Boundaries, Communications, Elevation, Energy, Environment, Habitation, Health, Infrastructure, LandCover, MarineOceans, SatelliteImages, SocialEconomic, Transport, Water]
       },
       VictoriaLocalGovernment
     ]

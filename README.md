@@ -50,6 +50,7 @@ which will produce catalog file `natmap/out.json`. Please upload this file to th
 | natmap-2021-04-14-v8.json | 128bf155564c009ff091b84efd8445271e1e8289 |
 | natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
 | natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
+| natmap-2021-05-12-v8.json | d9b4efd2c28ca4135b9a6dccad9ac52e7eb6d1b5 |
 
 **Catalogue history (in GitHub)**
 | *catalog commit* | *this repo commit* |

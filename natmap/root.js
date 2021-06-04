@@ -4,7 +4,8 @@ const cloneFromCatalogPath = require("../helpers/cloneFromCatalogPath");
 const findInMembers = require("../helpers/findInMembers");
 const recursivelySortMembersByName = require("../helpers/recursivelySortMembersByName");
 const natmap20200903v8 = require("./in/natmap-2020-09-03-v8.json");
-const aremi20200922v8 = require("./in/aremi-2020-09-22-v8-with-mods.json");
+const aremi20210602v8 = require("./in/aremi-2021-06-02-v8.json");
+const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
 
@@ -97,7 +98,9 @@ Communications.members = Communications.members
   .filter((m) => m.name !== "ABC Photo Stories (2009-2014)")
   .filter((m) => m.name !== "ABC Photo Stories by date");
 
-const RadionLicenses = findInMembers(Communications.members, ["Radio Licenses - ACMA"]);
+const RadionLicenses = findInMembers(Communications.members, [
+  "Radio Licenses - ACMA",
+]);
 RadionLicenses.url = RadionLicenses.url.replace("http://", "https://");
 RadionLicenses.legends = undefined;
 
@@ -140,11 +143,23 @@ Elevation.members = Elevation.members
   .filter((m) => m.name !== "Cuttings")
   .filter((m) => m.name !== "Embankments");
 
-const ElectricVehicle = cloneFromCatalogPath(aremi20200922v8, [
+const ElectricVehicle = cloneFromCatalogPath(aremi20210602v8, [
   "Electric Vehicle",
 ]);
 
 ElectricVehicle.members.push(...aremiEvTraffic);
+
+const evRegistrationsByPostcode = findInMembers(ElectricVehicle.members, [
+  "EV registrations by postcode",
+]);
+
+evRegistrationsByPostcode.columns = evRegistrationsByPostcode.columns.filter(
+  (c) => c.name !== "Postcode"
+);
+
+evRegistrationsByPostcode.styles.find((s) => s.id === "Registrations").color = {
+  colorPalette: "Blues",
+};
 
 const LandParcelAndProperty = {
   type: "group",
@@ -152,7 +167,7 @@ const LandParcelAndProperty = {
   description:
     "The **Land Parcel and Property** is the new name of **Cadastre and Land Tenure** data group seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
   members: [
-    cloneFromCatalogPath(aremi20200922v8, [
+    cloneFromCatalogPath(aremi20210602v8, [
       "Boundaries",
       "Cadastre and Land Tenure",
       "By State",
@@ -184,6 +199,31 @@ LandParcelAndProperty.members.map((m) => {
   }
 });
 
+const ElectricityInfrastructure = cloneFromCatalogPath(aremi20210602v8, [
+  "Electricity Infrastructure",
+]);
+const GenerationGroup = findInMembers(ElectricityInfrastructure.members, [
+  "Generation",
+]);
+GenerationGroup.members = GenerationGroup.members.filter(
+  (m) => m.name !== "Diesel Generators - South Australia"
+);
+
+const RenewableEnergy = cloneFromCatalogPath(aremi20210602v8, [
+  "Renewable Energy",
+]);
+const BioenergyWa = findInMembers(RenewableEnergy.members, [
+  "Bioenergy",
+  "Western Australia",
+]);
+
+BioenergyWa.members = BioenergyWa.members.map((m) => {
+  if (m.name === "Oil Mallee stems" || m.name === "Seaweed Wrack") {
+    m.url = "http://catalogue.data.wa.gov.au.au";
+  }
+  return m;
+});
+
 // Energy group
 const Energy = {
   type: "group",
@@ -191,9 +231,9 @@ const Energy = {
   description:
     "The **Electricity Infrastructure**, **Renewable Energy** and **Research** data groups seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
   members: [
-    cloneFromCatalogPath(aremi20200922v8, ["Electricity Infrastructure"]),
-    cloneFromCatalogPath(aremi20200922v8, ["Renewable Energy"]),
-    cloneFromCatalogPath(aremi20200922v8, ["Research"]),
+    ElectricityInfrastructure,
+    RenewableEnergy,
+    cloneFromCatalogPath(aremi20210602v8, ["Research"]),
     LandParcelAndProperty,
     ElectricVehicle,
     cloneFromCatalogPath(natmap20200903v8, [
@@ -233,17 +273,25 @@ Energy.members.map((m) => {
           }
         });
       } else if (m.name === "Transmission") {
-        m.members.map((m) => {
-          if (m.name === "Substations") {
-            m.url =
-              "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
-            m.layers = "1";
-          } else if (m.name === "Transmission Lines") {
-            m.url =
-              "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
-            m.layers = "2";
-          }
-        });
+        m.members = m.members
+          // Filter out "Distance to Transmission Lines" and "Distance to Transmission Substations"
+          .filter(
+            (m) =>
+              m.name !== "Distance to Transmission Lines" &&
+              m.name !== "Distance to Transmission Substations"
+          )
+          .map((m) => {
+            if (m.name === "Substations") {
+              m.url =
+                "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.layers = "1";
+            } else if (m.name === "Transmission Lines") {
+              m.url =
+                "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.layers = "2";
+            }
+            return m;
+          });
       }
     });
   }
@@ -269,7 +317,8 @@ Habitation.members = Habitation.members.filter(
   (m) => m.name !== "Cemetery Areas"
 );
 
-findInMembers(Habitation.members, ["Australia Post Locations"]).url = "https://tiles.terria.io/static/auspost-locations.csv";
+findInMembers(Habitation.members, ["Australia Post Locations"]).url =
+  "https://tiles.terria.io/static/auspost-locations.csv";
 
 // Health group
 const Health = cloneFromCatalogPath(natmap20200903v8, [
@@ -458,51 +507,7 @@ const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, [
   "Social and Economic",
 ]);
 
-// Leave SDMX for next release
-
-// SocialEconomic.members.push({
-//   type: "sdmx-group",
-//   name: "ABS",
-//   id: "DPYjz1cT",
-//   url: "https://api.data.abs.gov.au",
-//   conceptOverrides: [
-//     {
-//       id:
-//         "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_TYPE",
-//       type: "region-type",
-//       selectedId: "SA2",
-//     },
-//     {
-//       id:
-//         "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION",
-//       type: "region",
-//     },
-//     {
-//       id:
-//         "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_SA1",
-//       type: "region",
-//       regionType: "SA1",
-//     },
-//     {
-//       id:
-//         "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).STATE_TERR",
-//       type: "region",
-//       regionType: "STE_2016",
-//     },
-//     {
-//       id:
-//         "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).IND_REGION",
-//       type: "region",
-//       regionType: "IREG",
-//     },
-//     {
-//       id:
-//         "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).STATE",
-//       disable: true,
-//       allowUndefined: true,
-//     },
-//   ],
-// });
+SocialEconomic.members.push(absSdmx);
 
 // Transport
 const Transport = cloneFromCatalogPath(natmap20200903v8, [
@@ -739,8 +744,8 @@ complete.baseMaps = [
     item: {
       id: "basemap-bing-aerial-with-labels",
       name: "Bing Maps Aerial with Labels",
-      type: "bing-maps",
-      mapStyle: "AerialWithLabelsOnDemand",
+      type: "ion-imagery",
+      ionAssetId: 3,
       opacity: 1,
     },
     image: "images/basemaps/bing-aerial-labels.png",
@@ -749,8 +754,8 @@ complete.baseMaps = [
     item: {
       id: "basemap-bing-aerial",
       name: "Bing Maps Aerial",
-      type: "bing-maps",
-      mapStyle: "Aerial",
+      type: "ion-imagery",
+      ionAssetId: 2,
       opacity: 1,
     },
     image: "images/basemaps/bing-aerial.png",

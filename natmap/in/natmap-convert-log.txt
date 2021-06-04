@@ -1,32 +1,29 @@
-$ curl http://static.nationalmap.nicta.com.au/init/2020-09-03.json -o natmap-2020-09-03.json --compressed
-$ ./bin/cli.js --noprint-all --generate-random-ids --id-length 8 --aggregate-stats natmap-2020-09-03.json natmap-2020-09-03-v8.json
-Succeeded with 364 errors and 1153 warnings
+node .\bin\cli.js -a --noprint-all -t  ..\..\..\natmap-catalog-v8\natmap\in\natmap-2020-09-03-v8.json ..\..\..\natmap-catalog-v8\natmap\in\natmap-2020-09-03.json ..\..\..\natmap-catalog-v8\natmap\in\natmap-2021-06-02-v8.json
+
+Succeeded with 347 errors and 1067 warnings
+
 Error stats:
 {
   "unknownProps": 0,
   "missingRequiredProps": 0,
-  "unknownTypes": 364,
+  "unknownTypes": 347,
   "inputNotPlainObjects": 0
 }
 Warning stats:
 {
-  "unknownProps": 1153,
+  "unknownProps": 1067,
   "missingRequiredProps": 0,
   "unknownTypes": 0,
   "inputNotPlainObjects": 0
 }
 Unknown types: {
-  "wfs-getCapabilities": 1,
-  "esri-group": 16,
-  "socrata": 1,
-  "sdmx-json": 346
+  "sdmx-json": 346,
+  "socrata": 1
 }
 Unknown properties: {
   "EsriMapServerCatalogItem": {
     "dataUrl": 10,
     "dataUrlType": 11,
-    "legendUrl": 3,
-    "keepOnTop": 1,
     "getFeatureInfoFormats": 1
   },
   "CsvCatalogItem": {
@@ -42,16 +39,23 @@ Unknown properties: {
   "WebMapServiceCatalogGroup": {
     "dataUrl": 1,
     "dataUrlType": 1,
-    "itemProperties": 1,
     "blacklist": 16
   },
   "MapboxVectorTileCatalogItem": {
     "dataUrl": 3,
     "dataUrlType": 1
   },
+  "CatalogGroup": {
+    "preserveOrder": 12,
+    "custodian": 1
+  },
+  "SensorObservationServiceCatalogItem": {
+    "tryToLoadObservationData": 2
+  },
+  "CkanCatalogItem": {
+    "debugFormat": 165
+  },
   "CkanCatalogGroup": {
-    "csvResourceFormat": 2,
-    "debugFormat": 165,
     "blacklist": 2,
     "minimumMaxScaleDenominator": 77,
     "filterByWmsGetCapabilities": 77,
@@ -63,18 +67,10 @@ Unknown properties: {
     "includeEsriMapServer": 80,
     "includeEsriFeatureServer": 80,
     "allowEntireWmsServers": 1,
-    "ungroupedTitle": 79,
+    "csvResourceFormat": 1,
     "useResourceName": 1
   },
-  "CatalogGroup": {
-    "preserveOrder": 12,
-    "custodian": 1,
-    "initialMessage": 1
-  },
-  "SensorObservationServiceCatalogItem": {
-    "tryToLoadObservationData": 2
-  },
-  "EsriFeatureServerCatalogItem": {
+  "EsriMapServerGroup": {
     "itemProperties": 1
   }
 }

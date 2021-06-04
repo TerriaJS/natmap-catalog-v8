@@ -1,0 +1,175 @@
+{
+  "type": "sdmx-group",
+  "name": "ABS.Stat (Beta)",
+  "id": "DPYjz1cT",
+  "url": "https://api.data.abs.gov.au",
+  "modelOverrides": [
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_TYPE",
+      "type": "region-type",
+      "selectedId": "SA2"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_REGION_TYPE(1.1.0)",
+      "type": "region-type",
+      "selectedId": "SA2"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).REGION_TYPE",
+      "type": "region-type",
+      "selectedId": "SA2"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION",
+      "type": "region"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).REGION",
+      "type": "region"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_STATE(1.0.0)",
+      "type": "region",
+      "regionType": "STE_2016"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_DEATHS_INDIGENOUS_STATES(1.0.0)",
+      "type": "region",
+      "regionType": "STE_2016"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_GCCSA(1.0.0)",
+      "type": "region",
+      "regionType": "GCCSA_2016"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_NRM_2012(1.0.0)",
+      "type": "region",
+      "regionType": "NRMR"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_SSC_2016(1.0.0)",
+      "type": "region",
+      "regionType": "SSC_2016"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_SEIFA(1.0.0).SLA",
+      "type": "region",
+      "regionType": "SLA"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_SEIFA_SA1_2016(1.0.0)",
+      "type": "region",
+      "regionType": "SA1_7DIGIT_2016"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_C11_ASGS(1.0.0)",
+      "type": "region",
+      "regionTypeReplacements": [
+        {
+          "find": "SA2_2016",
+          "replace": "SA2_2011"
+        },
+        {
+          "find": "SA3_2016",
+          "replace": "SA3_2011"
+        },
+        {
+          "find": "SA4_2016",
+          "replace": "SA4_2011"
+        },
+        {
+          "find": "STE_2016",
+          "replace": "STE_2011"
+        }
+      ]
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_C11_ASGS_SA(1.0.0)",
+      "type": "region",
+      "regionType": "SA1_2011"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_ASGS_2011(1.0.0)",
+      "type": "region",
+      "regionTypeReplacements": [
+        {
+          "find": "SA2_2016",
+          "replace": "SA2_2011"
+        },
+        {
+          "find": "SA3_2016",
+          "replace": "SA3_2011"
+        },
+        {
+          "find": "SA4_2016",
+          "replace": "SA4_2011"
+        },
+        {
+          "find": "STE_2016",
+          "replace": "STE_2011"
+        }
+      ]
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).ASGS_2011",
+      "type": "region",
+      "regionTypeReplacements": [
+        {
+          "find": "SA2_2016",
+          "replace": "SA2_2011"
+        },
+        {
+          "find": "SA3_2016",
+          "replace": "SA3_2011"
+        },
+        {
+          "find": "SA4_2016",
+          "replace": "SA4_2011"
+        },
+        {
+          "find": "STE_2016",
+          "replace": "STE_2011"
+        }
+      ]
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_SA1",
+      "type": "region",
+      "regionType": "SA1"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).STATE_TERR",
+      "type": "region",
+      "regionType": "STE_2016"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).LGA_2011",
+      "type": "region",
+      "regionType": "LGA_2011"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).LGA_2011",
+      "type": "region",
+      "regionType": "LGA_2011"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).IND_REGION",
+      "type": "region",
+      "regionType": "IREG"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).STATE",
+      "disable": true,
+      "allowUndefined": true
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_PERSON(1.0.0).AGE",
+      "selectedId": "TOT"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_DEMOG(1.0.0).AGE",
+      "selectedId": "TT"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ const _ = require("lodash");
 const cloneFromCatalogPath = require("../helpers/cloneFromCatalogPath");
 const findInMembers = require("../helpers/findInMembers");
 const recursivelySortMembersByName = require("../helpers/recursivelySortMembersByName");
+const modifyNetworkOpportunities = require("./network-opportunities");
 const natmap20200903v8 = require("./in/natmap-2020-09-03-v8.json");
 const aremi20210602v8 = require("./in/aremi-2021-06-02-v8.json");
 const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
@@ -208,6 +209,10 @@ const GenerationGroup = findInMembers(ElectricityInfrastructure.members, [
 GenerationGroup.members = GenerationGroup.members.filter(
   (m) => m.name !== "Diesel Generators - South Australia"
 );
+const NetworkOpportunities = findInMembers(ElectricityInfrastructure.members, [
+  "Network Opportunities",
+]);
+modifyNetworkOpportunities(NetworkOpportunities);
 
 const RenewableEnergy = cloneFromCatalogPath(aremi20210602v8, [
   "Renewable Energy",

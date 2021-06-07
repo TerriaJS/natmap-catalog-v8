@@ -367,22 +367,12 @@ const investmentTemplate = `<dl class='isf-info'>
 {{#info_link}} <a target='_blank' href='{{info_link}}'>NSP demand management information or maps</a><br> {{/info_link}}`;
 
 module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
-  const AnnualDeferralValue = findInMembers(NetworkOpportunities.members, [
-    "Annual Deferral Value",
-  ]);
-  AnnualDeferralValue.url =
-    "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/deferral_values_timeseries.csv";
-    AnnualDeferralValue.featureInfoTemplate.template = deferralTemplate;
-  const deferralStyle = AnnualDeferralValue.styles[0];
-  deferralStyle.color.binMaximums = [100, 200, 300, 400, 500];
-  const deferraldefaultStyle = AnnualDeferralValue.defaultStyle;
-  deferraldefaultStyle.color.binColors[0] = "rgba(255,255,255,0.0)";
-
   const AvailableDistributionCapacity = findInMembers(
     NetworkOpportunities.members,
     ["Available Distribution Capacity"]
   );
-  AvailableDistributionCapacity.url = "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/available_capacity_timeseries.csv"
+  AvailableDistributionCapacity.url =
+    "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/available_capacity_timeseries.csv";
   AvailableDistributionCapacity.featureInfoTemplate.template = availableCapacityTemplate;
 
   AvailableDistributionCapacity.styles = [
@@ -394,11 +384,29 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     },
   ];
 
+  const ProposedInvestment = findInMembers(NetworkOpportunities.members, [
+    "Proposed Investment",
+  ]);
+  ProposedInvestment.url =
+    "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/proposed_investment.csv";
+  ProposedInvestment.featureInfoTemplate.template = investmentTemplate;
+
+  const AnnualDeferralValue = findInMembers(NetworkOpportunities.members, [
+    "Annual Deferral Value",
+  ]);
+  AnnualDeferralValue.url =
+    "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/deferral_values_timeseries.csv";
+  AnnualDeferralValue.featureInfoTemplate.template = deferralTemplate;
+  const deferralStyle = AnnualDeferralValue.styles[0];
+  deferralStyle.color.binMaximums = [100, 200, 300, 400, 500];
+  const deferraldefaultStyle = AnnualDeferralValue.defaultStyle;
+  deferraldefaultStyle.color.binColors[0] = "rgba(255,255,255,0.0)";
+
   const PeakDayCapacity = findInMembers(NetworkOpportunities.members, [
     "Peak Day Available Capacity",
   ]);
   PeakDayCapacity.url =
-  "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/peak_day.csv";
+    "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/peak_day.csv";
   PeakDayCapacity.featureInfoTemplate.template = peakDayTemplate;
 
   PeakDayCapacity.styles = [
@@ -410,10 +418,13 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     },
   ];
 
-  const ProposedInvestment = findInMembers(NetworkOpportunities.members, [
-    "Proposed Investment",
-  ]);
-  ProposedInvestment.url =
-  "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/proposed_investment.csv";
-  ProposedInvestment.featureInfoTemplate.template = investmentTemplate;
+  // Can't get items to be ordered as I'd like them to be:
+
+  //   NetworkOpportunities.members = _.uniq([
+  //     AvailableDistributionCapacity,
+  //     ProposedInvestment,
+  //     AnnualDeferralValue,
+  //     PeakDayCapacity,
+  //     ...NetworkOpportunities.members,
+  //   ]);
 };

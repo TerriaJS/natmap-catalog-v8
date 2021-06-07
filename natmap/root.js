@@ -10,6 +10,14 @@ const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
 
+function cables(Cables) {
+  Cables.layers = "cite:Cables_20210415";
+}
+
+function substations(Substations) {
+  Substations.layers = "cite:Substations_20210415";
+}
+
 // remove "Land Use" subgroup from Agriculture
 const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
   "National Datasets",
@@ -162,6 +170,16 @@ evRegistrationsByPostcode.styles.find((s) => s.id === "Registrations").color = {
   colorPalette: "Blues",
 };
 
+cables(findInMembers(ElectricVehicle.members, [
+  "Electricity Infrastructure",
+  "Distribution Cables",
+]));
+
+substations(findInMembers(ElectricVehicle.members, [
+  "Electricity Infrastructure",
+  "Distribution Substations",
+]));
+
 const LandParcelAndProperty = {
   type: "group",
   name: "Land Parcel and Property",
@@ -212,6 +230,17 @@ GenerationGroup.members = GenerationGroup.members.filter(
 const NetworkOpportunities = findInMembers(ElectricityInfrastructure.members, [
   "Network Opportunities",
 ]);
+
+cables(findInMembers(NetworkOpportunities.members, [
+  "Supporting Information",
+  "Distribution Cables",
+]));
+
+substations(findInMembers(NetworkOpportunities.members, [
+  "Supporting Information",
+  "Distribution Substations",
+]));
+
 modifyNetworkOpportunities(NetworkOpportunities);
 
 const RenewableEnergy = cloneFromCatalogPath(aremi20210602v8, [

@@ -218,8 +218,8 @@ const BioenergyWa = findInMembers(RenewableEnergy.members, [
 ]);
 
 BioenergyWa.members = BioenergyWa.members.map((m) => {
-  if (m.name === "Oil Mallee stems" || m.name === "Seaweed Wrack") {
-    m.url = "http://catalogue.data.wa.gov.au.au";
+  if (m.url === "http://catalogue.beta.data.wa.gov.au") {
+    m.url = "https://catalogue.data.wa.gov.au";
   }
   return m;
 });
@@ -682,6 +682,12 @@ const WA = {
   type: "group",
   members: [WALGA, WA_old],
 };
+
+WALGA.members.forEach((m) => {
+  if (m.url === "http://catalogue.beta.data.wa.gov.au") {
+    m.url = "https://catalogue.data.wa.gov.au";
+  }
+});
 
 // Australian Capital Territory Government
 const ACT = {

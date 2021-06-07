@@ -398,7 +398,7 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/deferral_values_timeseries.csv";
   AnnualDeferralValue.featureInfoTemplate.template = deferralTemplate;
   const deferralStyle = AnnualDeferralValue.styles[0];
-  deferralStyle.color.binMaximums = [100, 200, 300, 400, 500];
+  deferralStyle.color.binMaximums = [0, 100, 200, 300, 400, 500];
   const deferraldefaultStyle = AnnualDeferralValue.defaultStyle;
   deferraldefaultStyle.color.binColors[0] = "rgba(255,255,255,0.0)";
 

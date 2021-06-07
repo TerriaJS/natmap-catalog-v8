@@ -217,12 +217,14 @@ const BioenergyWa = findInMembers(RenewableEnergy.members, [
   "Western Australia",
 ]);
 
-BioenergyWa.members = BioenergyWa.members.map((m) => {
-  if (m.url === "http://catalogue.beta.data.wa.gov.au") {
-    m.url = "https://catalogue.data.wa.gov.au";
-  }
-  return m;
-});
+BioenergyWa.members = BioenergyWa.members
+  .filter((m) => m.name !== "Cereal straw")
+  .map((m) => {
+    if (m.url === "http://catalogue.beta.data.wa.gov.au") {
+      m.url = "https://catalogue.data.wa.gov.au";
+    }
+    return m;
+  });
 
 // Energy group
 const Energy = {

@@ -379,17 +379,34 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     {
       id: "available_capacity",
       color: {
-        binMaximums: [-15, -9, -3, 3, 9, 15],
+        binMaximums: [-15, -10, -3, 3, 10, 15],
       },
     },
-  ];
+    {
+      id: "capacity",
+      color: {
+        binMethod: "ckmeans"
+      }
+    },
+    {
+      id: "load",
+      color: {
 
+      binMethod: "ckmeans"
+      }
+    },
+  ];
   const ProposedInvestment = findInMembers(NetworkOpportunities.members, [
     "Proposed Investment",
   ]);
   ProposedInvestment.url =
     "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/proposed_investment.csv";
   ProposedInvestment.featureInfoTemplate.template = investmentTemplate;
+
+  const investMoneyStyles = ProposedInvestment.styles.filter(s => /_invest$/.test(s.id));
+  investMoneyStyles.map(s => {
+    s.pointSize = {pointSizeColumn: s.id}
+    s.color.colorColumn = "invest_year_str"  }); 
 
   const AnnualDeferralValue = findInMembers(NetworkOpportunities.members, [
     "Annual Deferral Value",
@@ -398,9 +415,13 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/deferral_values_timeseries.csv";
   AnnualDeferralValue.featureInfoTemplate.template = deferralTemplate;
   const deferralStyle = AnnualDeferralValue.styles[0];
-  deferralStyle.color.binMaximums = [0, 100, 200, 300, 400, 500];
-  const deferraldefaultStyle = AnnualDeferralValue.defaultStyle;
-  deferraldefaultStyle.color.binColors[0] = "rgba(255,255,255,0.0)";
+  deferralStyle.color.binMaximums = [10, 50, 100, 200, 500, 1000];
+  // const deferraldefaultStyle = AnnualDeferralValue.defaultStyle;
+  // deferraldefaultStyle.color.binColors[0] = "rgba(255,255,255,0.0)";
+
+  const AdvColumn = AnnualDeferralValue.columns.find(c => c.name === "deferral_value");
+  AdvColumn.format = {style: "currency", currency: "AUD"};
+
 
   const PeakDayCapacity = findInMembers(NetworkOpportunities.members, [
     "Peak Day Available Capacity",
@@ -413,7 +434,7 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     {
       id: "percent_available",
       color: {
-        binMaximums: [15, 30, 45, 60, 75, 90, 105, 120],
+        binMaximums: [25, 50, 75, 90, 100],
       },
     },
   ];

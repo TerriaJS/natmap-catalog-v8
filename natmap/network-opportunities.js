@@ -382,19 +382,6 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
         binMaximums: [-15, -10, -3, 3, 10, 15],
       },
     },
-    {
-      id: "capacity",
-      color: {
-        binMethod: "ckmeans"
-      }
-    },
-    {
-      id: "load",
-      color: {
-
-      binMethod: "ckmeans"
-      }
-    },
   ];
   const ProposedInvestment = findInMembers(NetworkOpportunities.members, [
     "Proposed Investment",
@@ -403,10 +390,55 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/proposed_investment.csv";
   ProposedInvestment.featureInfoTemplate.template = investmentTemplate;
 
-  const investMoneyStyles = ProposedInvestment.styles.filter(s => /_invest$/.test(s.id));
-  investMoneyStyles.map(s => {
-    s.pointSize = {pointSizeColumn: s.id}
-    s.color.colorColumn = "invest_year_str"  }); 
+  // Style money columns using year for point colour and amount for point size. Doesn't behave well currently
+  // See https://github.com/TerriaJS/nationalmap/issues/1021#issuecomment-863034185
+
+  // const investMoneyStyles = ProposedInvestment.styles.filter((s) =>
+  //   /_invest$/.test(s.id)
+  // );
+  // investMoneyStyles.map((s) => {
+  //   s.pointSize = { pointSizeColumn: s.id };
+  //   s.color.colorColumn = "invest_year_str";
+  // });
+
+  ProposedInvestment.columns.push({
+    name: "annual_deferral_pool",
+    type: "hidden",
+  });
+
+  const enumColors = [
+    { value: "Distribution Feeder" },
+    { value: "Zone Substation" },
+    { value: "Zone Substation (Proposed)" },
+    { value: "Subtransmission Line" },
+    { value: "Subtransmission Station" },
+    { value: "Transmission Connection Point" },
+    { value: "Transmission Line" },
+    { value: "Transmission Station" },
+  ];
+
+  const brewer9ClassSet1 = [
+    "#e41a1c",
+    "#377eb8",
+    "#4daf4a",
+    "#984ea3",
+    "#ff7f00",
+    "#ffff33",
+    "#a65628",
+    "#f781bf",
+    "#999999",
+  ];
+
+  enumColors.forEach((c, i) => {
+    c.color = brewer9ClassSet1[i];
+  });
+
+  ProposedInvestment.styles.push({
+    id: "network_element_str",
+    color: {
+      enumColors,
+    },
+  });
 
   const AnnualDeferralValue = findInMembers(NetworkOpportunities.members, [
     "Annual Deferral Value",
@@ -419,9 +451,10 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
   // const deferraldefaultStyle = AnnualDeferralValue.defaultStyle;
   // deferraldefaultStyle.color.binColors[0] = "rgba(255,255,255,0.0)";
 
-  const AdvColumn = AnnualDeferralValue.columns.find(c => c.name === "deferral_value");
-  AdvColumn.format = {style: "currency", currency: "AUD"};
-
+  const AdvColumn = AnnualDeferralValue.columns.find(
+    (c) => c.name === "deferral_value"
+  );
+  AdvColumn.format = { style: "currency", currency: "AUD" };
 
   const PeakDayCapacity = findInMembers(NetworkOpportunities.members, [
     "Peak Day Available Capacity",

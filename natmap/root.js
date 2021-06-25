@@ -243,6 +243,9 @@ substations(findInMembers(NetworkOpportunities.members, [
 
 modifyNetworkOpportunities(NetworkOpportunities);
 
+// Preserve order of NOM
+const preserveOrderNOM = NetworkOpportunities.members.slice();
+
 const RenewableEnergy = cloneFromCatalogPath(aremi20210602v8, [
   "Renewable Energy",
 ]);
@@ -593,6 +596,8 @@ NationalDatasets.members = recursivelySortMembersByName([
   Vegetation,
   Water,
 ]);
+// Restore Network Opportunities Maps layer order
+findInMembers(NationalDatasets.members, ["Energy", "Electricity Infrastructure", "Network Opportunities"]).members = preserveOrderNOM;
 
 gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;

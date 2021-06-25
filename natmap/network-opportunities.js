@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const findInMembers = require("../helpers/findInMembers");
 
 const deferralTemplate = `<dl class='isf-info'>
@@ -441,11 +442,11 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
 
   // Can't get items to be ordered as I'd like them to be:
 
-  //   NetworkOpportunities.members = _.uniq([
-  //     AvailableDistributionCapacity,
-  //     ProposedInvestment,
-  //     AnnualDeferralValue,
-  //     PeakDayCapacity,
-  //     ...NetworkOpportunities.members,
-  //   ]);
+    NetworkOpportunities.members = _.uniq([
+      AvailableDistributionCapacity,
+      ProposedInvestment,
+      AnnualDeferralValue,
+      PeakDayCapacity,
+      ...NetworkOpportunities.members,
+    ]);
 };

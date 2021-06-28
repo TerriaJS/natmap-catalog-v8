@@ -391,16 +391,16 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     "https://network-opportunity-maps.s3-ap-southeast-2.amazonaws.com/constraints/surge/proposed_investment.csv";
   ProposedInvestment.featureInfoTemplate.template = investmentTemplate;
 
-  // Style money columns using year for point colour and amount for point size. Doesn't behave well currently
-  // See https://github.com/TerriaJS/nationalmap/issues/1021#issuecomment-863034185
-
-  // const investMoneyStyles = ProposedInvestment.styles.filter((s) =>
-  //   /_invest$/.test(s.id)
-  // );
-  // investMoneyStyles.map((s) => {
-  //   s.pointSize = { pointSizeColumn: s.id };
-  //   s.color.colorColumn = "invest_year_str";
-  // });
+  const investMoneyStyles = ProposedInvestment.styles.filter((s) =>
+    /_invest$/.test(s.id)
+  );
+  investMoneyStyles.map((s) => {
+    s.pointSize = { pointSizeColumn: s.id };
+    s.color.colorColumn = "invest_year_str";
+    s.color.legend = {
+      url: "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/proposed-investment-legend.png",
+    };
+  });
 
   ProposedInvestment.columns.push({
     name: "annual_deferral_pool",
@@ -475,11 +475,11 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
 
   // Can't get items to be ordered as I'd like them to be:
 
-    NetworkOpportunities.members = _.uniq([
-      AvailableDistributionCapacity,
-      ProposedInvestment,
-      AnnualDeferralValue,
-      PeakDayCapacity,
-      ...NetworkOpportunities.members,
-    ]);
+  // NetworkOpportunities.members = _.uniq([
+  //   AvailableDistributionCapacity,
+  //   ProposedInvestment,
+  //   AnnualDeferralValue,
+  //   PeakDayCapacity,
+  //   ...NetworkOpportunities.members,
+  // ]);
 };

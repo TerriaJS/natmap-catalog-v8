@@ -3,11 +3,20 @@ const _ = require("lodash");
 const cloneFromCatalogPath = require("../helpers/cloneFromCatalogPath");
 const findInMembers = require("../helpers/findInMembers");
 const recursivelySortMembersByName = require("../helpers/recursivelySortMembersByName");
+const modifyNetworkOpportunities = require("./network-opportunities");
 const natmap20200903v8 = require("./in/natmap-2020-09-03-v8.json");
 const aremi20210602v8 = require("./in/aremi-2021-06-02-v8.json");
 const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
+
+function cables(Cables) {
+  Cables.layers = "cite:Cables_20210415";
+}
+
+function substations(Substations) {
+  Substations.layers = "cite:Substations_20210415";
+}
 
 // remove "Land Use" subgroup from Agriculture
 const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
@@ -161,6 +170,16 @@ evRegistrationsByPostcode.styles.find((s) => s.id === "Registrations").color = {
   colorPalette: "Blues",
 };
 
+cables(findInMembers(ElectricVehicle.members, [
+  "Electricity Infrastructure",
+  "Distribution Cables",
+]));
+
+substations(findInMembers(ElectricVehicle.members, [
+  "Electricity Infrastructure",
+  "Distribution Substations",
+]));
+
 const LandParcelAndProperty = {
   type: "group",
   name: "Land Parcel and Property",
@@ -208,6 +227,24 @@ const GenerationGroup = findInMembers(ElectricityInfrastructure.members, [
 GenerationGroup.members = GenerationGroup.members.filter(
   (m) => m.name !== "Diesel Generators - South Australia"
 );
+const NetworkOpportunities = findInMembers(ElectricityInfrastructure.members, [
+  "Network Opportunities",
+]);
+
+cables(findInMembers(NetworkOpportunities.members, [
+  "Supporting Information",
+  "Distribution Cables",
+]));
+
+substations(findInMembers(NetworkOpportunities.members, [
+  "Supporting Information",
+  "Distribution Substations",
+]));
+
+modifyNetworkOpportunities(NetworkOpportunities);
+
+// Preserve order of NOM
+const preserveOrderNOM = NetworkOpportunities.members.slice();
 
 const RenewableEnergy = cloneFromCatalogPath(aremi20210602v8, [
   "Renewable Energy",
@@ -559,6 +596,8 @@ NationalDatasets.members = recursivelySortMembersByName([
   Vegetation,
   Water,
 ]);
+// Restore Network Opportunities Maps layer order
+findInMembers(NationalDatasets.members, ["Energy", "Electricity Infrastructure", "Network Opportunities"]).members = preserveOrderNOM;
 
 gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;

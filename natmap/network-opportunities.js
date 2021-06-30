@@ -610,7 +610,14 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     {
       id: "percent_available",
       color: {
-        colorPalette: "RdYlGn",
+        binColors: [
+          "rgb(215,48,39)",
+          "rgb(252,141,89)",
+          "rgb(254,224,139)",
+          "rgb(217,239,139)",
+          "rgb(145,207,96)",
+          "rgb(26,152,80)",
+        ].reverse(),
         binMaximums: [25, 50, 75, 90, 100],
       },
     },

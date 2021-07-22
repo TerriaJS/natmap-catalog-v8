@@ -90,6 +90,49 @@
       "shareKeys": [
         "Root Group/National Datasets/Boundaries/Other areas/SSLA 1973 AMB2014a"
       ]
+    },
+    {
+      "type": "group",
+      "name": "Foundation Facilities Points",
+      "members": [],
+      "catalogPath": ["Social and Economic"],
+      "id": "3a192c0e-3b8a-477b-b927-267a0fcfb776",
+      "shareKeys": [
+        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "Education Facilities",
+      "catalogPath": ["Social and Economic", "Foundation Facilities Points"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
+      "layers": "0",
+      "id": "6cb2ca21-0c18-44de-baeb-969bf1594ce1",
+      "shareKeys": [
+        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points/Education Facilities"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "Health and Medical Facilities",
+      "catalogPath": ["Social and Economic", "Foundation Facilities Points"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
+      "layers": "1",
+      "id": "4d9dd43a-b7d8-45c7-97d3-9127baea5a81",
+      "shareKeys": [
+        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points/Health and Medical Facilities"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "Emergency Management Facilities",
+      "catalogPath": ["Social and Economic", "Foundation Facilities Points"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
+      "layers": "1",
+      "id": "ba8b928f-222e-422c-a001-f8ac008fe47c",
+      "shareKeys": [
+        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points/Emergency Management Facilities"
+      ]
     }
   ]
 }

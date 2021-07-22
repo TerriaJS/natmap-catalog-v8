@@ -306,6 +306,7 @@ Energy.members.map((m) => {
       if (m.name === "Generation") {
         m.members.map((m) => {
           if (m.name === "All Power Stations") {
+            m.name = "Power Stations"
             m.url =
               "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
             m.layers = "0";
@@ -321,10 +322,12 @@ Energy.members.map((m) => {
           )
           .map((m) => {
             if (m.name === "Substations") {
+              m.name = "Transmission Substations";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
               m.layers = "1";
             } else if (m.name === "Transmission Lines") {
+              m.name = "Electricity Transmission Lines";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
               m.layers = "2";
@@ -548,11 +551,56 @@ const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, [
 
 SocialEconomic.members.push(absSdmx);
 
+SocialEconomic.members.map(socialEconomicMember => {
+  if (socialEconomicMember.name === "Population Estimates"){
+    socialEconomicMember.members.map(populationEstimatesMember => {
+      if (populationEstimatesMember.name === "Residential Population Density"){
+        populationEstimatesMember.type = "esri-mapServer-group";
+        populationEstimatesMember.featureInfoTemplate = undefined;
+        populationEstimatesMember.url = "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
+        populationEstimatesMember.name = "Residential Dwelling Density";
+        // Fix incorrect extents provided by the source.
+        populationEstimatesMember.itemProperties = {
+          "rectangle": {
+            "east": 158,
+            "north": -8,
+            "south": -45,
+            "west": 109
+          },
+          "initialMessage": {
+            "title": "Hint",
+            "content": "<li>Use 3D mode.</li><li>If map items can not be seen, zoom in further to reveal them.</li>",
+            "confirmation": false
+          },
+          "featureInfoTemplate": {
+            "template": "{{Pixel Value}} people in the given radius."
+          }
+        }
+      }
+    })
+  }
+})
+
 // Transport
 const Transport = cloneFromCatalogPath(natmap20200903v8, [
   "National Datasets",
   "Transport",
 ]);
+
+// Update to Foundation Rail Infrastructure
+Transport.members.map((m) => {
+  if (m.name === "Rail") {
+    m.members.map((m) => {
+      if (m.name === "Railways") {
+        m.name = "Railway Lines"
+        m.url =
+        "https://services.ga.gov.au/gis/services/Foundation_Rail_Infrastructure/MapServer";
+        m.layers = "0";
+      } 
+    });
+  }
+});
+
 
 // Vegetation
 const Vegetation = cloneFromCatalogPath(natmap20200903v8, [

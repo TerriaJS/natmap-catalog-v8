@@ -9,6 +9,7 @@ const aremi20210602v8 = require("./in/aremi-2021-06-02-v8.json");
 const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
+const { cloneDeep } = require("lodash");
 
 function cables(Cables) {
   Cables.layers = "cite:Cables_20210415";
@@ -551,16 +552,139 @@ const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, [
 
 SocialEconomic.members.push(absSdmx);
 
+let populationEstimatesMemberAsGroup = undefined;
 SocialEconomic.members.map(socialEconomicMember => {
   if (socialEconomicMember.name === "Population Estimates"){
     socialEconomicMember.members.map(populationEstimatesMember => {
       if (populationEstimatesMember.name === "Residential Population Density"){
-        populationEstimatesMember.type = "esri-mapServer-group";
-        populationEstimatesMember.featureInfoTemplate = undefined;
+        populationEstimatesMemberAsGroup = cloneDeep(populationEstimatesMember);
+        populationEstimatesMember.type = "esri-mapServer";
         populationEstimatesMember.url = "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
         populationEstimatesMember.name = "Residential Dwelling Density";
+
         // Fix incorrect extents provided by the source.
-        populationEstimatesMember.itemProperties = {
+        populationEstimatesMember.rectangle = {
+          "east": 158,
+          "north": -8,
+          "south": -45,
+          "west": 109
+        };
+
+        populationEstimatesMember.featureInfoTemplate ={
+          "template": "{{Pixel Value}} dwellings in {{#terria.replaceText}}{replaceText: true, from: [0,1,2,3], to: [\"100m\", \"500m\", \"1km\", \"2km\"]}{{feature.data.layerId}}{{/terria.replaceText}} radius."
+        };
+
+        // Fix incorrect legends created by terriajs.
+        populationEstimatesMember.legends = [      
+          {
+            "title": "Per 2km radius:",
+            "items": [
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                "title": "1 - 600"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                "title": "601 - 1,200"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                "title": "1,201 - 2,200"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                "title": "2,201 - 3,500"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                "title": "3,501 - 20,000"
+              }
+            ]
+          },
+          {
+            "title": "Per 1km radius:",
+            "items": [
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                "title": "1 - 400"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                "title": "401 - 800"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                "title": "801 - 1,200"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                "title": "1,201 - 1,700"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                "title": "1,701 - 8,000"
+              }
+            ]
+          },
+          {
+            "title": "Per 500m radius:",
+            "items": [
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                "title": "1 - 200"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                "title": "201 - 450"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                "title": "451 - 650"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                "title": "651 - 900"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                "title": "901 - 3,000"
+              }
+            ]
+          },
+          {
+            "title": "Per 100m radius:",
+            "items": [
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                "title": "1 - 5"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                "title": "6 - 20"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                "title": "21 - 30"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                "title": "31 - 100"
+              },
+              {
+                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                "title": "101 - 600"
+              }
+            ]
+          }
+        ];
+
+        // Make a group version
+        populationEstimatesMemberAsGroup.type = "esri-mapServer-group";
+        populationEstimatesMemberAsGroup.featureInfoTemplate = undefined;
+        populationEstimatesMemberAsGroup.url = "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
+        populationEstimatesMemberAsGroup.name = "Residential Dwelling Density (as group)";
+        // Fix incorrect extents provided by the source.
+        populationEstimatesMemberAsGroup.itemProperties = {
           "rectangle": {
             "east": 158,
             "north": -8,
@@ -569,13 +693,21 @@ SocialEconomic.members.map(socialEconomicMember => {
           },
           "initialMessage": {
             "title": "Hint",
-            "content": "<li>Use 3D mode.</li><li>If map items can not be seen, zoom in further to reveal them.</li>",
+            "content": "<li>Using 3D mode is recommended. Otherwise feature data can only be seen at some zoom levels.</li><li>Except for the last member, need to zoom in further to reveal map items.</li>",
             "confirmation": false
           },
           "featureInfoTemplate": {
-            "template": "{{Pixel Value}} people in the given radius."
+            "template": "{{Pixel Value}} residential dwellings in the given radius."
           }
-        }
+        };
+        populationEstimatesMemberAsGroup.id = "Root Group/National Data Sets/Social and Economic/Population Estimates (as group)";
+        populationEstimatesMemberAsGroup.shareKeys = [
+          "Root Group/National Datasets/Social and Economic/Population Estimates/Residential Population Density (as group)"
+        ]
+      };
+
+      if (populationEstimatesMemberAsGroup !== undefined){
+        socialEconomicMember.members.push(populationEstimatesMemberAsGroup);
       }
     })
   }

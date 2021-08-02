@@ -9,7 +9,6 @@ const aremi20210602v8 = require("./in/aremi-2021-06-02-v8.json");
 const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
-const { cloneDeep } = require("lodash");
 
 function cables(Cables) {
   Cables.layers = "cite:Cables_20210415";
@@ -557,7 +556,7 @@ SocialEconomic.members.map(socialEconomicMember => {
   if (socialEconomicMember.name === "Population Estimates"){
     socialEconomicMember.members.map(populationEstimatesMember => {
       if (populationEstimatesMember.name === "Residential Population Density"){
-        populationEstimatesMemberAsGroup = cloneDeep(populationEstimatesMember);
+        populationEstimatesMemberAsGroup = _.cloneDeep(populationEstimatesMember);
         populationEstimatesMember.type = "esri-mapServer";
         populationEstimatesMember.url = "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
         populationEstimatesMember.name = "Residential Dwelling Density";
@@ -710,6 +709,27 @@ SocialEconomic.members.map(socialEconomicMember => {
         socialEconomicMember.members.push(populationEstimatesMemberAsGroup);
       }
     })
+  }
+  else if (socialEconomicMember.name === "Finance, Business and Trade"){
+    socialEconomicMember.members.map(m => {
+      if (m.name === "Industrial Building Exposure"){
+        const index = socialEconomicMember.members.indexOf(m);
+        if (index >-1){
+          socialEconomicMember.members.splice(index, 1);
+        }
+      }
+    })
+    const aei = {
+      type: "wms-group",
+      name: "Australian Exposure Information",
+      id: "Root Group/National Data Sets/Social and Economic/Australian Exposure Information",
+      url: " https://services-em.ga.gov.au/geoserver/exposure/ows",
+      shareKeys: [
+        "Root Group/National Datasets/Social and Economic/Finance, Business and Trade/Australian Exposure Information"
+      ]
+    };
+    
+    socialEconomicMember.members.push(aei);
   }
 })
 

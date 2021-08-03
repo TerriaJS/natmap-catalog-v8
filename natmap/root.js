@@ -980,7 +980,7 @@ complete.baseMaps = [
     item: {
       id: "basemap-australian-topography",
       type: "esri-mapServer",
-      name: "Australian Topography",
+      name: "National Base Map",
       url:
         "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
       opacity: 1,
@@ -1051,6 +1051,17 @@ complete.baseMaps = [
     image:
       "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
   },
+  {
+    item: {
+      id: "basemap-greyscale",
+      type: "esri-mapServer",
+      name: "Grey Scale",
+      url:
+        "https://services.ga.gov.au/gis/rest/services/NationalBaseMap_GreyScale/MapServer",
+      opacity: 1,
+    },
+    image: "images/basemaps/grey-scale.png",
+  }
 ];
 
 module.exports = complete;

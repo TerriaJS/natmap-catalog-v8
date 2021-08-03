@@ -45,7 +45,7 @@
       "type": "esri-mapServer",
       "name": "CWTH OMA 1994 Mineral Blocks AMB2014a",
       "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks_AMB2014a/MapServer",
+      "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks/MapServer",
       "id": "pUTdjtT",
       "shareKeys": [
         "Root Group/National Datasets/Boundaries/Other areas/CWTH OMA 1994 Mineral Blocks AMB2014a"
@@ -53,12 +53,12 @@
     },
     {
       "type": "esri-mapServer",
-      "name": "CWTH OPGGSA 2006 Petroleum Blocks AMB2001a",
+      "name": "CWTH OPGGSA 2006 Petroleum Blocks",
       "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/CWTH_OPGGSA_2006_Petroleum_Blocks_AMB2001a/MapServer",
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks/MapServer",
       "id": "pduSsJS",
       "shareKeys": [
-        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks AMB2001a"
+        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks"
       ]
     },
     {

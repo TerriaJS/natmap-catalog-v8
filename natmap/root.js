@@ -24,75 +24,37 @@ const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
   "Agriculture",
 ]);
 Agriculture.members = Agriculture.members
-  .filter((m) => m.name !== "Land Use and Cover in South Australia")
+  .filter(
+    (m) =>
+      m.name !== "Land Use and Cover in South Australia" &&
+      m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Secondary classification]"
+  )
   .map((m) => {
     if (m.name === "Agricultural Exposure") {
       m.url =
         "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [18 class classification]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [18 class classification]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "2";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [Agricultural industries]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [Agricultural industries]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "4";
-    } else if (m.name === "Catchment Scale Land Use 2018 [Agriculture]") {
-      m.name = "Catchment Scale Land Use 2020 [Agriculture]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "3";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [Primary classification]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [Primary classification]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "0";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [Secondary classification]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [Secondary classification]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "1";
     }
-
     return m;
   });
 
-// Add two new layers.
-Agriculture.members = [
-  ...Agriculture.members,
-  {
-    type: "esri-mapServer",
-    name: "Catchment Scale Land Use 2020 [Date of mapping]",
-    url:
-      "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
-    layers: "5",
-    id: "pa47KiLde",
-    shareKeys: [
-      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Date of mapping]",
-    ],
-  },
-  {
-    type: "esri-mapServer",
-    name: "Catchment Scale Land Use 2020 [Scale of mapping]",
-    url:
-      "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
-    layers: "6",
-    id: "psdTWs72q",
-    shareKeys: [
-      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Scale of mapping]",
-    ],
-  },
-];
+// Add catchment as group.
+const catchmentGroup = {
+  type: "esri-mapServer-group",
+  name: "Catchment Scale Land Use",
+  url:
+    "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+  id: "fdd5fa7d-8cfe-416d-a061-bb603a0f7079",
+  shareKeys: [
+    "Root Group/National Datasets/Agriculture/Catchment Scale Land Use",
+    "Root Group/National Datasets/Land Cover and Land Use/Land Use and Cover/Catchment Scale Land Use",
+  ],
+};
+
+Agriculture.members = [...Agriculture.members, catchmentGroup];
 
 // remove ABC Photo Stories from Communications
 const Communications = cloneFromCatalogPath(natmap20200903v8, [
@@ -170,15 +132,19 @@ evRegistrationsByPostcode.styles.find((s) => s.id === "Registrations").color = {
   colorPalette: "Blues",
 };
 
-cables(findInMembers(ElectricVehicle.members, [
-  "Electricity Infrastructure",
-  "Distribution Cables",
-]));
+cables(
+  findInMembers(ElectricVehicle.members, [
+    "Electricity Infrastructure",
+    "Distribution Cables",
+  ])
+);
 
-substations(findInMembers(ElectricVehicle.members, [
-  "Electricity Infrastructure",
-  "Distribution Substations",
-]));
+substations(
+  findInMembers(ElectricVehicle.members, [
+    "Electricity Infrastructure",
+    "Distribution Substations",
+  ])
+);
 
 const LandParcelAndProperty = {
   type: "group",
@@ -231,15 +197,19 @@ const NetworkOpportunities = findInMembers(ElectricityInfrastructure.members, [
   "Network Opportunities",
 ]);
 
-cables(findInMembers(NetworkOpportunities.members, [
-  "Supporting Information",
-  "Distribution Cables",
-]));
+cables(
+  findInMembers(NetworkOpportunities.members, [
+    "Supporting Information",
+    "Distribution Cables",
+  ])
+);
 
-substations(findInMembers(NetworkOpportunities.members, [
-  "Supporting Information",
-  "Distribution Substations",
-]));
+substations(
+  findInMembers(NetworkOpportunities.members, [
+    "Supporting Information",
+    "Distribution Substations",
+  ])
+);
 
 modifyNetworkOpportunities(NetworkOpportunities);
 
@@ -306,7 +276,7 @@ Energy.members.map((m) => {
       if (m.name === "Generation") {
         m.members.map((m) => {
           if (m.name === "All Power Stations") {
-            m.name = "Power Stations"
+            m.name = "Power Stations";
             m.url =
               "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
             m.layers = "0";
@@ -388,6 +358,20 @@ const LandCover = cloneFromCatalogPath(natmap20200903v8, [
   "Land Cover and Land Use",
 ]);
 LandCover.members = LandCover.members.filter((m) => m.name !== "Terrain");
+LandCover.members.map((landCoverMember) => {
+  if (landCoverMember.name === "Land Use and Cover") {
+    landCoverMember.members = landCoverMember.members.filter(
+      (m) =>
+        m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Secondary classification]"
+    );
+
+    landCoverMember.members.push(catchmentGroup);
+  }
+});
 
 // Marine and Oceans
 const MarineOceans = cloneFromCatalogPath(natmap20200903v8, [
@@ -552,186 +536,215 @@ const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, [
 SocialEconomic.members.push(absSdmx);
 
 let populationEstimatesMemberAsGroup = undefined;
-SocialEconomic.members.map(socialEconomicMember => {
-  if (socialEconomicMember.name === "Population Estimates"){
-    socialEconomicMember.members.map(populationEstimatesMember => {
-      if (populationEstimatesMember.name === "Residential Population Density"){
-        populationEstimatesMemberAsGroup = _.cloneDeep(populationEstimatesMember);
+SocialEconomic.members.map((socialEconomicMember) => {
+  if (socialEconomicMember.name === "Population Estimates") {
+    socialEconomicMember.members.map((populationEstimatesMember) => {
+      if (populationEstimatesMember.name === "Residential Population Density") {
+        populationEstimatesMemberAsGroup = _.cloneDeep(
+          populationEstimatesMember
+        );
         populationEstimatesMember.type = "esri-mapServer";
-        populationEstimatesMember.url = "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
+        populationEstimatesMember.url =
+          "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
         populationEstimatesMember.name = "Residential Dwelling Density";
 
         // Fix incorrect extents provided by the source.
         populationEstimatesMember.rectangle = {
-          "east": 158,
-          "north": -8,
-          "south": -45,
-          "west": 109
+          east: 158,
+          north: -8,
+          south: -45,
+          west: 109,
         };
 
-        populationEstimatesMember.featureInfoTemplate ={
-          "template": "{{Pixel Value}} dwellings in {{#terria.replaceText}}{replaceText: true, from: [0,1,2,3], to: [\"100m\", \"500m\", \"1km\", \"2km\"]}{{feature.data.layerId}}{{/terria.replaceText}} radius."
+        populationEstimatesMember.featureInfoTemplate = {
+          template:
+            '{{Pixel Value}} dwellings in {{#terria.replaceText}}{replaceText: true, from: [0,1,2,3], to: ["100m", "500m", "1km", "2km"]}{{feature.data.layerId}}{{/terria.replaceText}} radius.',
         };
 
         // Fix incorrect legends created by terriajs.
-        populationEstimatesMember.legends = [      
+        populationEstimatesMember.legends = [
           {
-            "title": "Per 2km radius:",
-            "items": [
+            title: "Per 2km radius:",
+            items: [
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
-                "title": "1 - 600"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 600",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
-                "title": "601 - 1,200"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "601 - 1,200",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
-                "title": "1,201 - 2,200"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "1,201 - 2,200",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
-                "title": "2,201 - 3,500"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "2,201 - 3,500",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
-                "title": "3,501 - 20,000"
-              }
-            ]
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "3,501 - 20,000",
+              },
+            ],
           },
           {
-            "title": "Per 1km radius:",
-            "items": [
+            title: "Per 1km radius:",
+            items: [
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
-                "title": "1 - 400"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 400",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
-                "title": "401 - 800"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "401 - 800",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
-                "title": "801 - 1,200"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "801 - 1,200",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
-                "title": "1,201 - 1,700"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "1,201 - 1,700",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
-                "title": "1,701 - 8,000"
-              }
-            ]
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "1,701 - 8,000",
+              },
+            ],
           },
           {
-            "title": "Per 500m radius:",
-            "items": [
+            title: "Per 500m radius:",
+            items: [
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
-                "title": "1 - 200"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 200",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
-                "title": "201 - 450"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "201 - 450",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
-                "title": "451 - 650"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "451 - 650",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
-                "title": "651 - 900"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "651 - 900",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
-                "title": "901 - 3,000"
-              }
-            ]
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "901 - 3,000",
+              },
+            ],
           },
           {
-            "title": "Per 100m radius:",
-            "items": [
+            title: "Per 100m radius:",
+            items: [
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
-                "title": "1 - 5"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 5",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
-                "title": "6 - 20"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "6 - 20",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
-                "title": "21 - 30"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "21 - 30",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
-                "title": "31 - 100"
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "31 - 100",
               },
               {
-                "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
-                "title": "101 - 600"
-              }
-            ]
-          }
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "101 - 600",
+              },
+            ],
+          },
         ];
 
         // Make a group version
         populationEstimatesMemberAsGroup.type = "esri-mapServer-group";
         populationEstimatesMemberAsGroup.featureInfoTemplate = undefined;
-        populationEstimatesMemberAsGroup.url = "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
-        populationEstimatesMemberAsGroup.name = "Residential Dwelling Density (as group)";
+        populationEstimatesMemberAsGroup.url =
+          "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
+        populationEstimatesMemberAsGroup.name =
+          "Residential Dwelling Density (as group)";
         // Fix incorrect extents provided by the source.
         populationEstimatesMemberAsGroup.itemProperties = {
-          "rectangle": {
-            "east": 158,
-            "north": -8,
-            "south": -45,
-            "west": 109
+          rectangle: {
+            east: 158,
+            north: -8,
+            south: -45,
+            west: 109,
           },
-          "initialMessage": {
-            "title": "Hint",
-            "content": "<li>Using 3D mode is recommended. Otherwise feature data can only be seen at some zoom levels.</li><li>Except for the last member, need to zoom in further to reveal map items.</li>",
-            "confirmation": false
+          initialMessage: {
+            title: "Hint",
+            content:
+              "<li>Using 3D mode is recommended. Otherwise feature data can only be seen at some zoom levels.</li><li>Except for the last member, need to zoom in further to reveal map items.</li>",
+            confirmation: false,
           },
-          "featureInfoTemplate": {
-            "template": "{{Pixel Value}} residential dwellings in the given radius."
-          }
+          featureInfoTemplate: {
+            template:
+              "{{Pixel Value}} residential dwellings in the given radius.",
+          },
         };
-        populationEstimatesMemberAsGroup.id = "Root Group/National Data Sets/Social and Economic/Population Estimates (as group)";
+        populationEstimatesMemberAsGroup.id =
+          "Root Group/National Data Sets/Social and Economic/Population Estimates (as group)";
         populationEstimatesMemberAsGroup.shareKeys = [
-          "Root Group/National Datasets/Social and Economic/Population Estimates/Residential Population Density (as group)"
-        ]
-      };
+          "Root Group/National Datasets/Social and Economic/Population Estimates/Residential Population Density (as group)",
+        ];
+      }
 
-      if (populationEstimatesMemberAsGroup !== undefined){
+      if (populationEstimatesMemberAsGroup !== undefined) {
         socialEconomicMember.members.push(populationEstimatesMemberAsGroup);
       }
-    })
-  }
-  else if (socialEconomicMember.name === "Finance, Business and Trade"){
-    socialEconomicMember.members.map(m => {
-      if (m.name === "Industrial Building Exposure"){
+    });
+  } else if (socialEconomicMember.name === "Finance, Business and Trade") {
+    socialEconomicMember.members.map((m) => {
+      if (m.name === "Industrial Building Exposure") {
         const index = socialEconomicMember.members.indexOf(m);
-        if (index >-1){
+        if (index > -1) {
           socialEconomicMember.members.splice(index, 1);
         }
       }
-    })
+    });
     const aei = {
       type: "wms-group",
       name: "Australian Exposure Information",
-      id: "Root Group/National Data Sets/Social and Economic/Australian Exposure Information",
+      id:
+        "Root Group/National Data Sets/Social and Economic/Australian Exposure Information",
       url: " https://services-em.ga.gov.au/geoserver/exposure/ows",
       shareKeys: [
-        "Root Group/National Datasets/Social and Economic/Finance, Business and Trade/Australian Exposure Information"
-      ]
+        "Root Group/National Datasets/Social and Economic/Finance, Business and Trade/Australian Exposure Information",
+      ],
     };
-    
+
     socialEconomicMember.members.push(aei);
   }
-})
+});
 
 // Transport
 const Transport = cloneFromCatalogPath(natmap20200903v8, [
@@ -744,15 +757,14 @@ Transport.members.map((m) => {
   if (m.name === "Rail") {
     m.members.map((m) => {
       if (m.name === "Railways") {
-        m.name = "Railway Lines"
+        m.name = "Railway Lines";
         m.url =
-        "https://services.ga.gov.au/gis/services/Foundation_Rail_Infrastructure/MapServer";
+          "https://services.ga.gov.au/gis/services/Foundation_Rail_Infrastructure/MapServer";
         m.layers = "0";
-      } 
+      }
     });
   }
 });
-
 
 // Vegetation
 const Vegetation = cloneFromCatalogPath(natmap20200903v8, [
@@ -797,7 +809,11 @@ NationalDatasets.members = recursivelySortMembersByName([
   Water,
 ]);
 // Restore Network Opportunities Maps layer order
-findInMembers(NationalDatasets.members, ["Energy", "Electricity Infrastructure", "Network Opportunities"]).members = preserveOrderNOM;
+findInMembers(NationalDatasets.members, [
+  "Energy",
+  "Electricity Infrastructure",
+  "Network Opportunities",
+]).members = preserveOrderNOM;
 
 gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;
@@ -1060,8 +1076,9 @@ complete.baseMaps = [
         "https://services.ga.gov.au/gis/rest/services/NationalBaseMap_GreyScale/MapServer",
       opacity: 1,
     },
-    image: "images/basemaps/grey-scale.png",
-  }
+    image:
+      "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
+  },
 ];
 
 module.exports = complete;

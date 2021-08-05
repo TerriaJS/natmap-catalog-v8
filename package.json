@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write \"**/*\"",
+    "pretty-quick": "pretty-quick",
+    "prettier-check": "prettier --check \"**/*\""
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,15 @@
   },
   "homepage": "https://github.com/TerriaJS/natmap-catalog-v8#readme",
   "devDependencies": {
+    "husky":"^7.0.1",
     "prettier": "2.2.1"
   },
   "dependencies": {
     "lodash": "^4.17.20"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

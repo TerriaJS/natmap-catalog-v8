@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/TerriaJS/natmap-catalog-v8#readme",
   "devDependencies": {
-    "husky":"^7.0.1",
-    "prettier": "2.2.1"
+    "husky": "^7.0.1",
+    "prettier": "2.2.1",
+    "pretty-quick": "^3.1.1"
   },
   "dependencies": {
     "lodash": "^4.17.20"

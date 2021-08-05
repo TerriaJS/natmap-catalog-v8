@@ -43,7 +43,7 @@
     },
     {
       "type": "esri-mapServer",
-      "name": "CWTH OMA 1994 Mineral Blocks AMB2014a",
+      "name": "CWTH OMA 1994 Mineral Blocks",
       "catalogPath": ["Boundaries", "Other areas"],
       "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks/MapServer",
       "id": "pUTdjtT",
@@ -92,46 +92,43 @@
       ]
     },
     {
-      "type": "group",
+      "type": "esri-mapServer-group",
       "name": "Foundation Facilities Points",
-      "members": [],
-      "catalogPath": ["Social and Economic"],
-      "id": "3a192c0e-3b8a-477b-b927-267a0fcfb776",
+      "catalogPath": ["Habitation"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
+      "id": "b670687a-8dbd-40b2-8849-d9c50de20ab2",
       "shareKeys": [
-        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points"
+        "Root Group/National Datasets/Habitation/Foundation Facilities Points"
       ]
     },
     {
       "type": "esri-mapServer",
-      "name": "Education Facilities",
-      "catalogPath": ["Social and Economic", "Foundation Facilities Points"],
-      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
-      "layers": "0",
-      "id": "6cb2ca21-0c18-44de-baeb-969bf1594ce1",
+      "name": "World Bathymetry Imagery",
+      "catalogPath": ["Satellite Images"],
+      "url": "https://services.ga.gov.au/gis/rest/services/World_Bathymetry_Imagery/MapServer",
+      "id": "19cb612e-d452-431b-9eec-7bbd46edd088",
       "shareKeys": [
-        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points/Education Facilities"
+        "Root Group/National Datasets/Satellite Images/World Bathymetry Imagery"
       ]
     },
     {
-      "type": "esri-mapServer",
-      "name": "Health and Medical Facilities",
-      "catalogPath": ["Social and Economic", "Foundation Facilities Points"],
-      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
-      "layers": "1",
-      "id": "4d9dd43a-b7d8-45c7-97d3-9127baea5a81",
+      "type": "esri-mapServer-group",
+      "name": "GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection",
+      "catalogPath": ["Environment"],
+      "url": "https://services.ga.gov.au/gis/rest/services/GEODISC_EnvironmentallySustainableSitesForCarbonDioxideInjection/MapServer",
+      "id": "acc95f32-b8cb-448d-94f7-21f94d18087e",
       "shareKeys": [
-        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points/Health and Medical Facilities"
+        "Root Group/National Datasets/Environment/GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection"
       ]
     },
     {
-      "type": "esri-mapServer",
-      "name": "Emergency Management Facilities",
-      "catalogPath": ["Social and Economic", "Foundation Facilities Points"],
-      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
-      "layers": "1",
-      "id": "ba8b928f-222e-422c-a001-f8ac008fe47c",
+      "type": "esri-mapServer-group",
+      "name": "Renewable Energy Capacity Factor Maps",
+      "catalogPath": ["Energy", "Renewable Energy"],
+      "url": "https://services.ga.gov.au/gis/rest/services/RenewableEnergyCapacityFactorMaps/MapServer",
+      "id": "627b3845-1b2a-4156-89bb-428e62f01dae",
       "shareKeys": [
-        "Root Group/National Datasets/Social and Economic/Foundation Facilities Points/Emergency Management Facilities"
+        "Root Group/National Datasets/Energy/Renewable Energy/Renewable Energy Capacity Factor Maps"
       ]
     }
   ]

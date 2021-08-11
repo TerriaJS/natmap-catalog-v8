@@ -764,7 +764,26 @@ Transport.members.map((m) => {
       }
     });
   }
-});
+})
+
+// Remove old "Key Freight Routes" group.
+Transport.members = Transport.members.filter(m => m.name !== "Key Freight Routes");
+
+// Create a new keyFreightRouts group.
+const keyFreightRouts = {
+  type: "esri-mapServer-group",
+  name: "Key Freight Routes",
+  url:
+    "https://spatial.infrastructure.gov.au/server/rest/services/KeyFreightRoutes/Key_Freight_Routes/MapServer",
+  id: "2d8b5d7f-3abc-44d7-bea1-c1161b571072",
+
+  shareKeys: [
+    "Root Group/National Datasets/Transport/Key Freight Routes"
+  ]
+};
+
+// Re-add keyFreightRouts group.
+Transport.members.push(keyFreightRouts);
 
 // Vegetation
 const Vegetation = cloneFromCatalogPath(natmap20200903v8, [

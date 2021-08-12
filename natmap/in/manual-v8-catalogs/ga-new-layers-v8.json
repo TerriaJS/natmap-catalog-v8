@@ -53,36 +53,6 @@
     },
     {
       "type": "esri-mapServer",
-      "name": "CWTH OPGGSA 2006 Petroleum Blocks",
-      "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks/MapServer",
-      "id": "pduSsJS",
-      "shareKeys": [
-        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks"
-      ]
-    },
-    {
-      "type": "esri-mapServer",
-      "name": "CWTH OPGGSA 2006 Petroleum Blocks AMB2014a",
-      "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks_AMB2014a/MapServer",
-      "id": "EyRYwed",
-      "shareKeys": [
-        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks AMB2014a"
-      ]
-    },
-    {
-      "type": "esri-mapServer",
-      "name": "CWTH OPGGSA 2006 AMB2014a",
-      "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Areas_AMB2014a/MapServer",
-      "id": "ERYawyB",
-      "shareKeys": [
-        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 AMB2014a"
-      ]
-    },
-    {
-      "type": "esri-mapServer",
       "name": "SSLA 1973 AMB2014a",
       "catalogPath": ["Boundaries", "Other areas"],
       "url": "https://services.ga.gov.au/gis/rest/services/SSLA_1973_AMB2014a/MapServer",

@@ -756,11 +756,16 @@ const Transport = cloneFromCatalogPath(natmap20200903v8, [
 Transport.members.map((m) => {
   if (m.name === "Rail") {
     m.members.map((m) => {
-      if (m.name === "Railways") {
+      if (m.name === "Railway Stations") {
+        m.url =
+          "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
+        m.layers = "0";
+      }
+      else if (m.name === "Railways") {
         m.name = "Railway Lines";
         m.url =
-          "https://services.ga.gov.au/gis/services/Foundation_Rail_Infrastructure/MapServer";
-        m.layers = "0";
+          "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
+        m.layers = "1";
       }
     });
   }

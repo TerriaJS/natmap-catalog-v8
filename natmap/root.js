@@ -839,12 +839,31 @@ findInMembers(NationalDatasets.members, [
   "Network Opportunities",
 ]).members = preserveOrderNOM;
 
+// Create Resources group
+const resources =     {
+  "type": "group",
+  "name": "Resources",
+  "id": "df11d3d1-0e32-4fb5-982f-bdb725406e44",
+  "members": [],
+  "shareKeys": [
+    "Root Group/National Datasets/Resources"
+  ]
+}
+
+NationalDatasets.members.push(resources);
+NationalDatasets.members = recursivelySortMembersByName(NationalDatasets.members);
+
 gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;
   const group = findInMembers(NationalDatasets.members, path);
-  delete m.catalogPath;
-  group.members.push(m);
-  group.members = recursivelySortMembersByName(group.members);
+  if (group){
+    delete m.catalogPath;
+    group.members.push(m);
+    group.members = recursivelySortMembersByName(group.members);
+  }
+  else {
+    console.warn(`${path} does not exist in NationalDatasets`);
+  }
 });
 
 // Data.gov.au

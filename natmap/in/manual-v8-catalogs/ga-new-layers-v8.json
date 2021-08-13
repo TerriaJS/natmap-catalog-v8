@@ -100,6 +100,72 @@
       "shareKeys": [
         "Root Group/National Datasets/Energy/Renewable Energy/Renewable Energy Capacity Factor Maps"
       ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Tennant Creek – Mt Isa IOCG Mineral Potential Assessment",
+      "url": "https://services.ga.gov.au/gis/rest/services/AusLAMP_TISA_Stations/MapServer",
+      "id": "2d1f8c01-37c8-40c1-8d0c-51253e2e60fa",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Tennant Creek – Mt Isa IOCG Mineral Potential Assessment"
+      ],
+      "initialMessage": {
+        "title": "Hint",
+        "content":
+          "Please click accurately at the centre of a map item to reveal its feature data.",
+        "confirmation": false
+      }
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Mineral Blocks",
+      "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks/MapServer",
+      "id": "60d5c4a1-2a99-477c-95bf-58e6a244a6d5",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Mineral Blocks"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Petroleum Blocks",
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks/MapServer",
+      "id": "2b5cc8d3-36f8-4447-9d61-7ec7f0c8c206",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Petroleum Blocks"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "2021 Offshore Petroleum Acreage",
+      "url": "https://services.ga.gov.au/gis/rest/services/2021OffshorePetroleumAcreageReleaseAreas/MapServer",
+      "id": "f203bc3b-694f-472e-afff-ed8a0213b1d4",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/2021 Offshore Petroleum Acreage"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "wms",
+      "name": "North Australian Craton IOCG Mineral Potential Assessment",
+      "url": "https://services.ga.gov.au/gis/nac-iocg-min-pot-assmnt/ows",
+      "id": "4cfee1e6-deb8-4343-9e0a-3ab48c178a65",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/North Australian Craton IOCG Mineral Potential Assessment"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "wms",
+      "name": "Critical Minerals initiative",
+      "url": "https://services.ga.gov.au/gis/critical-minerals/wms",
+      "id": "b0d527a5-0e1c-451a-9c65-cc5bf015caca",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Critical Minerals initiative"
+      ]
     }
   ]
 }

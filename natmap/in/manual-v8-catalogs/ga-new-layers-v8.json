@@ -166,6 +166,76 @@
       "shareKeys": [
         "Root Group/National Datasets/Resources/Critical Minerals initiative"
       ]
+    },
+    {
+      "catalogPath": ["Marine and Oceans", "Bathymetry"],
+      "type": "esri-mapServer",
+      "name": "World Bathymetry, Imagery and Hillshade",
+      "url": "https://services.ga.gov.au/gis/rest/services/World_Bathymetry_Imagery/MapServer",
+      "id": "63a37d84-1441-4292-b089-41cc299a4d3a",
+      "shareKeys": [
+        "Root Group/National Datasets/Marine and Oceans/Bathymetry/World Bathymetry, Imagery and Hillshade"
+      ]
+    },
+    {
+      "catalogPath": ["Marine and Oceans", "Bathymetry"],
+      "type": "wms",
+      "name": "Coastal Waters Act 1970& 1980",
+      "url": "https://services.ga.gov.au/gis/services/CW_1970_1980/MapServer/WMSServer",
+      "id": "cf67c0a2-da05-4850-bb03-c42f7737c8bd",
+      "shareKeys": [
+        "Root Group/National Datasets/Marine and Oceans/Bathymetry/Coastal Waters Act 1970& 1980"
+      ]
+    },
+    {
+      "catalogPath": ["Marine and Oceans", "Bathymetry"],
+      "type": "esri-mapServer",
+      "name": "Sea & Submerged Lands Act 1973",
+      "url": "https://services.ga.gov.au/gis/rest/services/SSLA_1973/MapServer",
+      "id": "576072d1-e80f-4eae-813f-2860eed3fb7a",
+      "shareKeys": [
+        "Root Group/National Datasets/Marine and Oceans/Bathymetry/Sea & Submerged Lands Act 1973"
+      ]
+    },
+    {
+      "catalogPath": ["Environment"],
+      "type": "esri-mapServer",
+      "name": "Environmentally Sustainable Sites For Carbon Dioxide Injection",
+      "url": "https://services.ga.gov.au/gis/rest/services/GEODISC_EnvironmentallySustainableSitesForCarbonDioxideInjection/MapServer",
+      "id": "34e9991e-6ae6-4c90-a442-6505332ddee5",
+      "shareKeys": [
+        "Root Group/National Datasets/Environment/Environmentally Sustainable Sites For Carbon Dioxide Injection"
+      ]
+    },
+    {
+      "catalogPath": ["Environment"],
+      "type": "esri-mapServer",
+      "name": "Advanced CO2 geological storage sites",
+      "url": "https://services.ga.gov.au/gis/rest/services/AdvancedCO2GeologicalStorageSites2030/MapServer",
+      "id": "84daa57a-e52e-4df1-9aaf-d394dccb6855",
+      "shareKeys": [
+        "Root Group/National Datasets/Environment/Advanced CO2 geological storage sites"
+      ]
+    },
+    {
+      "catalogPath": ["Environment"],
+      "type": "esri-mapServer",
+      "name": "Potential locations for underground Hydrogen storage",
+      "url": "https://services.ga.gov.au/gis/rest/services/PotentialLocationsForUndergroundLargeScaleHydrogenStorage/MapServer",
+      "id": "b4e38556-ac23-4dfb-af10-1114deb4b7bd",
+      "shareKeys": [
+        "Root Group/National Datasets/Environment/Potential locations for underground Hydrogen storage"
+      ]
+    },
+    {
+      "catalogPath": ["Environment"],
+      "type": "esri-mapServer",
+      "name": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Areas/MapServer",
+      "id": "15e5a48d-651b-4ca6-9953-424902c0c8fe",
+      "shareKeys": [
+        "Root Group/National Datasets/Environment/Offshore Petroleum and Greenhouse Gas Storage Act 2006"
+      ]
     }
   ]
 }

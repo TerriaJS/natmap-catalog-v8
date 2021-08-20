@@ -31,15 +31,9 @@ Agriculture.members = Agriculture.members
       m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
       m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
       m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Secondary classification]"
-  )
-  .map((m) => {
-    if (m.name === "Agricultural Exposure") {
-      m.url =
-        "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
-    }
-    return m;
-  });
+      m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
+      m.name !== "Agricultural Exposure"
+  );
 
 // Add catchment as group.
 const catchmentGroup = {
@@ -243,7 +237,6 @@ const Energy = {
     ElectricityInfrastructure,
     RenewableEnergy,
     cloneFromCatalogPath(aremi20210602v8, ["Research"]),
-    LandParcelAndProperty,
     ElectricVehicle,
     cloneFromCatalogPath(natmap20200903v8, [
       "National Datasets",
@@ -254,12 +247,7 @@ const Energy = {
       "National Datasets",
       "Framework",
       "Electricity Transmission Substations",
-    ]),
-    cloneFromCatalogPath(natmap20200903v8, [
-      "National Datasets",
-      "Utility",
-      "Oil and Gas Pipelines",
-    ]),
+    ])
   ],
 };
 
@@ -351,6 +339,14 @@ Infrastructure.members.push();
 Infrastructure.members = Infrastructure.members.filter(
   (m) => m.name !== "Vertical Obstructions"
 );
+
+const oilAndGasPipelines = cloneFromCatalogPath(natmap20200903v8, [
+  "National Datasets",
+  "Utility",
+  "Oil and Gas Pipelines",
+]);
+
+Infrastructure.members.push(oilAndGasPipelines);
 
 // Land Cover and Land Use
 const LandCover = cloneFromCatalogPath(natmap20200903v8, [
@@ -519,6 +515,7 @@ Boundaries.members = [
       ]),
     ],
   },
+  LandParcelAndProperty
 ];
 
 // Satellite Images

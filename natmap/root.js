@@ -554,8 +554,13 @@ SocialEconomic.members.map((socialEconomicMember) => {
         };
 
         populationEstimatesMember.featureInfoTemplate = {
-          template:
-            '{{Pixel Value}} dwellings in {{#terria.replaceText}}{replaceText: true, from: [0,1,2,3], to: ["100m", "500m", "1km", "2km"]}{{feature.data.layerId}}{{/terria.replaceText}} radius.',
+          template: "{{Pixel Value}} dwellings in {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} radius.",
+          partials: {
+            0: "100m",
+            1: "500m",
+            2: "1km",
+            3: "2km"
+          }
         };
 
         // Fix incorrect legends created by terriajs.
@@ -1029,9 +1034,19 @@ complete.catalog = [
   AnalysisTools,
 ];
 
-complete.baseMapId = "basemap-bing-aerial-with-labels";
-complete.previewBaseMapId = "basemap-positron";
-complete.baseMaps = [
+complete.baseMaps = {
+  "enabledBaseMaps": [
+    "basemap-australian-topography",
+    "basemap-bing-aerial",
+    "basemap-bing-aerial-with-labels",
+    "basemap-positron",
+    "basemap-darkmatter",
+    "basemap-voyager",
+    "basemap-greyscale"
+  ],
+  "defaultBaseMapId": "basemap-bing-aerial-with-labels",
+  "previewBaseMapId": "basemap-positron",
+  "items": [
   {
     item: {
       id: "basemap-australian-topography",
@@ -1118,7 +1133,8 @@ complete.baseMaps = [
     },
     image:
       "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
-  },
-];
+  }
+]
+};
 
 module.exports = complete;

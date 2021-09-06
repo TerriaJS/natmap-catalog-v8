@@ -22,6 +22,16 @@
       ]
     },
     {
+      "type": "wms-group",
+      "name": "Great Artesian Basin Water Table Elevation",
+      "catalogPath": ["Water", "Ground Water"],
+      "url": "https://services.ga.gov.au/gis/great-artesian-basin/ows",
+      "id": "8b461444-7ba0-4aa5-b5d7-5ec1c1c62564",
+      "shareKeys": [
+        "Root Group/National Datasets/Water/Ground Water/Great Artesian Basin Water Table Elevation"
+      ]
+    },
+    {
       "type": "esri-mapServer",
       "name": "Australian Maritime Boundary Treaties AMB2014a",
       "catalogPath": ["Boundaries", "Maritime boundaries"],
@@ -84,11 +94,41 @@
     {
       "type": "esri-mapServer-group",
       "name": "GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection",
-      "catalogPath": ["Environment"],
+      "catalogPath": ["Resources"],
       "url": "https://services.ga.gov.au/gis/rest/services/GEODISC_EnvironmentallySustainableSitesForCarbonDioxideInjection/MapServer",
       "id": "acc95f32-b8cb-448d-94f7-21f94d18087e",
       "shareKeys": [
-        "Root Group/National Datasets/Environment/GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection"
+        "Root Group/National Datasets/Resources/GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Advanced CO2 geological storage sites",
+      "url": "https://services.ga.gov.au/gis/rest/services/AdvancedCO2GeologicalStorageSites2030/MapServer",
+      "id": "84daa57a-e52e-4df1-9aaf-d394dccb6855",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Advanced CO2 geological storage sites"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Potential locations for underground Hydrogen storage",
+      "url": "https://services.ga.gov.au/gis/rest/services/PotentialLocationsForUndergroundLargeScaleHydrogenStorage/MapServer",
+      "id": "b4e38556-ac23-4dfb-af10-1114deb4b7bd",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Potential locations for underground Hydrogen storage"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Areas/MapServer",
+      "id": "15e5a48d-651b-4ca6-9953-424902c0c8fe",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Offshore Petroleum and Greenhouse Gas Storage Act 2006"
       ]
     },
     {
@@ -195,46 +235,6 @@
       "id": "576072d1-e80f-4eae-813f-2860eed3fb7a",
       "shareKeys": [
         "Root Group/National Datasets/Marine and Oceans/Bathymetry/Sea & Submerged Lands Act 1973"
-      ]
-    },
-    {
-      "catalogPath": ["Environment"],
-      "type": "esri-mapServer",
-      "name": "Environmentally Sustainable Sites For Carbon Dioxide Injection",
-      "url": "https://services.ga.gov.au/gis/rest/services/GEODISC_EnvironmentallySustainableSitesForCarbonDioxideInjection/MapServer",
-      "id": "34e9991e-6ae6-4c90-a442-6505332ddee5",
-      "shareKeys": [
-        "Root Group/National Datasets/Environment/Environmentally Sustainable Sites For Carbon Dioxide Injection"
-      ]
-    },
-    {
-      "catalogPath": ["Environment"],
-      "type": "esri-mapServer",
-      "name": "Advanced CO2 geological storage sites",
-      "url": "https://services.ga.gov.au/gis/rest/services/AdvancedCO2GeologicalStorageSites2030/MapServer",
-      "id": "84daa57a-e52e-4df1-9aaf-d394dccb6855",
-      "shareKeys": [
-        "Root Group/National Datasets/Environment/Advanced CO2 geological storage sites"
-      ]
-    },
-    {
-      "catalogPath": ["Environment"],
-      "type": "esri-mapServer",
-      "name": "Potential locations for underground Hydrogen storage",
-      "url": "https://services.ga.gov.au/gis/rest/services/PotentialLocationsForUndergroundLargeScaleHydrogenStorage/MapServer",
-      "id": "b4e38556-ac23-4dfb-af10-1114deb4b7bd",
-      "shareKeys": [
-        "Root Group/National Datasets/Environment/Potential locations for underground Hydrogen storage"
-      ]
-    },
-    {
-      "catalogPath": ["Environment"],
-      "type": "esri-mapServer",
-      "name": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
-      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Areas/MapServer",
-      "id": "15e5a48d-651b-4ca6-9953-424902c0c8fe",
-      "shareKeys": [
-        "Root Group/National Datasets/Environment/Offshore Petroleum and Greenhouse Gas Storage Act 2006"
       ]
     }
   ]

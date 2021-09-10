@@ -58,7 +58,9 @@ const Communications = cloneFromCatalogPath(natmap20200903v8, [
 const TelecomsInNewDev = findInMembers(Communications.members, [
   "Telecommunications in New Developments",
 ]);
-TelecomsInNewDev.resourceId = "647f6ef4-61fe-45c1-a857-0c789cc4062e"; // update CKAN resource id to one that works
+
+// Don't use resourceId that might change over time. Instead, use datasetId that is "telecommunications-in-new-developments".
+TelecomsInNewDev.resourceId = undefined; 
 Communications.members = Communications.members
   .filter((m) => m.name !== "ABC Photo Stories (2009-2014)")
   .filter((m) => m.name !== "ABC Photo Stories by date");
@@ -173,6 +175,18 @@ LandParcelAndProperty.members.map((m) => {
         m.name = "NT";
       } else if (m.name === "Queensland") {
         m.name = "QLD";
+      } else if (m.name === "ACT"){
+        m.members = [
+          {
+            "type": "esri-mapServer-group",
+            "name": "Current Land Custodianship",
+            "id": "28d11d91-07be-4312-a3eb-b1ce2be60b2e",
+            "url": "https://data.actmapi.act.gov.au/arcgis/rest/services/actmapi/land_custodianship_current/MapServer",
+            "shareKeys": [
+              "Root Group/National Datasets/Boundaries/Cadastre and Land Tenure/By State/ACT/Current Land Custodianship"
+            ]
+          }
+        ];
       }
     });
   }

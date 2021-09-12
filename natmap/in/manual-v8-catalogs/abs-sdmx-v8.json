@@ -170,6 +170,10 @@
     {
       "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_DEMOG(1.0.0).AGE",
       "selectedId": "TT"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_REGIONAL_LGA2020_MEASURE(1.0.0)",
+      "selectedId": "ERP_P_20"
     }
   ]
 }

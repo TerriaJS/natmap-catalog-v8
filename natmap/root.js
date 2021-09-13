@@ -568,7 +568,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
         };
 
         populationEstimatesMember.featureInfoTemplate = {
-          template: "{{Pixel Value}} dwellings in {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} radius.",
+          template: "{{Pixel Value}} dwellings – {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} Grid.",
           partials: {
             0: "100m",
             1: "500m",
@@ -580,7 +580,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
         // Fix incorrect legends created by terriajs.
         populationEstimatesMember.legends = [
           {
-            title: "Per 2km radius:",
+            title: "2km Grid:",
             items: [
               {
                 imageUrl:
@@ -610,7 +610,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
             ],
           },
           {
-            title: "Per 1km radius:",
+            title: "1km Grid:",
             items: [
               {
                 imageUrl:
@@ -640,7 +640,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
             ],
           },
           {
-            title: "Per 500m radius:",
+            title: "500m Grid:",
             items: [
               {
                 imageUrl:
@@ -670,7 +670,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
             ],
           },
           {
-            title: "Per 100m radius:",
+            title: "100m Grid:",
             items: [
               {
                 imageUrl:
@@ -724,7 +724,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
           },
           featureInfoTemplate: {
             template:
-              "{{Pixel Value}} residential dwellings in the given radius.",
+              "{{Pixel Value}} residential dwellings in the given grid.",
           },
         };
         populationEstimatesMemberAsGroup.id =

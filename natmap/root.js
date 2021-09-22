@@ -23,18 +23,17 @@ const Agriculture = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Agriculture",
 ]);
-Agriculture.members = Agriculture.members
-  .filter(
-    (m) =>
-      m.name !== "Land Use and Cover in South Australia" &&
-      m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
-      m.name !== "Agricultural Exposure" &&
-      m.name !== "Australia’s Indigenous Forest Estate (2018)"
-  );
+Agriculture.members = Agriculture.members.filter(
+  (m) =>
+    m.name !== "Land Use and Cover in South Australia" &&
+    m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
+    m.name !== "Agricultural Exposure" &&
+    m.name !== "Australia’s Indigenous Forest Estate (2018)"
+);
 
 // Add catchment as group.
 const catchmentGroup = {
@@ -58,30 +57,38 @@ const Communications = cloneFromCatalogPath(natmap20210921v8, [
 ]);
 
 const MobileBlackspot5 = {
-  "type": "ckan-item",
-  "name": "Mobile Black Spot Program - Round 5 Funded Base Stations",
-  "url": "https://data.gov.au",
-  "datasetId": "mobile-black-spot-program-round-5-funded-base-stations",
-  "resourceId": "7916e08c-2826-4f5a-b7f7-c849f1aa64d8",
-  "itemProperties": {
-    "opacity": 1,
-    "clipToRectangle": true
+  type: "ckan-item",
+  name: "Mobile Black Spot Program - Round 5 Funded Base Stations",
+  url: "https://data.gov.au",
+  datasetId: "mobile-black-spot-program-round-5-funded-base-stations",
+  resourceId: "7916e08c-2826-4f5a-b7f7-c849f1aa64d8",
+  itemProperties: {
+    opacity: 1,
+    clipToRectangle: true,
   },
-  "supportedResourceFormats": [],
-  "id": "15152ee2-4dab-4fcf-8ff1-d8f4108f88d2",
-  "shareKeys": [
-    "Root Group/National Datasets/Communications/Mobile Black Spot Program - Round 5 Funded Base Stations"
-  ]
-} 
+  supportedResourceFormats: [],
+  id: "15152ee2-4dab-4fcf-8ff1-d8f4108f88d2",
+  shareKeys: [
+    "Root Group/National Datasets/Communications/Mobile Black Spot Program - Round 5 Funded Base Stations",
+  ],
+};
 
-Communications.members = Communications.members.splice(Communications.members.findIndex(val => val.name === "Mobile Black Spot Program - Round 4 Funded Base Stations") -1, 0, MobileBlackspot5)
+// Insert Mobile Black Spot Program - Round 4 Funded Base Stations
+Communications.members.splice(
+  Communications.members.findIndex(
+    (val) =>
+      val.name === "Mobile Black Spot Program - Round 4 Funded Base Stations"
+  ) + 1,
+  0,
+  MobileBlackspot5
+);
 
 const TelecomsInNewDev = findInMembers(Communications.members, [
   "Telecommunications in New Developments",
 ]);
 
 // Don't use resourceId that might change over time. Instead, use datasetId that is "telecommunications-in-new-developments".
-TelecomsInNewDev.resourceId = undefined; 
+TelecomsInNewDev.resourceId = undefined;
 Communications.members = Communications.members
   .filter((m) => m.name !== "ABC Photo Stories (2009-2014)")
   .filter((m) => m.name !== "ABC Photo Stories by date");
@@ -196,17 +203,18 @@ LandParcelAndProperty.members.map((m) => {
         m.name = "NT";
       } else if (m.name === "Queensland") {
         m.name = "QLD";
-      } else if (m.name === "ACT"){
+      } else if (m.name === "ACT") {
         m.members = [
           {
-            "type": "esri-mapServer-group",
-            "name": "Current Land Custodianship",
-            "id": "28d11d91-07be-4312-a3eb-b1ce2be60b2e",
-            "url": "https://data.actmapi.act.gov.au/arcgis/rest/services/actmapi/land_custodianship_current/MapServer",
-            "shareKeys": [
-              "Root Group/National Datasets/Boundaries/Cadastre and Land Tenure/By State/ACT/Current Land Custodianship"
-            ]
-          }
+            type: "esri-mapServer-group",
+            name: "Current Land Custodianship",
+            id: "28d11d91-07be-4312-a3eb-b1ce2be60b2e",
+            url:
+              "https://data.actmapi.act.gov.au/arcgis/rest/services/actmapi/land_custodianship_current/MapServer",
+            shareKeys: [
+              "Root Group/National Datasets/Boundaries/Cadastre and Land Tenure/By State/ACT/Current Land Custodianship",
+            ],
+          },
         ];
       }
     });
@@ -249,12 +257,10 @@ const RenewableEnergy = cloneFromCatalogPath(aremi20210921v8, [
   "Renewable Energy",
 ]);
 
-const Bioenergy = findInMembers(RenewableEnergy.members, [
-  "Bioenergy"
-]);
+const Bioenergy = findInMembers(RenewableEnergy.members, ["Bioenergy"]);
 
-Bioenergy.description = "<p>Biomass data on the AREMI is developed and maintained through the Australian Biomass for Bioenergy Assessment, funded by the Australian Renewable Energy Agency. The project timeframe is 2015-2020, with further development and maintenance continuing beyond this timeframe through the partner organisations (custodians of the data), listed below.</p><p>The purpose of the Australian Biomass and Bioenergy Assessment is to catalyse investment in the renewable energy sector through the provision of detailed information about biomass resources across Australia, to assist in project development and decision making for new bioenergy projects, and provide linkages between biomass supply, thorough the supply chain, to the end user.</p><p>The bioenergy data may be integrated with other layers on the AREMI, such as electricity infrastructure, to aid in decision making. Analytical capabilities are also under development with Queensland University of Technology, and University of the Sunshine Coast.</p><p>The partner organisations and contact details are:</p><p>  <strong>Western Australia - Department of Primary Industries and Regional Development</strong><br/>  Kim Brooksbank<br/>  Email: <strong><a href='kim.brooksbank@dpird.wa.gov.au'>kim.brooksbank@dpird.wa.gov.au</a></strong><br/><br />  Ronald Master<br/>  Email: <strong><a href='ronald.master@dpird.wa.gov.au'>ronald.master@dpird.wa.gov.au</a></strong></p><p>  <strong>Victoria - Sustainability Victoria</strong><br/>  Kelly Wickham<br/>  Email: <strong><a href='Kelly.Wickham@sustainability.vic.gov.au'>Kelly.Wickham@sustainability.vic.gov.au</a></strong></p><p>  <strong>Tasmania - Department of State Growth</strong><br/>  Martin Moroni<br/>  Email: <strong><a href='Martin.Moroni@stategrowth.tas.gov.au'>Martin.Moroni@stategrowth.tas.gov.au</a></strong></p><p>  <strong>New South Wales - Department of Primary Industries - Forestry</strong><br/>  Fabiano Ximenes<br/>  Email: <strong><a href='fabiano.ximenes@dpi.nsw.gov.au'>fabiano.ximenes@dpi.nsw.gov.au</a></strong></p><p>  <strong>South Australia - Department for Energy & Mining</strong><br/>  Mary Lewitzka<br/>  Email: <strong><a href='Mary.Lewitzka@sa.gov.au'>Mary.Lewitzka@sa.gov.au</a></strong></p><p>  <strong>Queensland -  Department of Environment and Science</strong><br/>  Kelly Bryant<br/>  Email: <strong><a href='Kelly.Bryant@des.qld.gov.au'>Kelly.Bryant@des.qld.gov.au</a></strong></p><p>  <strong>Research, analytics - Queensland University of Technology, University of Sunshine Coast</strong><br/>  Ian O'Hara<br/>  Email: <strong><a href='i.ohara@qut.edu.au'>i.ohara@qut.edu.au</a></strong></p>"
-
+Bioenergy.description =
+  "<p>Biomass data on the AREMI is developed and maintained through the Australian Biomass for Bioenergy Assessment, funded by the Australian Renewable Energy Agency. The project timeframe is 2015-2020, with further development and maintenance continuing beyond this timeframe through the partner organisations (custodians of the data), listed below.</p><p>The purpose of the Australian Biomass and Bioenergy Assessment is to catalyse investment in the renewable energy sector through the provision of detailed information about biomass resources across Australia, to assist in project development and decision making for new bioenergy projects, and provide linkages between biomass supply, thorough the supply chain, to the end user.</p><p>The bioenergy data may be integrated with other layers on the AREMI, such as electricity infrastructure, to aid in decision making. Analytical capabilities are also under development with Queensland University of Technology, and University of the Sunshine Coast.</p><p>The partner organisations and contact details are:</p><p>  <strong>Western Australia - Department of Primary Industries and Regional Development</strong><br/>  Kim Brooksbank<br/>  Email: <strong><a href='kim.brooksbank@dpird.wa.gov.au'>kim.brooksbank@dpird.wa.gov.au</a></strong><br/><br />  Ronald Master<br/>  Email: <strong><a href='ronald.master@dpird.wa.gov.au'>ronald.master@dpird.wa.gov.au</a></strong></p><p>  <strong>Victoria - Sustainability Victoria</strong><br/>  Kelly Wickham<br/>  Email: <strong><a href='Kelly.Wickham@sustainability.vic.gov.au'>Kelly.Wickham@sustainability.vic.gov.au</a></strong></p><p>  <strong>Tasmania - Department of State Growth</strong><br/>  Martin Moroni<br/>  Email: <strong><a href='Martin.Moroni@stategrowth.tas.gov.au'>Martin.Moroni@stategrowth.tas.gov.au</a></strong></p><p>  <strong>New South Wales - Department of Primary Industries - Forestry</strong><br/>  Fabiano Ximenes<br/>  Email: <strong><a href='fabiano.ximenes@dpi.nsw.gov.au'>fabiano.ximenes@dpi.nsw.gov.au</a></strong></p><p>  <strong>South Australia - Department for Energy & Mining</strong><br/>  Mary Lewitzka<br/>  Email: <strong><a href='Mary.Lewitzka@sa.gov.au'>Mary.Lewitzka@sa.gov.au</a></strong></p><p>  <strong>Queensland -  Department of Environment and Science</strong><br/>  Kelly Bryant<br/>  Email: <strong><a href='Kelly.Bryant@des.qld.gov.au'>Kelly.Bryant@des.qld.gov.au</a></strong></p><p>  <strong>Research, analytics - Queensland University of Technology, University of Sunshine Coast</strong><br/>  Ian O'Hara<br/>  Email: <strong><a href='i.ohara@qut.edu.au'>i.ohara@qut.edu.au</a></strong></p>";
 
 const BioenergyWa = findInMembers(RenewableEnergy.members, [
   "Bioenergy",
@@ -287,8 +293,8 @@ const Energy = {
     cloneFromCatalogPath(natmap20210921v8, [
       "National Datasets",
       "Framework",
-      "Electricity Transmission Substations"
-    ])
+      "Electricity Transmission Substations",
+    ]),
   ],
 };
 
@@ -381,7 +387,7 @@ Infrastructure.members = Infrastructure.members.filter(
   (m) => m.name !== "Vertical Obstructions"
 );
 
-const oilAndGasPipelines = cloneFromCatalogPath(natmap20200903v8, [
+const oilAndGasPipelines = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Utility",
   "Oil and Gas Pipelines",
@@ -557,7 +563,7 @@ Boundaries.members = [
       ]),
     ],
   },
-  LandParcelAndProperty
+  LandParcelAndProperty,
 ];
 
 // Satellite Images
@@ -592,13 +598,14 @@ SocialEconomic.members.map((socialEconomicMember) => {
         };
 
         populationEstimatesMember.featureInfoTemplate = {
-          template: "{{Pixel Value}} dwellings – {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} Grid.",
+          template:
+            "{{Pixel Value}} dwellings – {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} Grid.",
           partials: {
             0: "100m",
             1: "500m",
             2: "1km",
-            3: "2km"
-          }
+            3: "2km",
+          },
         };
 
         // Fix incorrect legends created by terriajs.
@@ -764,8 +771,7 @@ Transport.members.map((m) => {
         m.url =
           "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
         m.layers = "0";
-      }
-      else if (m.name === "Railways") {
+      } else if (m.name === "Railways") {
         m.name = "Railway Lines";
         m.url =
           "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
@@ -773,10 +779,12 @@ Transport.members.map((m) => {
       }
     });
   }
-})
+});
 
 // Remove old "Key Freight Routes" group.
-Transport.members = Transport.members.filter(m => m.name !== "Key Freight Routes");
+Transport.members = Transport.members.filter(
+  (m) => m.name !== "Key Freight Routes"
+);
 
 // Create a new keyFreightRouts group.
 const keyFreightRouts = {
@@ -786,9 +794,7 @@ const keyFreightRouts = {
     "https://spatial.infrastructure.gov.au/server/rest/services/KeyFreightRoutes/Key_Freight_Routes/MapServer",
   id: "2d8b5d7f-3abc-44d7-bea1-c1161b571072",
 
-  shareKeys: [
-    "Root Group/National Datasets/Transport/Key Freight Routes"
-  ]
+  shareKeys: ["Root Group/National Datasets/Transport/Key Freight Routes"],
 };
 
 // Re-add keyFreightRouts group.
@@ -852,28 +858,27 @@ findInMembers(NationalDatasets.members, [
 ]).members = preserveOrderNOM;
 
 // Create Resources group
-const resources =     {
-  "type": "group",
-  "name": "Resources",
-  "id": "df11d3d1-0e32-4fb5-982f-bdb725406e44",
-  "members": [],
-  "shareKeys": [
-    "Root Group/National Datasets/Resources"
-  ]
-}
+const resources = {
+  type: "group",
+  name: "Resources",
+  id: "df11d3d1-0e32-4fb5-982f-bdb725406e44",
+  members: [],
+  shareKeys: ["Root Group/National Datasets/Resources"],
+};
 
 NationalDatasets.members.push(resources);
-NationalDatasets.members = recursivelySortMembersByName(NationalDatasets.members);
+NationalDatasets.members = recursivelySortMembersByName(
+  NationalDatasets.members
+);
 
 gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;
   const group = findInMembers(NationalDatasets.members, path);
-  if (group){
+  if (group) {
     delete m.catalogPath;
     group.members.push(m);
     group.members = recursivelySortMembersByName(group.members);
-  }
-  else {
+  } else {
     console.warn(`${path} does not exist in NationalDatasets`);
   }
 });
@@ -1045,106 +1050,106 @@ complete.catalog = [
 ];
 
 complete.baseMaps = {
-  "enabledBaseMaps": [
+  enabledBaseMaps: [
     "basemap-australian-topography",
     "basemap-bing-aerial",
     "basemap-bing-aerial-with-labels",
     "basemap-positron",
     "basemap-darkmatter",
     "basemap-voyager",
-    "basemap-greyscale"
+    "basemap-greyscale",
   ],
-  "defaultBaseMapId": "basemap-bing-aerial-with-labels",
-  "previewBaseMapId": "basemap-positron",
-  "items": [
-  {
-    item: {
-      id: "basemap-australian-topography",
-      type: "esri-mapServer",
-      name: "National Base Map",
-      url:
-        "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
-      opacity: 1,
+  defaultBaseMapId: "basemap-bing-aerial-with-labels",
+  previewBaseMapId: "basemap-positron",
+  items: [
+    {
+      item: {
+        id: "basemap-australian-topography",
+        type: "esri-mapServer",
+        name: "National Base Map",
+        url:
+          "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
+        opacity: 1,
+      },
+      image: "images/basemaps/australian-topo.png",
     },
-    image: "images/basemaps/australian-topo.png",
-  },
-  {
-    item: {
-      id: "basemap-bing-aerial-with-labels",
-      name: "Bing Maps Aerial with Labels",
-      type: "ion-imagery",
-      ionAssetId: 3,
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-bing-aerial-with-labels",
+        name: "Bing Maps Aerial with Labels",
+        type: "ion-imagery",
+        ionAssetId: 3,
+        opacity: 1,
+      },
+      image: "images/basemaps/bing-aerial-labels.png",
     },
-    image: "images/basemaps/bing-aerial-labels.png",
-  },
-  {
-    item: {
-      id: "basemap-bing-aerial",
-      name: "Bing Maps Aerial",
-      type: "ion-imagery",
-      ionAssetId: 2,
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-bing-aerial",
+        name: "Bing Maps Aerial",
+        type: "ion-imagery",
+        ionAssetId: 2,
+        opacity: 1,
+      },
+      image: "images/basemaps/bing-aerial.png",
     },
-    image: "images/basemaps/bing-aerial.png",
-  },
-  {
-    item: {
-      id: "basemap-positron",
-      name: "Positron (Light)",
-      type: "open-street-map",
-      url: "https://basemaps.cartocdn.com/light_all/",
-      attribution:
-        "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
-      subdomains: ["a", "b", "c", "d"],
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-positron",
+        name: "Positron (Light)",
+        type: "open-street-map",
+        url: "https://basemaps.cartocdn.com/light_all/",
+        attribution:
+          "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
+        subdomains: ["a", "b", "c", "d"],
+        opacity: 1,
+      },
+      image: "images/basemaps/positron.png",
     },
-    image: "images/basemaps/positron.png",
-  },
-  {
-    item: {
-      id: "basemap-darkmatter",
-      name: "Dark Matter",
-      type: "open-street-map",
-      url: "https://basemaps.cartocdn.com/dark_all/",
-      attribution:
-        "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
-      subdomains: ["a", "b", "c", "d"],
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-darkmatter",
+        name: "Dark Matter",
+        type: "open-street-map",
+        url: "https://basemaps.cartocdn.com/dark_all/",
+        attribution:
+          "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
+        subdomains: ["a", "b", "c", "d"],
+        opacity: 1,
+      },
+      image: "images/basemaps/dark-matter.png",
     },
-    image: "images/basemaps/dark-matter.png",
-  },
-  {
-    item: {
-      id: "basemap-voyager",
-      type: "open-street-map",
-      name: "Voyager",
-      url: "https://global.ssl.fastly.net/rastertiles/voyager/",
-      attribution: "© OpenStreetMap contributors ODbL, © CartoDB CC-BY 3.0",
-      opacity: 1.0,
-      subdomains: [
-        "cartodb-basemaps-a",
-        "cartodb-basemaps-b",
-        "cartodb-basemaps-c",
-        "cartodb-basemaps-d",
-      ],
+    {
+      item: {
+        id: "basemap-voyager",
+        type: "open-street-map",
+        name: "Voyager",
+        url: "https://global.ssl.fastly.net/rastertiles/voyager/",
+        attribution: "© OpenStreetMap contributors ODbL, © CartoDB CC-BY 3.0",
+        opacity: 1.0,
+        subdomains: [
+          "cartodb-basemaps-a",
+          "cartodb-basemaps-b",
+          "cartodb-basemaps-c",
+          "cartodb-basemaps-d",
+        ],
+      },
+      image:
+        "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
     },
-    image:
-      "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
-  },
-  {
-    item: {
-      id: "basemap-greyscale",
-      type: "esri-mapServer",
-      name: "Grey Scale",
-      url:
-        "https://services.ga.gov.au/gis/rest/services/NationalBaseMap_GreyScale/MapServer",
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-greyscale",
+        type: "esri-mapServer",
+        name: "Grey Scale",
+        url:
+          "https://services.ga.gov.au/gis/rest/services/NationalBaseMap_GreyScale/MapServer",
+        opacity: 1,
+      },
+      image:
+        "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
     },
-    image:
-      "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
-  }
-]
+  ],
 };
 
 module.exports = complete;

@@ -56,6 +56,26 @@ const Communications = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Communications",
 ]);
+
+const MobileBlackspot5 = {
+  "type": "ckan-item",
+  "name": "Mobile Black Spot Program - Round 5 Funded Base Stations",
+  "url": "https://data.gov.au",
+  "datasetId": "mobile-black-spot-program-round-5-funded-base-stations",
+  "resourceId": "7916e08c-2826-4f5a-b7f7-c849f1aa64d8",
+  "itemProperties": {
+    "opacity": 1,
+    "clipToRectangle": true
+  },
+  "supportedResourceFormats": [],
+  "id": "15152ee2-4dab-4fcf-8ff1-d8f4108f88d2",
+  "shareKeys": [
+    "Root Group/National Datasets/Communications/Mobile Black Spot Program - Round 5 Funded Base Stations"
+  ]
+} 
+
+Communications.members = Communications.members.splice(Communications.members.findIndex(val => val.name === "Mobile Black Spot Program - Round 4 Funded Base Stations") -1, 0, MobileBlackspot5)
+
 const TelecomsInNewDev = findInMembers(Communications.members, [
   "Telecommunications in New Developments",
 ]);
@@ -228,6 +248,14 @@ const preserveOrderNOM = NetworkOpportunities.members.slice();
 const RenewableEnergy = cloneFromCatalogPath(aremi20210921v8, [
   "Renewable Energy",
 ]);
+
+const Bioenergy = findInMembers(RenewableEnergy.members, [
+  "Bioenergy"
+]);
+
+Bioenergy.description = "<p>Biomass data on the AREMI is developed and maintained through the Australian Biomass for Bioenergy Assessment, funded by the Australian Renewable Energy Agency. The project timeframe is 2015-2020, with further development and maintenance continuing beyond this timeframe through the partner organisations (custodians of the data), listed below.</p><p>The purpose of the Australian Biomass and Bioenergy Assessment is to catalyse investment in the renewable energy sector through the provision of detailed information about biomass resources across Australia, to assist in project development and decision making for new bioenergy projects, and provide linkages between biomass supply, thorough the supply chain, to the end user.</p><p>The bioenergy data may be integrated with other layers on the AREMI, such as electricity infrastructure, to aid in decision making. Analytical capabilities are also under development with Queensland University of Technology, and University of the Sunshine Coast.</p><p>The partner organisations and contact details are:</p><p>  <strong>Western Australia - Department of Primary Industries and Regional Development</strong><br/>  Kim Brooksbank<br/>  Email: <strong><a href='kim.brooksbank@dpird.wa.gov.au'>kim.brooksbank@dpird.wa.gov.au</a></strong><br/><br />  Ronald Master<br/>  Email: <strong><a href='ronald.master@dpird.wa.gov.au'>ronald.master@dpird.wa.gov.au</a></strong></p><p>  <strong>Victoria - Sustainability Victoria</strong><br/>  Kelly Wickham<br/>  Email: <strong><a href='Kelly.Wickham@sustainability.vic.gov.au'>Kelly.Wickham@sustainability.vic.gov.au</a></strong></p><p>  <strong>Tasmania - Department of State Growth</strong><br/>  Martin Moroni<br/>  Email: <strong><a href='Martin.Moroni@stategrowth.tas.gov.au'>Martin.Moroni@stategrowth.tas.gov.au</a></strong></p><p>  <strong>New South Wales - Department of Primary Industries - Forestry</strong><br/>  Fabiano Ximenes<br/>  Email: <strong><a href='fabiano.ximenes@dpi.nsw.gov.au'>fabiano.ximenes@dpi.nsw.gov.au</a></strong></p><p>  <strong>South Australia - Department for Energy & Mining</strong><br/>  Mary Lewitzka<br/>  Email: <strong><a href='Mary.Lewitzka@sa.gov.au'>Mary.Lewitzka@sa.gov.au</a></strong></p><p>  <strong>Queensland -  Department of Environment and Science</strong><br/>  Kelly Bryant<br/>  Email: <strong><a href='Kelly.Bryant@des.qld.gov.au'>Kelly.Bryant@des.qld.gov.au</a></strong></p><p>  <strong>Research, analytics - Queensland University of Technology, University of Sunshine Coast</strong><br/>  Ian O'Hara<br/>  Email: <strong><a href='i.ohara@qut.edu.au'>i.ohara@qut.edu.au</a></strong></p>"
+
+
 const BioenergyWa = findInMembers(RenewableEnergy.members, [
   "Bioenergy",
   "Western Australia",

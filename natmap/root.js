@@ -32,7 +32,8 @@ Agriculture.members = Agriculture.members
       m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
       m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
       m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
-      m.name !== "Agricultural Exposure"
+      m.name !== "Agricultural Exposure" &&
+      m.name !== "Australia’s Indigenous Forest Estate (2018)"
   );
 
 // Add catchment as group.
@@ -376,7 +377,8 @@ LandCover.members.map((landCoverMember) => {
         m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
         m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
         m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
-        m.name !== "Catchment Scale Land Use 2018 [Secondary classification]"
+        m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
+        m.name !== "Australia’s Indigenous Forest Estate (2018)"
     );
 
     landCoverMember.members.push(catchmentGroup);
@@ -546,14 +548,10 @@ const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, [
 
 SocialEconomic.members.push(absSdmx);
 
-let populationEstimatesMemberAsGroup = undefined;
 SocialEconomic.members.map((socialEconomicMember) => {
   if (socialEconomicMember.name === "Population Estimates") {
     socialEconomicMember.members.map((populationEstimatesMember) => {
       if (populationEstimatesMember.name === "Residential Population Density") {
-        populationEstimatesMemberAsGroup = _.cloneDeep(
-          populationEstimatesMember
-        );
         populationEstimatesMember.type = "esri-mapServer";
         populationEstimatesMember.url =
           "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
@@ -700,42 +698,6 @@ SocialEconomic.members.map((socialEconomicMember) => {
             ],
           },
         ];
-
-        // Make a group version
-        populationEstimatesMemberAsGroup.type = "esri-mapServer-group";
-        populationEstimatesMemberAsGroup.featureInfoTemplate = undefined;
-        populationEstimatesMemberAsGroup.url =
-          "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
-        populationEstimatesMemberAsGroup.name =
-          "Residential Dwelling Density (as group)";
-        // Fix incorrect extents provided by the source.
-        populationEstimatesMemberAsGroup.itemProperties = {
-          rectangle: {
-            east: 158,
-            north: -8,
-            south: -45,
-            west: 109,
-          },
-          initialMessage: {
-            title: "Hint",
-            content:
-              "<li>Using 3D mode is recommended. Otherwise feature data can only be seen at some zoom levels.</li><li>Except for the last member, need to zoom in further to reveal map items.</li>",
-            confirmation: false,
-          },
-          featureInfoTemplate: {
-            template:
-              "{{Pixel Value}} residential dwellings in the given grid.",
-          },
-        };
-        populationEstimatesMemberAsGroup.id =
-          "Root Group/National Data Sets/Social and Economic/Population Estimates (as group)";
-        populationEstimatesMemberAsGroup.shareKeys = [
-          "Root Group/National Datasets/Social and Economic/Population Estimates/Residential Population Density (as group)",
-        ];
-      }
-
-      if (populationEstimatesMemberAsGroup !== undefined) {
-        socialEconomicMember.members.push(populationEstimatesMemberAsGroup);
       }
     });
   } else if (socialEconomicMember.name === "Finance, Business and Trade") {

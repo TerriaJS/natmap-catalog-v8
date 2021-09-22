@@ -400,7 +400,9 @@ const LandCover = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Land Cover and Land Use",
 ]);
-LandCover.members = LandCover.members.filter((m) => m.name !== "Terrain");
+LandCover.members = LandCover.members.filter(
+  (m) => m.name !== "Terrain" && m.name !== "Mining"
+);
 LandCover.members.map((landCoverMember) => {
   if (landCoverMember.name === "Land Use and Cover") {
     landCoverMember.members = landCoverMember.members.filter(
@@ -579,10 +581,32 @@ const SocialEconomic = cloneFromCatalogPath(natmap20210921v8, [
   "Social and Economic",
 ]);
 
+SocialEconomic.members = SocialEconomic.members.filter(
+  (member) =>
+    ![
+      "Births and Deaths",
+      "Census",
+      "Labour Force",
+      "Marriage Law Postal Survey",
+      "Migration",
+      "Projections",
+      "Socio-Economic Indices",
+    ].includes(member.name)
+);
+
 SocialEconomic.members.push(absSdmx);
 
 SocialEconomic.members.map((socialEconomicMember) => {
   if (socialEconomicMember.name === "Population Estimates") {
+    socialEconomicMember.members = socialEconomicMember.members.filter(
+      (m) =>
+        ![
+          "Annual Estimated Resident Population",
+          "Annual Estimated Resident Population by Age by Sex",
+          "Annual Estimated Resident Population by Country of Birth by Age",
+        ].includes(m.name)
+    );
+
     socialEconomicMember.members.map((populationEstimatesMember) => {
       if (populationEstimatesMember.name === "Residential Population Density") {
         populationEstimatesMember.type = "esri-mapServer";
@@ -735,6 +759,9 @@ SocialEconomic.members.map((socialEconomicMember) => {
       }
     });
   } else if (socialEconomicMember.name === "Finance, Business and Trade") {
+    socialEconomicMember.members = socialEconomicMember.members.filter(
+      (m) => m.name !== "Building Approvals"
+    );
     socialEconomicMember.members.map((m) => {
       if (m.name === "Industrial Building Exposure") {
         const index = socialEconomicMember.members.indexOf(m);
@@ -979,6 +1006,19 @@ const VICLGA = cloneFromCatalogPath(natmap20210921v8, [
   "Victoria",
 ]);
 VICLGA.name = "Local government data";
+
+VICLGA.members = VICLGA.members.map((m) => {
+  if (m.name !== "Melbourne") return m;
+
+  return {
+    id: "vic-lga-melbourne",
+    name: "Melbourne",
+    url: "https://data.melbourne.vic.gov.au",
+    type: "socrata-group",
+    shareKeys: ["Root Group/Local Government/Victoria/Melbourne"],
+  };
+});
+
 const VIC = {
   name: "Victoria Government",
   type: "group",
@@ -1010,8 +1050,9 @@ WALGA.members.forEach((m) => {
 // Australian Capital Territory Government
 const ACT = {
   name: "Australian Capital Territory Government",
-  type: "group",
-  members: [],
+  url: "https://www.data.act.gov.au",
+  type: "socrata-group",
+  shareKeys: ["Root Group/Australian Capital Territory Government"],
 };
 
 const AnalysisTools = {

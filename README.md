@@ -24,6 +24,8 @@ https://github.com/TerriaJS/natmap-catalog-v8/blob/53e9aed5c80bd23ea7086ab2138b3
 
 4. Run `node .\natmap\build.js`
 
+**Note** please do not make manual changes to catalog JSON files (unless specified) - as they will be lost every time the catalog-converter is run. Instead all changes should be made in JavaScript
+
 ### Add new datasets from GA
 
 `National Datasets` are added 9 datasets as described by `catalog` in file `./natmap/in/manual-v8-catalogs/ga-new-layers-v8.json`. You can directly drag-and-drop this

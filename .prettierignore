@@ -1,1 +1,7 @@
-*.json
+# Ignore everything
+*
+
+# Unignore directories (to all depths) and unignore code and style files
+!helpers/*.js
+!natmap/*.js
+

@@ -22,6 +22,16 @@
       ]
     },
     {
+      "type": "wms-group",
+      "name": "Great Artesian Basin Water Table Elevation",
+      "catalogPath": ["Water", "Ground Water"],
+      "url": "https://services.ga.gov.au/gis/great-artesian-basin/ows",
+      "id": "8b461444-7ba0-4aa5-b5d7-5ec1c1c62564",
+      "shareKeys": [
+        "Root Group/National Datasets/Water/Ground Water/Great Artesian Basin Water Table Elevation"
+      ]
+    },
+    {
       "type": "esri-mapServer",
       "name": "Australian Maritime Boundary Treaties AMB2014a",
       "catalogPath": ["Boundaries", "Maritime boundaries"],
@@ -43,42 +53,12 @@
     },
     {
       "type": "esri-mapServer",
-      "name": "CWTH OMA 1994 Mineral Blocks AMB2014a",
+      "name": "CWTH OMA 1994 Mineral Blocks",
       "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks_AMB2014a/MapServer",
+      "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks/MapServer",
       "id": "pUTdjtT",
       "shareKeys": [
         "Root Group/National Datasets/Boundaries/Other areas/CWTH OMA 1994 Mineral Blocks AMB2014a"
-      ]
-    },
-    {
-      "type": "esri-mapServer",
-      "name": "CWTH OPGGSA 2006 Petroleum Blocks AMB2001a",
-      "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/CWTH_OPGGSA_2006_Petroleum_Blocks_AMB2001a/MapServer",
-      "id": "pduSsJS",
-      "shareKeys": [
-        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks AMB2001a"
-      ]
-    },
-    {
-      "type": "esri-mapServer",
-      "name": "CWTH OPGGSA 2006 Petroleum Blocks AMB2014a",
-      "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks_AMB2014a/MapServer",
-      "id": "EyRYwed",
-      "shareKeys": [
-        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 Petroleum Blocks AMB2014a"
-      ]
-    },
-    {
-      "type": "esri-mapServer",
-      "name": "CWTH OPGGSA 2006 AMB2014a",
-      "catalogPath": ["Boundaries", "Other areas"],
-      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Areas_AMB2014a/MapServer",
-      "id": "ERYawyB",
-      "shareKeys": [
-        "Root Group/National Datasets/Boundaries/Other areas/CWTH OPGGSA 2006 AMB2014a"
       ]
     },
     {
@@ -89,6 +69,172 @@
       "id": "GHutFsD",
       "shareKeys": [
         "Root Group/National Datasets/Boundaries/Other areas/SSLA 1973 AMB2014a"
+      ]
+    },
+    {
+      "type": "esri-mapServer-group",
+      "name": "Foundation Facilities Points",
+      "catalogPath": ["Habitation"],
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Facilities_Points/MapServer",
+      "id": "b670687a-8dbd-40b2-8849-d9c50de20ab2",
+      "shareKeys": [
+        "Root Group/National Datasets/Habitation/Foundation Facilities Points"
+      ]
+    },
+    {
+      "type": "esri-mapServer",
+      "name": "World Bathymetry Imagery",
+      "catalogPath": ["Satellite Images"],
+      "url": "https://services.ga.gov.au/gis/rest/services/World_Bathymetry_Imagery/MapServer",
+      "id": "19cb612e-d452-431b-9eec-7bbd46edd088",
+      "shareKeys": [
+        "Root Group/National Datasets/Satellite Images/World Bathymetry Imagery"
+      ]
+    },
+    {
+      "type": "esri-mapServer-group",
+      "name": "GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection",
+      "catalogPath": ["Resources"],
+      "url": "https://services.ga.gov.au/gis/rest/services/GEODISC_EnvironmentallySustainableSitesForCarbonDioxideInjection/MapServer",
+      "id": "acc95f32-b8cb-448d-94f7-21f94d18087e",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Advanced CO2 geological storage sites",
+      "url": "https://services.ga.gov.au/gis/rest/services/AdvancedCO2GeologicalStorageSites2030/MapServer",
+      "id": "84daa57a-e52e-4df1-9aaf-d394dccb6855",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Advanced CO2 geological storage sites"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Potential locations for underground Hydrogen storage",
+      "url": "https://services.ga.gov.au/gis/rest/services/PotentialLocationsForUndergroundLargeScaleHydrogenStorage/MapServer",
+      "id": "b4e38556-ac23-4dfb-af10-1114deb4b7bd",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Potential locations for underground Hydrogen storage"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Areas/MapServer",
+      "id": "15e5a48d-651b-4ca6-9953-424902c0c8fe",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Offshore Petroleum and Greenhouse Gas Storage Act 2006"
+      ]
+    },
+    {
+      "type": "esri-mapServer-group",
+      "name": "Renewable Energy Capacity Factor Maps",
+      "catalogPath": ["Energy", "Renewable Energy"],
+      "url": "https://services.ga.gov.au/gis/rest/services/RenewableEnergyCapacityFactorMaps/MapServer",
+      "id": "627b3845-1b2a-4156-89bb-428e62f01dae",
+      "shareKeys": [
+        "Root Group/National Datasets/Energy/Renewable Energy/Renewable Energy Capacity Factor Maps"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Tennant Creek – Mt Isa IOCG Mineral Potential Assessment",
+      "url": "https://services.ga.gov.au/gis/rest/services/AusLAMP_TISA_Stations/MapServer",
+      "id": "2d1f8c01-37c8-40c1-8d0c-51253e2e60fa",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Tennant Creek – Mt Isa IOCG Mineral Potential Assessment"
+      ],
+      "initialMessage": {
+        "title": "Hint",
+        "content":
+          "Please click accurately at the centre of a map item to reveal its feature data.",
+        "confirmation": false
+      }
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Mineral Blocks",
+      "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks/MapServer",
+      "id": "60d5c4a1-2a99-477c-95bf-58e6a244a6d5",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Mineral Blocks"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "Petroleum Blocks",
+      "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks/MapServer",
+      "id": "2b5cc8d3-36f8-4447-9d61-7ec7f0c8c206",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Petroleum Blocks"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "esri-mapServer",
+      "name": "2021 Offshore Petroleum Acreage",
+      "url": "https://services.ga.gov.au/gis/rest/services/2021OffshorePetroleumAcreageReleaseAreas/MapServer",
+      "id": "f203bc3b-694f-472e-afff-ed8a0213b1d4",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/2021 Offshore Petroleum Acreage"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "wms",
+      "name": "North Australian Craton IOCG Mineral Potential Assessment",
+      "url": "https://services.ga.gov.au/gis/nac-iocg-min-pot-assmnt/ows",
+      "id": "4cfee1e6-deb8-4343-9e0a-3ab48c178a65",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/North Australian Craton IOCG Mineral Potential Assessment"
+      ]
+    },
+    {
+      "catalogPath": ["Resources"],
+      "type": "wms",
+      "name": "Critical Minerals initiative",
+      "url": "https://services.ga.gov.au/gis/critical-minerals/wms",
+      "id": "b0d527a5-0e1c-451a-9c65-cc5bf015caca",
+      "shareKeys": [
+        "Root Group/National Datasets/Resources/Critical Minerals initiative"
+      ]
+    },
+    {
+      "catalogPath": ["Marine and Oceans", "Bathymetry"],
+      "type": "esri-mapServer",
+      "name": "World Bathymetry, Imagery and Hillshade",
+      "url": "https://services.ga.gov.au/gis/rest/services/World_Bathymetry_Imagery/MapServer",
+      "id": "63a37d84-1441-4292-b089-41cc299a4d3a",
+      "shareKeys": [
+        "Root Group/National Datasets/Marine and Oceans/Bathymetry/World Bathymetry, Imagery and Hillshade"
+      ]
+    },
+    {
+      "catalogPath": ["Marine and Oceans", "Bathymetry"],
+      "type": "wms",
+      "name": "Coastal Waters Act 1970& 1980",
+      "url": "https://services.ga.gov.au/gis/services/CW_1970_1980/MapServer/WMSServer",
+      "id": "cf67c0a2-da05-4850-bb03-c42f7737c8bd",
+      "shareKeys": [
+        "Root Group/National Datasets/Marine and Oceans/Bathymetry/Coastal Waters Act 1970& 1980"
+      ]
+    },
+    {
+      "catalogPath": ["Marine and Oceans", "Bathymetry"],
+      "type": "esri-mapServer",
+      "name": "Sea & Submerged Lands Act 1973",
+      "url": "https://services.ga.gov.au/gis/rest/services/SSLA_1973/MapServer",
+      "id": "576072d1-e80f-4eae-813f-2860eed3fb7a",
+      "shareKeys": [
+        "Root Group/National Datasets/Marine and Oceans/Bathymetry/Sea & Submerged Lands Act 1973"
       ]
     }
   ]

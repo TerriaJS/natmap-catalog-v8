@@ -72,4 +72,11 @@ To deploy:
     - **Dev:** https://dev.saas.terria.io/record-editor/map-config-nationalmap
     - **Test:** https://test.saas.terria.io/record-editor/map-config-nationalmap
     - **Prod:** https://saas.terria.io/record-editor/map-config-nationalmap
-3.  Manually update map-config.json files in https://github.com/TerriaJS/saas-catalogs-public
+3. Manually update map-config.json files in https://github.com/TerriaJS/saas-catalogs-public
+
+## Publish to S3
+The following command will compress the content of `natmap/out.json` then upload it to `s3://static.nationalmap.nicta.com.au/init/2021-09-03.json` as a catalogue for https://nationalmap.gov.au.
+
+```
+  ./publish.sh 2021-09-03
+```

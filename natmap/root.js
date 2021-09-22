@@ -24,75 +24,32 @@ const Agriculture = cloneFromCatalogPath(natmap20210921v8, [
   "Agriculture",
 ]);
 Agriculture.members = Agriculture.members
-  .filter((m) => m.name !== "Land Use and Cover in South Australia")
-  .map((m) => {
-    if (m.name === "Agricultural Exposure") {
-      m.url =
-        "https://services.ga.gov.au/gis/rest/services/Australian_Exposure_Information/MapServer";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [18 class classification]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [18 class classification]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "2";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [Agricultural industries]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [Agricultural industries]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "4";
-    } else if (m.name === "Catchment Scale Land Use 2018 [Agriculture]") {
-      m.name = "Catchment Scale Land Use 2020 [Agriculture]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "3";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [Primary classification]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [Primary classification]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "0";
-    } else if (
-      m.name === "Catchment Scale Land Use 2018 [Secondary classification]"
-    ) {
-      m.name = "Catchment Scale Land Use 2020 [Secondary classification]";
-      m.url =
-        "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer";
-      m.layers = "1";
-    }
+  .filter(
+    (m) =>
+      m.name !== "Land Use and Cover in South Australia" &&
+      m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
+      m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
+      m.name !== "Agricultural Exposure" &&
+      m.name !== "Australia’s Indigenous Forest Estate (2018)"
+  );
 
-    return m;
-  });
+// Add catchment as group.
+const catchmentGroup = {
+  type: "esri-mapServer-group",
+  name: "Catchment Scale Land Use",
+  url:
+    "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
+  id: "fdd5fa7d-8cfe-416d-a061-bb603a0f7079",
+  shareKeys: [
+    "Root Group/National Datasets/Agriculture/Catchment Scale Land Use",
+    "Root Group/National Datasets/Land Cover and Land Use/Land Use and Cover/Catchment Scale Land Use",
+  ],
+};
 
-// Add two new layers.
-Agriculture.members = [
-  ...Agriculture.members,
-  {
-    type: "esri-mapServer",
-    name: "Catchment Scale Land Use 2020 [Date of mapping]",
-    url:
-      "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
-    layers: "5",
-    id: "pa47KiLde",
-    shareKeys: [
-      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Date of mapping]",
-    ],
-  },
-  {
-    type: "esri-mapServer",
-    name: "Catchment Scale Land Use 2020 [Scale of mapping]",
-    url:
-      "https://www.environment.gov.au/mapping/rest/services/abares/CLUM_50m/MapServer",
-    layers: "6",
-    id: "psdTWs72q",
-    shareKeys: [
-      "Root Group/National Datasets/Agriculture/Catchment Scale Land Use 2020 [Scale of mapping]",
-    ],
-  },
-];
+Agriculture.members = [...Agriculture.members, catchmentGroup];
 
 // remove ABC Photo Stories from Communications
 const Communications = cloneFromCatalogPath(natmap20210921v8, [
@@ -102,7 +59,9 @@ const Communications = cloneFromCatalogPath(natmap20210921v8, [
 const TelecomsInNewDev = findInMembers(Communications.members, [
   "Telecommunications in New Developments",
 ]);
-TelecomsInNewDev.resourceId = "647f6ef4-61fe-45c1-a857-0c789cc4062e"; // update CKAN resource id to one that works
+
+// Don't use resourceId that might change over time. Instead, use datasetId that is "telecommunications-in-new-developments".
+TelecomsInNewDev.resourceId = undefined; 
 Communications.members = Communications.members
   .filter((m) => m.name !== "ABC Photo Stories (2009-2014)")
   .filter((m) => m.name !== "ABC Photo Stories by date");
@@ -217,6 +176,18 @@ LandParcelAndProperty.members.map((m) => {
         m.name = "NT";
       } else if (m.name === "Queensland") {
         m.name = "QLD";
+      } else if (m.name === "ACT"){
+        m.members = [
+          {
+            "type": "esri-mapServer-group",
+            "name": "Current Land Custodianship",
+            "id": "28d11d91-07be-4312-a3eb-b1ce2be60b2e",
+            "url": "https://data.actmapi.act.gov.au/arcgis/rest/services/actmapi/land_custodianship_current/MapServer",
+            "shareKeys": [
+              "Root Group/National Datasets/Boundaries/Cadastre and Land Tenure/By State/ACT/Current Land Custodianship"
+            ]
+          }
+        ];
       }
     });
   }
@@ -279,7 +250,6 @@ const Energy = {
     ElectricityInfrastructure,
     RenewableEnergy,
     cloneFromCatalogPath(aremi20210921v8, ["Research"]),
-    LandParcelAndProperty,
     ElectricVehicle,
     cloneFromCatalogPath(natmap20210921v8, [
       "National Datasets",
@@ -289,13 +259,8 @@ const Energy = {
     cloneFromCatalogPath(natmap20210921v8, [
       "National Datasets",
       "Framework",
-      "Electricity Transmission Substations",
-    ]),
-    cloneFromCatalogPath(natmap20210921v8, [
-      "National Datasets",
-      "Utility",
-      "Oil and Gas Pipelines",
-    ]),
+      "Electricity Transmission Substations"
+    ])
   ],
 };
 
@@ -312,6 +277,7 @@ Energy.members.map((m) => {
       if (m.name === "Generation") {
         m.members.map((m) => {
           if (m.name === "All Power Stations") {
+            m.name = "Power Stations";
             m.url =
               "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
             m.layers = "0";
@@ -327,10 +293,12 @@ Energy.members.map((m) => {
           )
           .map((m) => {
             if (m.name === "Substations") {
+              m.name = "Transmission Substations";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
               m.layers = "1";
             } else if (m.name === "Transmission Lines") {
+              m.name = "Electricity Transmission Lines";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
               m.layers = "2";
@@ -385,12 +353,35 @@ Infrastructure.members = Infrastructure.members.filter(
   (m) => m.name !== "Vertical Obstructions"
 );
 
+const oilAndGasPipelines = cloneFromCatalogPath(natmap20200903v8, [
+  "National Datasets",
+  "Utility",
+  "Oil and Gas Pipelines",
+]);
+
+Infrastructure.members.push(oilAndGasPipelines);
+
 // Land Cover and Land Use
 const LandCover = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Land Cover and Land Use",
 ]);
 LandCover.members = LandCover.members.filter((m) => m.name !== "Terrain");
+LandCover.members.map((landCoverMember) => {
+  if (landCoverMember.name === "Land Use and Cover") {
+    landCoverMember.members = landCoverMember.members.filter(
+      (m) =>
+        m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
+        m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
+        m.name !== "Australia’s Indigenous Forest Estate (2018)"
+    );
+
+    landCoverMember.members.push(catchmentGroup);
+  }
+});
 
 // Marine and Oceans
 const MarineOceans = cloneFromCatalogPath(natmap20210921v8, [
@@ -538,6 +529,7 @@ Boundaries.members = [
       ]),
     ],
   },
+  LandParcelAndProperty
 ];
 
 // Satellite Images
@@ -554,11 +546,225 @@ const SocialEconomic = cloneFromCatalogPath(natmap20210921v8, [
 
 SocialEconomic.members.push(absSdmx);
 
+SocialEconomic.members.map((socialEconomicMember) => {
+  if (socialEconomicMember.name === "Population Estimates") {
+    socialEconomicMember.members.map((populationEstimatesMember) => {
+      if (populationEstimatesMember.name === "Residential Population Density") {
+        populationEstimatesMember.type = "esri-mapServer";
+        populationEstimatesMember.url =
+          "http://services.ga.gov.au/gis/rest/services/NEXIS_Residential_Dwelling_Density/MapServer";
+        populationEstimatesMember.name = "Residential Dwelling Density";
+
+        // Fix incorrect extents provided by the source.
+        populationEstimatesMember.rectangle = {
+          east: 158,
+          north: -8,
+          south: -45,
+          west: 109,
+        };
+
+        populationEstimatesMember.featureInfoTemplate = {
+          template: "{{Pixel Value}} dwellings – {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} Grid.",
+          partials: {
+            0: "100m",
+            1: "500m",
+            2: "1km",
+            3: "2km"
+          }
+        };
+
+        // Fix incorrect legends created by terriajs.
+        populationEstimatesMember.legends = [
+          {
+            title: "2km Grid:",
+            items: [
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 600",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "601 - 1,200",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "1,201 - 2,200",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "2,201 - 3,500",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "3,501 - 20,000",
+              },
+            ],
+          },
+          {
+            title: "1km Grid:",
+            items: [
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 400",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "401 - 800",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "801 - 1,200",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "1,201 - 1,700",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "1,701 - 8,000",
+              },
+            ],
+          },
+          {
+            title: "500m Grid:",
+            items: [
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 200",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "201 - 450",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "451 - 650",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "651 - 900",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "901 - 3,000",
+              },
+            ],
+          },
+          {
+            title: "100m Grid:",
+            items: [
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigtf7CPfTAknRgYGBhp7edTAUQNHDRw1ELuBsCKITMCIbiBFpsEAANAcBK6KG1h6AAAAAElFTkSuQmCC",
+                title: "1 - 5",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGlgf+pYB4jigvvF5NvpmIvIwMDA429PGrgqIGjBo4aiN1AWBFEJmBEN5Ai02AAAO0FBQLK2PVsAAAAAElFTkSuQmCC",
+                title: "6 - 20",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigtXpZ8l26SwmcYMDAw09vKogaMGjho4aiB2A2FFEJmAEd1ARkpMgwEAFJ8FdXH+mOYAAAAASUVORK5CYII=",
+                title: "21 - 30",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigsLXDvJNmnC7nIGBgYae3nUwFEDRw0cNRC7gbAiiEzAiG4gIyWmwQAAS5UGFdAYh78AAAAASUVORK5CYII=",
+                title: "31 - 100",
+              },
+              {
+                imageUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAD1JREFUOI1jYaAyYKGlgf+pYB4jigu9GYrJNmkrQy8DAwONvTxq4KiBowaOGojdQFgRRCZgRDeQkRLTYAAAzEoElV78ljkAAAAASUVORK5CYII=",
+                title: "101 - 600",
+              },
+            ],
+          },
+        ];
+      }
+    });
+  } else if (socialEconomicMember.name === "Finance, Business and Trade") {
+    socialEconomicMember.members.map((m) => {
+      if (m.name === "Industrial Building Exposure") {
+        const index = socialEconomicMember.members.indexOf(m);
+        if (index > -1) {
+          socialEconomicMember.members.splice(index, 1);
+        }
+      }
+    });
+    const aei = {
+      type: "wms-group",
+      name: "Australian Exposure Information",
+      id:
+        "Root Group/National Data Sets/Social and Economic/Australian Exposure Information",
+      url: " https://services-em.ga.gov.au/geoserver/exposure/ows",
+      shareKeys: [
+        "Root Group/National Datasets/Social and Economic/Finance, Business and Trade/Australian Exposure Information",
+      ],
+    };
+
+    socialEconomicMember.members.push(aei);
+  }
+});
+
 // Transport
 const Transport = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Transport",
 ]);
+
+// Update to Foundation Rail Infrastructure
+Transport.members.map((m) => {
+  if (m.name === "Rail") {
+    m.members.map((m) => {
+      if (m.name === "Railway Stations") {
+        m.url =
+          "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
+        m.layers = "0";
+      }
+      else if (m.name === "Railways") {
+        m.name = "Railway Lines";
+        m.url =
+          "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
+        m.layers = "1";
+      }
+    });
+  }
+})
+
+// Remove old "Key Freight Routes" group.
+Transport.members = Transport.members.filter(m => m.name !== "Key Freight Routes");
+
+// Create a new keyFreightRouts group.
+const keyFreightRouts = {
+  type: "esri-mapServer-group",
+  name: "Key Freight Routes",
+  url:
+    "https://spatial.infrastructure.gov.au/server/rest/services/KeyFreightRoutes/Key_Freight_Routes/MapServer",
+  id: "2d8b5d7f-3abc-44d7-bea1-c1161b571072",
+
+  shareKeys: [
+    "Root Group/National Datasets/Transport/Key Freight Routes"
+  ]
+};
+
+// Re-add keyFreightRouts group.
+Transport.members.push(keyFreightRouts);
 
 // Vegetation
 const Vegetation = cloneFromCatalogPath(natmap20210921v8, [
@@ -617,12 +823,31 @@ findInMembers(NationalDatasets.members, [
   "Network Opportunities",
 ]).members = preserveOrderNOM;
 
+// Create Resources group
+const resources =     {
+  "type": "group",
+  "name": "Resources",
+  "id": "df11d3d1-0e32-4fb5-982f-bdb725406e44",
+  "members": [],
+  "shareKeys": [
+    "Root Group/National Datasets/Resources"
+  ]
+}
+
+NationalDatasets.members.push(resources);
+NationalDatasets.members = recursivelySortMembersByName(NationalDatasets.members);
+
 gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;
   const group = findInMembers(NationalDatasets.members, path);
-  delete m.catalogPath;
-  group.members.push(m);
-  group.members = recursivelySortMembersByName(group.members);
+  if (group){
+    delete m.catalogPath;
+    group.members.push(m);
+    group.members = recursivelySortMembersByName(group.members);
+  }
+  else {
+    console.warn(`${path} does not exist in NationalDatasets`);
+  }
 });
 
 // Data.gov.au
@@ -791,14 +1016,24 @@ complete.catalog = [
   AnalysisTools,
 ];
 
-complete.baseMapId = "basemap-bing-aerial-with-labels";
-complete.previewBaseMapId = "basemap-positron";
-complete.baseMaps = [
+complete.baseMaps = {
+  "enabledBaseMaps": [
+    "basemap-australian-topography",
+    "basemap-bing-aerial",
+    "basemap-bing-aerial-with-labels",
+    "basemap-positron",
+    "basemap-darkmatter",
+    "basemap-voyager",
+    "basemap-greyscale"
+  ],
+  "defaultBaseMapId": "basemap-bing-aerial-with-labels",
+  "previewBaseMapId": "basemap-positron",
+  "items": [
   {
     item: {
       id: "basemap-australian-topography",
       type: "esri-mapServer",
-      name: "Australian Topography",
+      name: "National Base Map",
       url:
         "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
       opacity: 1,
@@ -869,6 +1104,19 @@ complete.baseMaps = [
     image:
       "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
   },
-];
+  {
+    item: {
+      id: "basemap-greyscale",
+      type: "esri-mapServer",
+      name: "Grey Scale",
+      url:
+        "https://services.ga.gov.au/gis/rest/services/NationalBaseMap_GreyScale/MapServer",
+      opacity: 1,
+    },
+    image:
+      "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
+  }
+]
+};
 
 module.exports = complete;

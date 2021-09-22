@@ -405,6 +405,7 @@ LandCover.members.map((landCoverMember) => {
   if (landCoverMember.name === "Land Use and Cover") {
     landCoverMember.members = landCoverMember.members.filter(
       (m) =>
+        m.name !== "Land Use and Cover in South Australia" &&
         m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
         m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
         m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&

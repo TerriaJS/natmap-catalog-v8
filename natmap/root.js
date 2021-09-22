@@ -1016,6 +1016,7 @@ VICLGA.members = VICLGA.members.map((m) => {
     url: "https://data.melbourne.vic.gov.au",
     type: "socrata-group",
     shareKeys: ["Root Group/Local Government/Victoria/Melbourne"],
+    facetGroups: ["categories"],
   };
 });
 
@@ -1053,6 +1054,7 @@ const ACT = {
   url: "https://www.data.act.gov.au",
   type: "socrata-group",
   shareKeys: ["Root Group/Australian Capital Territory Government"],
+  facetGroups: ["categories"],
 };
 
 const AnalysisTools = {

@@ -20248,7 +20248,7 @@
                   "description": "[Licence](http://creativecommons.org/licenses/by/3.0/au/)",
                   "url": "http://geofabric.bom.gov.au/simplefeatures/ows",
                   "dataCustodian": "[Australian Bureau of Meteorology](http://www.bom.gov.au/water/geofabric/)",
-                  "blacklist": [
+                  "excludeMembers": [
                     "Surface Network 2.1",
                     "Surface Cartography",
                     "Groundwater Cartography 2.1"
@@ -24449,7 +24449,7 @@
       "type": "ckan-group",
       "name": "Data.gov.au",
       "url": "https://www.data.gov.au",
-      "blacklist": [
+      "excludeMembers": [
         "Rainforests (EVC_2005)"
       ],
       "filterQuery": [
@@ -24715,7 +24715,7 @@
           "type": "esri-group",
           "name": "Biota",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Biota",
-          "id": "L6aVl4",
+          "id": "L2pIHa",
           "shareKeys": [
             "Root Group/Queensland Government/Biota"
           ]
@@ -24724,7 +24724,7 @@
           "type": "esri-group",
           "name": "Boundaries",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Boundaries",
-          "id": "LZ3iZr",
+          "id": "cDbIt3",
           "shareKeys": [
             "Root Group/Queensland Government/Boundaries"
           ]
@@ -24733,7 +24733,7 @@
           "type": "esri-group",
           "name": "Economy",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Economy",
-          "id": "VuQzFJ",
+          "id": "LxFVhl",
           "shareKeys": [
             "Root Group/Queensland Government/Economy"
           ]
@@ -24742,7 +24742,7 @@
           "type": "esri-group",
           "name": "Elevation",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Elevation",
-          "id": "CCtAxn",
+          "id": "tny44m",
           "shareKeys": [
             "Root Group/Queensland Government/Elevation"
           ]
@@ -24751,7 +24751,7 @@
           "type": "esri-group",
           "name": "Environment",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Environment",
-          "id": "1bsvCz",
+          "id": "FRpFM1",
           "shareKeys": [
             "Root Group/Queensland Government/Environment"
           ]
@@ -24760,7 +24760,7 @@
           "type": "esri-group",
           "name": "Farming",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Farming",
-          "id": "ehsnii",
+          "id": "xJfhGb",
           "shareKeys": [
             "Root Group/Queensland Government/Farming"
           ]
@@ -24769,7 +24769,7 @@
           "type": "esri-group",
           "name": "Geoscientific Information",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/GeoscientificInformation",
-          "id": "qpRNVI",
+          "id": "zGAhwZ",
           "shareKeys": [
             "Root Group/Queensland Government/Geoscientific Information"
           ]
@@ -24778,7 +24778,7 @@
           "type": "esri-group",
           "name": "Imagery",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Imagery",
-          "id": "mxZXEu",
+          "id": "ZvNsn3",
           "shareKeys": [
             "Root Group/Queensland Government/Imagery"
           ]
@@ -24787,7 +24787,7 @@
           "type": "esri-group",
           "name": "Inland Waters",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/InlandWaters",
-          "id": "w2LgAE",
+          "id": "KYB4KM",
           "shareKeys": [
             "Root Group/Queensland Government/Inland Waters"
           ]
@@ -24796,7 +24796,7 @@
           "type": "esri-group",
           "name": "Location",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Location",
-          "id": "VbRM1x",
+          "id": "w4tQDw",
           "shareKeys": [
             "Root Group/Queensland Government/Location"
           ]
@@ -24805,7 +24805,7 @@
           "type": "esri-group",
           "name": "Oceans",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Oceans",
-          "id": "FGqnJc",
+          "id": "nq2GED",
           "shareKeys": [
             "Root Group/Queensland Government/Oceans"
           ]
@@ -24814,7 +24814,7 @@
           "type": "esri-group",
           "name": "Planning & Cadastre",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/PlanningCadastre",
-          "id": "zPixxI",
+          "id": "CJISta",
           "shareKeys": [
             "Root Group/Queensland Government/Planning & Cadastre"
           ]
@@ -24823,7 +24823,7 @@
           "type": "esri-group",
           "name": "Society",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Society",
-          "id": "suMKY3",
+          "id": "hUFQMA",
           "shareKeys": [
             "Root Group/Queensland Government/Society"
           ]
@@ -24832,7 +24832,7 @@
           "type": "esri-group",
           "name": "Transportation",
           "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Transportation",
-          "id": "4F8Il6",
+          "id": "24aLqd",
           "shareKeys": [
             "Root Group/Queensland Government/Transportation"
           ]
@@ -25032,7 +25032,7 @@
           "description": "Service for Statistical data sourced from the Australian Bureau of Statistics.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/ABSdata/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "4zgEddnT",
@@ -25046,7 +25046,7 @@
           "description": "Service for Cadastral Parcels service including the property address.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/CadastreParcels/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "8bAbxmg4",
@@ -25060,7 +25060,7 @@
           "description": "Service for Climate Futures data including mean temperature change, annual rainfall change, pan evaporation change, relative humidity change, mean frost risk, standard precipitation index and standard precipitation index change.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/ClimateChange/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "VH47fPyt",
@@ -25074,7 +25074,7 @@
           "description": "Service for Road Closures, Blocks and Exclusion Zones in Tasmania extracted form the Commom Operating Platform.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/COPpublic/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "JYP6rjtl",
@@ -25088,7 +25088,7 @@
           "description": "Service for Emergency service layers that are publicly available including fire history and nearby safer places.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/EmergencyManagementPublic/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "dIGTcusP",
@@ -25102,7 +25102,7 @@
           "description": "Service for Flood extents that are publicly available showing areas affected (either inundated or surrounded by water) during different flood / dam break scenarios.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/FloodMappingPublic/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "JeriNflq",
@@ -25116,7 +25116,7 @@
           "description": "Service for Geological and Soil datasets including Soil Types, Geology captured at 1:25,000 or 1:250,000 scale and Exploration license areas.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/GeologicalAndSoils/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "xD47Qbzp",
@@ -25130,7 +25130,7 @@
           "description": "Service for Index datasets depicting map series areas, aerial photography coverage and plan indexes.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/Indexes/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "q5B7lela",
@@ -25144,7 +25144,7 @@
           "description": "Service for Marine and coastal values relating to Tasmania. Datasets include marine life observations, coastal fauna and flora observations, surveys, wetland data, marine zoning and bathymetry data.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/MarineAndCoastal/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "hffjmgWF",
@@ -25158,7 +25158,7 @@
           "description": "Service for Flora and Fauna data including threatened species data, Natural Values Atlas (NVA) observations and vegetation communities.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/NaturalEnvironment/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "ptVH8UfV",
@@ -25172,7 +25172,7 @@
           "description": "Service for The datastets contained in this service are sourced from the Natural Values Atlas (NVA)  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/NVAdata/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "iDdMKPyr",
@@ -25186,7 +25186,7 @@
           "description": "Service for Southern Tasmanian Councils Authority (STCA) planning schemes areas including special areas, planning zones and zone boundaries. Please be aware that the planning scheme data is currently under review and many zones may be currently missing as a consequence. (Last updated 20/03/2014).  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/Planning/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "mNSSm66Z",
@@ -25200,7 +25200,7 @@
           "description": "Service for Planning scheme mapping developed under the Land Use Planning and Approval Act, including Planning Zones, Planning Overlays and Planning Zone Boundaries maintained by The Tasmanian Planning Commission (TPC) together with contextual layers of Road Names, Cadastral Boundaries and the Topographic Base Map developed by Information and Land Services (ILS) - DPIPWE.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/PlanningOnline/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "FdqKJg7i",
@@ -25214,7 +25214,7 @@
           "description": "Service for Topographic feature typically found on a map such as roads, contours, rivers, points of interest and railway lines.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/TopographyAndRelief/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "LfVfstYD",
@@ -25228,7 +25228,7 @@
           "description": "Service for Wealth from Water program that classifies land according to its suitability for various agricultural enterprises.  [Licence](https://creativecommons.org/licenses/by/2.5/au/)",
           "url": "https://services.thelist.tas.gov.au/arcgis/services/Public/WealthFromWater/MapServer/WMSServer",
           "dataCustodian": "[Tasmanian Government](http://www.tas.gov.au/)",
-          "blacklist": [
+          "excludeMembers": [
             "Service Layer was Removed"
           ],
           "id": "KDQFIpBh",
@@ -25245,7 +25245,7 @@
       "type": "ckan-group",
       "name": "Victorian Government",
       "url": "https://discover.data.vic.gov.au/",
-      "blacklist": [
+      "excludeMembers": [
         "NPA Schedule 4 Park or Reserve (PLM25)",
         "Salt-tolerant and/or succulent Shrublands -  Inland (EVC_1750)",
         "Heathlands - Not well drained (EVC_1750)",
@@ -25641,7 +25641,7 @@
               "type": "esri-group",
               "name": "Sydney",
               "url": "https://services1.arcgis.com/cNVyNtjGVZybOQWZ/arcgis/rest/services",
-              "id": "Dw55eM",
+              "id": "C6yyaF",
               "shareKeys": [
                 "Root Group/Local Government/New South Wales/Sydney"
               ]
@@ -25820,7 +25820,7 @@
               "type": "esri-group",
               "name": "Sunshine Coast",
               "url": "https://gisservices.scc.qld.gov.au/arcgis/rest/services",
-              "id": "Ct7agu",
+              "id": "W3gxFx",
               "shareKeys": [
                 "Root Group/Local Government/Queensland/Sunshine Coast"
               ]
@@ -26157,7 +26157,7 @@
               "filterQuery": {
                 "limitTo": "MAPS"
               },
-              "id": "DxaDgN",
+              "id": "A7CqeB",
               "shareKeys": [
                 "Root Group/Local Government/Victoria/Melbourne"
               ]

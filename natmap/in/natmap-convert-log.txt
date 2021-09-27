@@ -39,7 +39,6 @@ Unknown properties: {
     "custodian": 1
   },
   "CkanCatalogItem": {
-    "debugFormat": 165
   },
   "CkanCatalogGroup": {
     "minimumMaxScaleDenominator": 77,

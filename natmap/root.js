@@ -622,6 +622,7 @@ const SocialEconomic = cloneFromCatalogPath(natmap20210921v8, [
   "Social and Economic",
 ]);
 
+// Remove groups with old SDMX
 SocialEconomic.members = SocialEconomic.members.filter(
   (member) =>
     ![
@@ -637,6 +638,7 @@ SocialEconomic.members = SocialEconomic.members.filter(
 
 SocialEconomic.members.push(absSdmx);
 
+// Remove old SDMX items
 SocialEconomic.members.map((socialEconomicMember) => {
   if (socialEconomicMember.name === "Population Estimates") {
     socialEconomicMember.members = socialEconomicMember.members.filter(
@@ -800,6 +802,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
       }
     });
   } else if (socialEconomicMember.name === "Finance, Business and Trade") {
+    // Remove old SDMX item
     socialEconomicMember.members = socialEconomicMember.members.filter(
       (m) => m.name !== "Building Approvals"
     );

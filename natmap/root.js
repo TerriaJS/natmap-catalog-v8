@@ -271,8 +271,30 @@ BioenergyWa.members = BioenergyWa.members.map((m) => {
   if (m.url === "http://catalogue.beta.data.wa.gov.au") {
     m.url = "https://catalogue.data.wa.gov.au";
   }
+  // Delete terriable styling
+  if (m.itemProperties?.defaultStyle?.color) {
+    delete m.itemProperties.defaultStyle.color;
+  }
+  if (Array.isArray(m.members)) {
+    m.members.forEach((m2) => {
+      if (m2.itemProperties?.defaultStyle?.color) {
+        delete m2.itemProperties.defaultStyle.color;
+      }
+    });
+  }
   return m;
 });
+
+const BioenergyQldMeatProcessing = findInMembers(RenewableEnergy.members, [
+  "Bioenergy",
+  "Queensland",
+  "Food Processing",
+  "Meat Processing",
+]);
+
+BioenergyQldMeatProcessing.itemProperties.defaultColumn = {
+  replaceWithNullValues: ["Unknown"],
+};
 
 // Energy group
 const Energy = {

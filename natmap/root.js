@@ -373,6 +373,25 @@ const Environment = cloneFromCatalogPath(natmap20210921v8, [
 ]);
 // TODO: State of the Environment 2016 group should be isPromoted, but v8 doesn't support it yet
 
+// Move initalMessage from group to members
+const soe2016 = findInMembers(Environment.members, [
+  "State of the Environment 2016",
+]);
+
+const replaceMembersInitialMessage = (members) => {
+  members.forEach((m) => {
+    if (m.members) {
+      replaceMembersInitialMessage(m.members);
+    } else {
+      m.initialMessage = soe2016.initialMessage;
+    }
+  });
+};
+
+replaceMembersInitialMessage(soe2016.members);
+
+delete soe2016.initialMessage;
+
 // Habitation group
 const Habitation = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",

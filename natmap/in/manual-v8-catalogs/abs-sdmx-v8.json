@@ -3,6 +3,18 @@
   "name": "ABS.Stat (Beta)",
   "id": "DPYjz1cT",
   "url": "https://api.data.abs.gov.au",
+  "excludeMembers": [
+    "DPYjz1cT/category-LGA2019",
+    "DPYjz1cT/category-LGA2020",
+    "DPYjz1cT/dataflow-ABS_ANNUAL_ERP_LGA2019",
+    "DPYjz1cT/dataflow-ABS_ANNUAL_ERP_LGA2020",
+    "DPYjz1cT/dataflow-ERP_COMP_LGA2019",
+    "DPYjz1cT/dataflow-ERP_LGA2019",
+    "DPYjz1cT/dataflow-BA_LGA2021",
+    "DPYjz1cT/dataflow-BA_LGA2020",
+    "DPYjz1cT/dataflow-BA_LGA2019",
+    "DPYjz1cT/dataflow-BA_LGA2018"
+  ],
   "modelOverrides": [
     {
       "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).REGION_TYPE",

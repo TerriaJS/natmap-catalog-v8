@@ -1,6 +1,5 @@
 {
-  "catalog":
-  [
+  "catalog": [
     {
       "type": "esri-mapServer",
       "name": "Australian Shoreline",
@@ -14,7 +13,11 @@
     {
       "type": "esri-mapServer",
       "name": "Surface Hydrology",
-      "catalogPath": ["Water", "Surface Water", "Individual Hydrology and Marine Layers"],
+      "catalogPath": [
+        "Water",
+        "Surface Water",
+        "Individual Hydrology and Marine Layers"
+      ],
       "url": "https://services.ga.gov.au/gis/rest/services/Surface_Hydrology/MapServer",
       "id": "aiIUaag",
       "shareKeys": [
@@ -82,16 +85,6 @@
       ]
     },
     {
-      "type": "esri-mapServer",
-      "name": "World Bathymetry Imagery",
-      "catalogPath": ["Satellite Images"],
-      "url": "https://services.ga.gov.au/gis/rest/services/World_Bathymetry_Imagery/MapServer",
-      "id": "19cb612e-d452-431b-9eec-7bbd46edd088",
-      "shareKeys": [
-        "Root Group/National Datasets/Satellite Images/World Bathymetry Imagery"
-      ]
-    },
-    {
       "type": "esri-mapServer-group",
       "name": "GEODISC Environmentally Sustainable Sites For Carbon Dioxide Injection",
       "catalogPath": ["Resources"],
@@ -152,8 +145,7 @@
       ],
       "initialMessage": {
         "title": "Hint",
-        "content":
-          "Please click accurately at the centre of a map item to reveal its feature data.",
+        "content": "Please click accurately at the centre of a map item to reveal its feature data.",
         "confirmation": false
       }
     },
@@ -163,9 +155,7 @@
       "name": "Mineral Blocks",
       "url": "https://services.ga.gov.au/gis/rest/services/OMA_1994_Mineral_Blocks/MapServer",
       "id": "60d5c4a1-2a99-477c-95bf-58e6a244a6d5",
-      "shareKeys": [
-        "Root Group/National Datasets/Resources/Mineral Blocks"
-      ]
+      "shareKeys": ["Root Group/National Datasets/Resources/Mineral Blocks"]
     },
     {
       "catalogPath": ["Resources"],
@@ -173,9 +163,7 @@
       "name": "Petroleum Blocks",
       "url": "https://services.ga.gov.au/gis/rest/services/OPGGSA_2006_Petroleum_Blocks/MapServer",
       "id": "2b5cc8d3-36f8-4447-9d61-7ec7f0c8c206",
-      "shareKeys": [
-        "Root Group/National Datasets/Resources/Petroleum Blocks"
-      ]
+      "shareKeys": ["Root Group/National Datasets/Resources/Petroleum Blocks"]
     },
     {
       "catalogPath": ["Resources"],

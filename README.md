@@ -35,13 +35,20 @@ member.
 Run
 
 ```
-  cd natmap
-  node build.js
+  node natmap/build.js
 ```
 
 which will produce catalog file `natmap/out.json`. Please upload this file to the `s3` bucket with different name to be used by national map config.
 
-**Catalogue history (in S3)**
+The following commands will compress the content of `natmap/out.json` then upload it to `s3://static.nationalmap.nicta.com.au/init/2021-09-30.json` as a catalogue for https://nationalmap.gov.au.
+
+```
+  aws sso login --profile nationalmap
+  chmod +x publish.sh 
+  ./publish.sh 2021-09-30
+```
+
+**Catalogue history (in `s3://static.nationalmap.nicta.com.au/init)**
 | *s3 file name* | *commit version* |
 |----------------|------------------|
 | natmap-2021-02-10-v8.json | 9c1194b45b7e77df7e40efd9aae94e86a97e95f6 |
@@ -51,6 +58,7 @@ which will produce catalog file `natmap/out.json`. Please upload this file to th
 | natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
 | natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
 | natmap-2021-05-12-v8.json | d9b4efd2c28ca4135b9a6dccad9ac52e7eb6d1b5 |
+| 2021-09-30.json | 0f26e8e8f0ee8fc54ef4522eb0f5e44baca38e5b |
 
 **Catalogue history (in GitHub)**
 | *catalog commit* | *this repo commit* |
@@ -72,10 +80,3 @@ which will produce catalog file `natmap/out.json`. Please upload this file to th
     - **Test:** https://test.saas.terria.io/record-editor/map-config-nationalmap
     - **Prod:** https://saas.terria.io/record-editor/map-config-nationalmap
  3. Manually update map-config.json files in https://github.com/TerriaJS/saas-catalogs-public
-
-## Publish to S3
-The following command will compress the content of `natmap/out.json` then upload it to `s3://static.nationalmap.nicta.com.au/init/2021-09-03.json` as a catalogue for https://nationalmap.gov.au.
-
-```
-  ./publish.sh 2021-09-03
-```

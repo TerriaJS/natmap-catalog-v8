@@ -1128,7 +1128,7 @@ const complete = _.cloneDeep(natmap20210921v8);
 complete.catalog = [
   NationalDatasets,
   DGA,
-  ACT,
+  // ACT, Disable ACT Socrata as it has major issues
   NSW,
   NT,
   QLD,

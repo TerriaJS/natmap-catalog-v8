@@ -611,10 +611,17 @@ Boundaries.members = [
 ];
 
 // Satellite Images
-const SatelliteImages = cloneFromCatalogPath(natmap20210921v8, [
-  "National Datasets",
-  "Satellite Images",
-]);
+// This is a terria-reference type that will load the group
+// from the catalog pointed by url at runtime.
+const SatelliteImages = {
+  id: "6ATFM7CB",
+  type: "terria-reference",
+  url:
+    "https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/terria/dea-maps-v8.json",
+  name: "Satellite Images",
+  isGroup: true,
+  path: ["CqkxcG"],
+};
 
 // Social and Economic
 const SocialEconomic = cloneFromCatalogPath(natmap20210921v8, [

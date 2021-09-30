@@ -1,4 +1,6 @@
-node .\bin\cli.js -a --noprint-all -t C:\Users\nfs\Documents\code\Terria\natmap-catalog-v8\natmap\in\aremi-2020-09-22-v8-with-mods.json ..\..\..\natmap-catalog-v8\natmap\in\aremi-2020-09-22.json ..\..\..\natmap-catalog-v8\natmap\in\aremi-2021-06-02-v8.json
+node .\bin\catalog-converter -a --noprint-all -t C:\Users\nfs\Documents\code\Terria\natmap-catalog-v8\natmap\in\aremi-2021-06-02-v8.json ..\natmap-catalog-v8\natmap\in\aremi-2020-09-22.json ..\natmap-catalog-v8\natmap\in\aremi-2021-09-21-v8.json
+
+Succeeded with 12 errors and 429 warnings.
 
 Error stats:
 {
@@ -9,7 +11,7 @@ Error stats:
 }
 Warning stats:
 {
-  "unknownProps": 337,
+  "unknownProps": 429,
   "missingRequiredProps": 0,
   "unknownTypes": 0,
   "inputNotPlainObjects": 0
@@ -21,14 +23,83 @@ Unknown types: {
   "abs-itt": 9
 }
 Unknown properties: {
-  "CatalogGroup": {
-    "preserveOrder": 68,
-    "itemProperties": 1,
-    "isPromoted": 1
+  "CsvCatalogItem": {
+    "tableStyle.scaleByValue": 19,
+    "tableStyle.scale": 21,
+    "tableStyle.featureInfoFields": 2,
+    "tableStyle.minDisplayValue": 10,
+    "tableStyle.legendTicks": 5,
+    "tableStyle.colorBinMethod": 5,
+    "tableStyle.columns[4].colorBinMethod": 2,
+    "tableStyle.columns[5].colorBinMethod": 2,
+    "tableStyle.columns[4].scaleByValue": 1,
+    "tableStyle.columns[4].scale": 1,
+    "tableStyle.columns[1].clampDisplayValue": 3,
+    "tableStyle.columns[1].minDisplayValue": 3,
+    "tableStyle.columns[1].maxDisplayValue": 3,
+    "tableStyle.columns[7].clampDisplayValue": 4,
+    "tableStyle.columns[7].maxDisplayValue": 4,
+    "tableStyle.columns[12].clampDisplayValue": 2,
+    "tableStyle.columns[12].maxDisplayValue": 2,
+    "tableStyle.columns[19].scaleByValue": 1,
+    "tableStyle.columns[19].clampDisplayValue": 1,
+    "tableStyle.columns[19].minDisplayValue": 1,
+    "tableStyle.columns[19].maxDisplayValue": 1,
+    "tableStyle.columns[30].clampDisplayValue": 1,
+    "tableStyle.columns[30].maxDisplayValue": 1,
+    "tableStyle.columns[31].clampDisplayValue": 1,
+    "tableStyle.columns[31].maxDisplayValue": 1,
+    "tableStyle.clampDisplayValue": 7,
+    "tableStyle.maxDisplayValue": 5,
+    "tableStyle.columns[2].minDisplayValue": 4,
+    "tableStyle.columns[2].maxDisplayValue": 3,
+    "tableStyle.columns[11].minDisplayValue": 3,
+    "tableStyle.columns[11].maxDisplayValue": 3,
+    "ignoreUnknownTileErrors": 41,
+    "tableStyle.columns[0].scaleByValue": 1,
+    "tableStyle.columns[0].scale": 1,
+    "tableStyle.columns[1].scaleByValue": 1,
+    "tableStyle.columns[1].scale": 1,
+    "tableStyle.columns[2].scale": 1,
+    "tableStyle.columns[2].colorBinMethod": 1,
+    "tableStyle.columns[2].clampDisplayValue": 3,
+    "tableStyle.columns[3].minDisplayValue": 3,
+    "tableStyle.columns[3].scaleByValue": 1,
+    "tableStyle.columns[3].colorBinMethod": 1,
+    "tableStyle.columns[3].clampDisplayValue": 3,
+    "tableStyle.columns[8].clampDisplayValue": 2,
+    "tableStyle.columns[8].maxDisplayValue": 2,
+    "tableStyle.regionVariable": 3,
+    "tableStyle.regionType": 1,
+    "tableStyle.columns[289].clampDisplayValue": 1,
+    "tableStyle.columns[289].minDisplayValue": 1,
+    "tableStyle.idColumns": 1,
+    "preserveOrder": 6,
+    "tableStyle.legendURL": 4,
+    "tableStyle.opacity": 6,
+    "useOwnClock": 1,
+    "tableStyle.columns[3].maxDisplayValue": 2,
+    "tableStyle.columns[4].maxDisplayValue": 2,
+    "tableStyle.columns[4].minDisplayValue": 2,
+    "tableStyle.columns[4].clampDisplayValue": 2,
+    "tableStyle.columns[5].maxDisplayValue": 2,
+    "tableStyle.columns[5].minDisplayValue": 2,
+    "tableStyle.columns[5].clampDisplayValue": 2,
+    "tableStyle.columns[6].maxDisplayValue": 2,
+    "tableStyle.columns[6].minDisplayValue": 2,
+    "tableStyle.columns[6].clampDisplayValue": 2,
+    "tableStyle.columns[7].minDisplayValue": 2,
+    "tableStyle.columns[8].minDisplayValue": 1,
+    "tableStyle.columns[9].maxDisplayValue": 1,
+    "tableStyle.columns[9].minDisplayValue": 1,
+    "tableStyle.columns[9].clampDisplayValue": 1,
+    "tableStyle.columns[10].maxDisplayValue": 1,
+    "tableStyle.columns[10].minDisplayValue": 1,
+    "tableStyle.columns[10].clampDisplayValue": 1,
+    "tableStyle.columns[11].clampDisplayValue": 1,
+    "tableStyle.columns[12].minDisplayValue": 1
   },
   "EsriMapServerCatalogItem": {
-    "dataUrl": 8,
-    "dataUrlType": 8,
     "ignoreUnknownTileErrors": 79,
     "tableStyle": 5
   },
@@ -40,24 +111,18 @@ Unknown properties: {
   "WebMapServiceCatalogItem": {
     "attribution": 3,
     "getFeatureInfoFormats": 4,
-    "dataUrl": 4,
-    "dataUrlType": 6,
     "useOwnClock": 16
   },
   "CkanCatalogGroup": {
     "itemProperties": 1
   },
-  "CsvCatalogItem": {
-    "ignoreUnknownTileErrors": 41,
-    "preserveOrder": 6,
-    "useOwnClock": 1
-  },
   "EsriMapServerGroup": {
     "itemProperties": 18,
     "ignoreUnknownTileErrors": 9
   },
-  "WebMapServiceCatalogGroup": {
-    "blacklist": 1
+  "CatalogGroup": {
+    "itemProperties": 1,
+    "isPromoted": 1
   },
   "CswCatalogGroup": {
     "itemProperties": 1
@@ -66,12 +131,9 @@ Unknown properties: {
     "contextItem": 1
   },
   "EsriCatalogGroup": {
-    "itemProperties": 1,
-    "blacklist": 1
+    "itemProperties": 1
   },
   "MapboxVectorTileCatalogItem": {
-    "dataUrl": 2,
-    "dataUrlType": 1,
     "ignoreUnknownTileErrors": 2,
     "treat403AsError": 1
   }

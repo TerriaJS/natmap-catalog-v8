@@ -209,22 +209,6 @@
               ]
             },
             {
-              "type": "ckan-item",
-              "name": "Mobile Black Spot Program - Round 5 Funded Base Stations",
-              "url": "https://data.gov.au",
-              "datasetId": "mobile-black-spot-program-round-5-funded-base-stations",
-              "resourceId": "7916e08c-2826-4f5a-b7f7-c849f1aa64d8",
-              "itemProperties": {
-                "opacity": 1,
-                "clipToRectangle": true
-              },
-              "supportedResourceFormats": [],
-              "id": "15152ee2-4dab-4fcf-8ff1-d8f4108f88d2",
-              "shareKeys": [
-                "Root Group/National Datasets/Communications/Mobile Black Spot Program - Round 5 Funded Base Stations"
-              ]
-            },
-            {
               "type": "csv",
               "name": "ABC Photo Stories (2009-2014)",
               "url": "http://data.gov.au/dataset/3fd356c6-0ad4-453e-82e9-03af582024c3/resource/d73f2a2a-c271-4edd-ac45-25fd7ad2241f/download/localphotostories20092014csv.csv",

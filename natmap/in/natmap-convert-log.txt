@@ -1,62 +1,46 @@
-node .\bin\cli.js -a --noprint-all -t  ..\..\..\natmap-catalog-v8\natmap\in\natmap-2020-09-03-v8.json ..\..\..\natmap-catalog-v8\natmap\in\natmap-2020-09-03.json ..\..\..\natmap-catalog-v8\natmap\in\natmap-2021-06-02-v8.json
+node .\bin\catalog-converter -a --noprint-all -t ..\natmap-catalog-v8\natmap\in\natmap-2020-09-03-v8.json ..\natmap-catalog-v8\natmap\in\natmap-2020-09-03.json ..\natmap-catalog-v8\natmap\in\natmap-2021-09-21-v8.json
 
-Succeeded with 347 errors and 1067 warnings
+Succeeded with 346 errors and 947 warnings.
 
 Error stats:
 {
   "unknownProps": 0,
   "missingRequiredProps": 0,
-  "unknownTypes": 347,
+  "unknownTypes": 346,
   "inputNotPlainObjects": 0
 }
 Warning stats:
 {
-  "unknownProps": 1067,
+  "unknownProps": 947,
   "missingRequiredProps": 0,
   "unknownTypes": 0,
   "inputNotPlainObjects": 0
 }
 Unknown types: {
-  "sdmx-json": 346,
-  "socrata": 1
+  "sdmx-json": 346
 }
 Unknown properties: {
-  "EsriMapServerCatalogItem": {
-    "dataUrl": 10,
-    "dataUrlType": 11,
-    "getFeatureInfoFormats": 1
-  },
   "CsvCatalogItem": {
     "charSet": 2,
-    "dataUrlType": 1,
-    "dataUrl": 1
+    "tableStyle.displayDuration": 1,
+    "tableStyle.columns[0].colorBinMethod": 1,
+    "tableStyle.imageUrl": 1
   },
   "WebMapServiceCatalogItem": {
-    "dataUrl": 32,
-    "dataUrlType": 32,
     "useOwnClock": 46
   },
-  "WebMapServiceCatalogGroup": {
-    "dataUrl": 1,
-    "dataUrlType": 1,
-    "blacklist": 16
-  },
-  "MapboxVectorTileCatalogItem": {
-    "dataUrl": 3,
-    "dataUrlType": 1
-  },
-  "CatalogGroup": {
-    "preserveOrder": 12,
-    "custodian": 1
+  "EsriMapServerCatalogItem": {
+    "getFeatureInfoFormats": 1
   },
   "SensorObservationServiceCatalogItem": {
     "tryToLoadObservationData": 2
   },
+  "CatalogGroup": {
+    "custodian": 1
+  },
   "CkanCatalogItem": {
-    "debugFormat": 165
   },
   "CkanCatalogGroup": {
-    "blacklist": 2,
     "minimumMaxScaleDenominator": 77,
     "filterByWmsGetCapabilities": 77,
     "includeCsv": 83,

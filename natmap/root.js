@@ -4,8 +4,8 @@ const cloneFromCatalogPath = require("../helpers/cloneFromCatalogPath");
 const findInMembers = require("../helpers/findInMembers");
 const recursivelySortMembersByName = require("../helpers/recursivelySortMembersByName");
 const modifyNetworkOpportunities = require("./network-opportunities");
-const natmap20200903v8 = require("./in/natmap-2020-09-03-v8.json");
-const aremi20210602v8 = require("./in/aremi-2021-06-02-v8.json");
+const natmap20210921v8 = require("./in/natmap-2021-09-21-v8.json");
+const aremi20210921v8 = require("./in/aremi-2021-09-21-v8.json");
 const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
@@ -19,22 +19,21 @@ function substations(Substations) {
 }
 
 // remove "Land Use" subgroup from Agriculture
-const Agriculture = cloneFromCatalogPath(natmap20200903v8, [
+const Agriculture = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Agriculture",
 ]);
-Agriculture.members = Agriculture.members
-  .filter(
-    (m) =>
-      m.name !== "Land Use and Cover in South Australia" &&
-      m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
-      m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
-      m.name !== "Agricultural Exposure" &&
-      m.name !== "Australia’s Indigenous Forest Estate (2018)"
-  );
+Agriculture.members = Agriculture.members.filter(
+  (m) =>
+    m.name !== "Land Use and Cover in South Australia" &&
+    m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Primary classification]" &&
+    m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
+    m.name !== "Agricultural Exposure" &&
+    m.name !== "Australia’s Indigenous Forest Estate (2018)"
+);
 
 // Add catchment as group.
 const catchmentGroup = {
@@ -52,16 +51,44 @@ const catchmentGroup = {
 Agriculture.members = [...Agriculture.members, catchmentGroup];
 
 // remove ABC Photo Stories from Communications
-const Communications = cloneFromCatalogPath(natmap20200903v8, [
+const Communications = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Communications",
 ]);
+
+const MobileBlackspot5 = {
+  type: "ckan-item",
+  name: "Mobile Black Spot Program - Round 5 Funded Base Stations",
+  url: "https://data.gov.au",
+  datasetId: "mobile-black-spot-program-round-5-funded-base-stations",
+  resourceId: "7916e08c-2826-4f5a-b7f7-c849f1aa64d8",
+  itemProperties: {
+    opacity: 1,
+    clipToRectangle: true,
+  },
+  supportedResourceFormats: [],
+  id: "15152ee2-4dab-4fcf-8ff1-d8f4108f88d2",
+  shareKeys: [
+    "Root Group/National Datasets/Communications/Mobile Black Spot Program - Round 5 Funded Base Stations",
+  ],
+};
+
+// Insert Mobile Black Spot Program - Round 4 Funded Base Stations
+Communications.members.splice(
+  Communications.members.findIndex(
+    (val) =>
+      val.name === "Mobile Black Spot Program - Round 4 Funded Base Stations"
+  ) + 1,
+  0,
+  MobileBlackspot5
+);
+
 const TelecomsInNewDev = findInMembers(Communications.members, [
   "Telecommunications in New Developments",
 ]);
 
 // Don't use resourceId that might change over time. Instead, use datasetId that is "telecommunications-in-new-developments".
-TelecomsInNewDev.resourceId = undefined; 
+TelecomsInNewDev.resourceId = undefined;
 Communications.members = Communications.members
   .filter((m) => m.name !== "ABC Photo Stories (2009-2014)")
   .filter((m) => m.name !== "ABC Photo Stories by date");
@@ -74,29 +101,29 @@ RadionLicenses.legends = undefined;
 
 // Elevation
 // move Terrain subgroup from Land Cover
-const Terrain = cloneFromCatalogPath(natmap20200903v8, [
+const Terrain = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Land Cover and Land Use",
   "Terrain",
 ]);
 Terrain.members.push(
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Elevation",
     "Contours",
   ]),
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Elevation",
     "Cuttings",
   ]),
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Elevation",
     "Embankments",
   ])
 );
-const Elevation = cloneFromCatalogPath(natmap20200903v8, [
+const Elevation = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Elevation",
 ]);
@@ -111,7 +138,7 @@ Elevation.members = Elevation.members
   .filter((m) => m.name !== "Cuttings")
   .filter((m) => m.name !== "Embankments");
 
-const ElectricVehicle = cloneFromCatalogPath(aremi20210602v8, [
+const ElectricVehicle = cloneFromCatalogPath(aremi20210921v8, [
   "Electric Vehicle",
 ]);
 
@@ -149,7 +176,7 @@ const LandParcelAndProperty = {
   description:
     "The **Land Parcel and Property** is the new name of **Cadastre and Land Tenure** data group seen in this Energy section of the catalogue have been migrated from the former **Australian Renewable Energy Mapping Infrastructure (AREMI)** site to its new home here on National Map Beta platform. Should  you encounter discrepancies with the former AREMI functionality or content, please send us feedback at [info@terria.io](mailto:info@terria.io). The migration will be finalised once all the issues have been addressed.",
   members: [
-    cloneFromCatalogPath(aremi20210602v8, [
+    cloneFromCatalogPath(aremi20210921v8, [
       "Boundaries",
       "Cadastre and Land Tenure",
       "By State",
@@ -176,24 +203,25 @@ LandParcelAndProperty.members.map((m) => {
         m.name = "NT";
       } else if (m.name === "Queensland") {
         m.name = "QLD";
-      } else if (m.name === "ACT"){
+      } else if (m.name === "ACT") {
         m.members = [
           {
-            "type": "esri-mapServer-group",
-            "name": "Current Land Custodianship",
-            "id": "28d11d91-07be-4312-a3eb-b1ce2be60b2e",
-            "url": "https://data.actmapi.act.gov.au/arcgis/rest/services/actmapi/land_custodianship_current/MapServer",
-            "shareKeys": [
-              "Root Group/National Datasets/Boundaries/Cadastre and Land Tenure/By State/ACT/Current Land Custodianship"
-            ]
-          }
+            type: "esri-mapServer-group",
+            name: "Current Land Custodianship",
+            id: "28d11d91-07be-4312-a3eb-b1ce2be60b2e",
+            url:
+              "https://data.actmapi.act.gov.au/arcgis/rest/services/actmapi/land_custodianship_current/MapServer",
+            shareKeys: [
+              "Root Group/National Datasets/Boundaries/Cadastre and Land Tenure/By State/ACT/Current Land Custodianship",
+            ],
+          },
         ];
       }
     });
   }
 });
 
-const ElectricityInfrastructure = cloneFromCatalogPath(aremi20210602v8, [
+const ElectricityInfrastructure = cloneFromCatalogPath(aremi20210921v8, [
   "Electricity Infrastructure",
 ]);
 const GenerationGroup = findInMembers(ElectricityInfrastructure.members, [
@@ -225,22 +253,48 @@ modifyNetworkOpportunities(NetworkOpportunities);
 // Preserve order of NOM
 const preserveOrderNOM = NetworkOpportunities.members.slice();
 
-const RenewableEnergy = cloneFromCatalogPath(aremi20210602v8, [
+const RenewableEnergy = cloneFromCatalogPath(aremi20210921v8, [
   "Renewable Energy",
 ]);
+
+const Bioenergy = findInMembers(RenewableEnergy.members, ["Bioenergy"]);
+
+Bioenergy.description =
+  "<p>Biomass data on the AREMI is developed and maintained through the Australian Biomass for Bioenergy Assessment, funded by the Australian Renewable Energy Agency. The project timeframe is 2015-2020, with further development and maintenance continuing beyond this timeframe through the partner organisations (custodians of the data), listed below.</p><p>The purpose of the Australian Biomass and Bioenergy Assessment is to catalyse investment in the renewable energy sector through the provision of detailed information about biomass resources across Australia, to assist in project development and decision making for new bioenergy projects, and provide linkages between biomass supply, thorough the supply chain, to the end user.</p><p>The bioenergy data may be integrated with other layers on the AREMI, such as electricity infrastructure, to aid in decision making. Analytical capabilities are also under development with Queensland University of Technology, and University of the Sunshine Coast.</p><p>The partner organisations and contact details are:</p><p>  <strong>Western Australia - Department of Primary Industries and Regional Development</strong><br/>  Kim Brooksbank<br/>  Email: <strong><a href='kim.brooksbank@dpird.wa.gov.au'>kim.brooksbank@dpird.wa.gov.au</a></strong><br/><br />  Ronald Master<br/>  Email: <strong><a href='ronald.master@dpird.wa.gov.au'>ronald.master@dpird.wa.gov.au</a></strong></p><p>  <strong>Victoria - Sustainability Victoria</strong><br/>  Kelly Wickham<br/>  Email: <strong><a href='Kelly.Wickham@sustainability.vic.gov.au'>Kelly.Wickham@sustainability.vic.gov.au</a></strong></p><p>  <strong>Tasmania - Department of State Growth</strong><br/>  Martin Moroni<br/>  Email: <strong><a href='Martin.Moroni@stategrowth.tas.gov.au'>Martin.Moroni@stategrowth.tas.gov.au</a></strong></p><p>  <strong>New South Wales - Department of Primary Industries - Forestry</strong><br/>  Fabiano Ximenes<br/>  Email: <strong><a href='fabiano.ximenes@dpi.nsw.gov.au'>fabiano.ximenes@dpi.nsw.gov.au</a></strong></p><p>  <strong>South Australia - Department for Energy & Mining</strong><br/>  Mary Lewitzka<br/>  Email: <strong><a href='Mary.Lewitzka@sa.gov.au'>Mary.Lewitzka@sa.gov.au</a></strong></p><p>  <strong>Queensland -  Department of Environment and Science</strong><br/>  Kelly Bryant<br/>  Email: <strong><a href='Kelly.Bryant@des.qld.gov.au'>Kelly.Bryant@des.qld.gov.au</a></strong></p><p>  <strong>Research, analytics - Queensland University of Technology, University of Sunshine Coast</strong><br/>  Ian O'Hara<br/>  Email: <strong><a href='i.ohara@qut.edu.au'>i.ohara@qut.edu.au</a></strong></p>";
+
 const BioenergyWa = findInMembers(RenewableEnergy.members, [
   "Bioenergy",
   "Western Australia",
 ]);
 
-BioenergyWa.members = BioenergyWa.members
-  .filter((m) => m.name !== "Cereal straw")
-  .map((m) => {
-    if (m.url === "http://catalogue.beta.data.wa.gov.au") {
-      m.url = "https://catalogue.data.wa.gov.au";
-    }
-    return m;
-  });
+BioenergyWa.members = BioenergyWa.members.map((m) => {
+  if (m.url === "http://catalogue.beta.data.wa.gov.au") {
+    m.url = "https://catalogue.data.wa.gov.au";
+  }
+  // Delete terriable styling
+  if (m.itemProperties?.defaultStyle?.color) {
+    delete m.itemProperties.defaultStyle.color;
+  }
+  if (Array.isArray(m.members)) {
+    m.members.forEach((m2) => {
+      if (m2.itemProperties?.defaultStyle?.color) {
+        delete m2.itemProperties.defaultStyle.color;
+      }
+    });
+  }
+  return m;
+});
+
+const BioenergyQldMeatProcessing = findInMembers(RenewableEnergy.members, [
+  "Bioenergy",
+  "Queensland",
+  "Food Processing",
+  "Meat Processing",
+]);
+
+BioenergyQldMeatProcessing.itemProperties.defaultColumn = {
+  replaceWithNullValues: ["Unknown"],
+};
 
 // Energy group
 const Energy = {
@@ -251,18 +305,18 @@ const Energy = {
   members: [
     ElectricityInfrastructure,
     RenewableEnergy,
-    cloneFromCatalogPath(aremi20210602v8, ["Research"]),
+    cloneFromCatalogPath(aremi20210921v8, ["Research"]),
     ElectricVehicle,
-    cloneFromCatalogPath(natmap20200903v8, [
+    cloneFromCatalogPath(natmap20210921v8, [
       "National Datasets",
       "Framework",
       "Electricity Transmission Lines",
     ]),
-    cloneFromCatalogPath(natmap20200903v8, [
+    cloneFromCatalogPath(natmap20210921v8, [
       "National Datasets",
       "Framework",
       "Electricity Transmission Substations",
-    ])
+    ]),
   ],
 };
 
@@ -313,14 +367,33 @@ Energy.members.map((m) => {
 });
 
 // Environment group
-const Environment = cloneFromCatalogPath(natmap20200903v8, [
+const Environment = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Environment",
 ]);
 // TODO: State of the Environment 2016 group should be isPromoted, but v8 doesn't support it yet
 
+// Move initalMessage from group to members
+const soe2016 = findInMembers(Environment.members, [
+  "State of the Environment 2016",
+]);
+
+const replaceMembersInitialMessage = (members) => {
+  members.forEach((m) => {
+    if (m.members) {
+      replaceMembersInitialMessage(m.members);
+    } else {
+      m.initialMessage = soe2016.initialMessage;
+    }
+  });
+};
+
+replaceMembersInitialMessage(soe2016.members);
+
+delete soe2016.initialMessage;
+
 // Habitation group
-const Habitation = cloneFromCatalogPath(natmap20200903v8, [
+const Habitation = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Habitation",
 ]);
@@ -336,7 +409,7 @@ findInMembers(Habitation.members, ["Australia Post Locations"]).url =
   "https://tiles.terria.io/static/auspost-locations.csv";
 
 // Health group
-const Health = cloneFromCatalogPath(natmap20200903v8, [
+const Health = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Health",
 ]);
@@ -346,7 +419,7 @@ Health.members = Health.members.filter(
 );
 
 // Infrastructure group
-const Infrastructure = cloneFromCatalogPath(natmap20200903v8, [
+const Infrastructure = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Infrastructure",
 ]);
@@ -355,7 +428,7 @@ Infrastructure.members = Infrastructure.members.filter(
   (m) => m.name !== "Vertical Obstructions"
 );
 
-const oilAndGasPipelines = cloneFromCatalogPath(natmap20200903v8, [
+const oilAndGasPipelines = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Utility",
   "Oil and Gas Pipelines",
@@ -364,15 +437,18 @@ const oilAndGasPipelines = cloneFromCatalogPath(natmap20200903v8, [
 Infrastructure.members.push(oilAndGasPipelines);
 
 // Land Cover and Land Use
-const LandCover = cloneFromCatalogPath(natmap20200903v8, [
+const LandCover = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Land Cover and Land Use",
 ]);
-LandCover.members = LandCover.members.filter((m) => m.name !== "Terrain");
+LandCover.members = LandCover.members.filter(
+  (m) => m.name !== "Terrain" && m.name !== "Mining"
+);
 LandCover.members.map((landCoverMember) => {
   if (landCoverMember.name === "Land Use and Cover") {
     landCoverMember.members = landCoverMember.members.filter(
       (m) =>
+        m.name !== "Land Use and Cover in South Australia" &&
         m.name !== "Catchment Scale Land Use 2018 [18 class classification]" &&
         m.name !== "Catchment Scale Land Use 2018 [Agricultural industries]" &&
         m.name !== "Catchment Scale Land Use 2018 [Agriculture]" &&
@@ -386,7 +462,7 @@ LandCover.members.map((landCoverMember) => {
 });
 
 // Marine and Oceans
-const MarineOceans = cloneFromCatalogPath(natmap20200903v8, [
+const MarineOceans = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Marine and Oceans",
 ]);
@@ -400,22 +476,22 @@ NIDEM["shareKeys"] = [
   "Root Group/National Data Sets/Elevation/Intertidal/Intertidal elevation model/NIDEM - Intertidal elevation model",
 ];
 MarineOceans.members.push(
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Elevation",
     "Reefs and Shoals",
   ]),
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Elevation",
     "Offshore Rocks and Wrecks",
   ]),
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Framework",
     "Ocean and Sea Names",
   ]),
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Framework",
     "Marine Parks",
@@ -423,7 +499,7 @@ MarineOceans.members.push(
 );
 
 // Boundaries
-const Boundaries = cloneFromCatalogPath(natmap20200903v8, [
+const Boundaries = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "National Boundaries",
 ]);
@@ -432,7 +508,7 @@ Boundaries.members = [
   {
     name: "Statistical boundaries",
     type: "group",
-    members: cloneFromCatalogPath(natmap20200903v8, [
+    members: cloneFromCatalogPath(natmap20210921v8, [
       "National Datasets",
       "Statistical Boundaries",
     ]).members,
@@ -445,12 +521,12 @@ Boundaries.members = [
       findInMembers(Boundaries.members, ["Local Government Areas (2019)"]),
       findInMembers(Boundaries.members, ["State Suburbs"]),
       findInMembers(Boundaries.members, ["States & Territories"]),
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "Australian Mainland",
       ]),
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "State Borders",
@@ -477,12 +553,12 @@ Boundaries.members = [
     name: "Maritime boundaries",
     type: "group",
     members: [
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "Coastline - Islands",
       ]),
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "Marine Parks",
@@ -493,7 +569,7 @@ Boundaries.members = [
     name: "Native title boundaries",
     type: "group",
     members: [
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "Indigenous Reserves",
@@ -514,42 +590,66 @@ Boundaries.members = [
       findInMembers(Boundaries.members, ["ASGS Remoteness Area (2016)"]),
       findInMembers(Boundaries.members, ["ASGS Remoteness Area (2011)"]),
       findInMembers(Boundaries.members, ["CDP Regions (2017)"]),
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "Large Area Features",
       ]),
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "Northern Australia Infrastructure Facility Boundary",
       ]),
-      cloneFromCatalogPath(natmap20200903v8, [
+      cloneFromCatalogPath(natmap20210921v8, [
         "National Datasets",
         "Framework",
         "Prohibited Areas",
       ]),
     ],
   },
-  LandParcelAndProperty
+  LandParcelAndProperty,
 ];
 
 // Satellite Images
-const SatelliteImages = cloneFromCatalogPath(natmap20200903v8, [
+const SatelliteImages = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Satellite Images",
 ]);
 
 // Social and Economic
-const SocialEconomic = cloneFromCatalogPath(natmap20200903v8, [
+const SocialEconomic = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Social and Economic",
 ]);
 
+// Remove groups with old SDMX
+SocialEconomic.members = SocialEconomic.members.filter(
+  (member) =>
+    ![
+      "Births and Deaths",
+      "Census",
+      "Labour Force",
+      "Marriage Law Postal Survey",
+      "Migration",
+      "Projections",
+      "Socio-Economic Indices",
+    ].includes(member.name)
+);
+
 SocialEconomic.members.push(absSdmx);
 
+// Remove old SDMX items
 SocialEconomic.members.map((socialEconomicMember) => {
   if (socialEconomicMember.name === "Population Estimates") {
+    socialEconomicMember.members = socialEconomicMember.members.filter(
+      (m) =>
+        ![
+          "Annual Estimated Resident Population",
+          "Annual Estimated Resident Population by Age by Sex",
+          "Annual Estimated Resident Population by Country of Birth by Age",
+        ].includes(m.name)
+    );
+
     socialEconomicMember.members.map((populationEstimatesMember) => {
       if (populationEstimatesMember.name === "Residential Population Density") {
         populationEstimatesMember.type = "esri-mapServer";
@@ -566,13 +666,14 @@ SocialEconomic.members.map((socialEconomicMember) => {
         };
 
         populationEstimatesMember.featureInfoTemplate = {
-          template: "{{Pixel Value}} dwellings – {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} Grid.",
+          template:
+            "{{Pixel Value}} dwellings – {{#terria.partialByName}}{{feature.data.layerId}}{{/terria.partialByName}} Grid.",
           partials: {
             0: "100m",
             1: "500m",
             2: "1km",
-            3: "2km"
-          }
+            3: "2km",
+          },
         };
 
         // Fix incorrect legends created by terriajs.
@@ -701,6 +802,10 @@ SocialEconomic.members.map((socialEconomicMember) => {
       }
     });
   } else if (socialEconomicMember.name === "Finance, Business and Trade") {
+    // Remove old SDMX item
+    socialEconomicMember.members = socialEconomicMember.members.filter(
+      (m) => m.name !== "Building Approvals"
+    );
     socialEconomicMember.members.map((m) => {
       if (m.name === "Industrial Building Exposure") {
         const index = socialEconomicMember.members.indexOf(m);
@@ -725,7 +830,7 @@ SocialEconomic.members.map((socialEconomicMember) => {
 });
 
 // Transport
-const Transport = cloneFromCatalogPath(natmap20200903v8, [
+const Transport = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Transport",
 ]);
@@ -738,8 +843,7 @@ Transport.members.map((m) => {
         m.url =
           "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
         m.layers = "0";
-      }
-      else if (m.name === "Railways") {
+      } else if (m.name === "Railways") {
         m.name = "Railway Lines";
         m.url =
           "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer";
@@ -747,10 +851,12 @@ Transport.members.map((m) => {
       }
     });
   }
-})
+});
 
 // Remove old "Key Freight Routes" group.
-Transport.members = Transport.members.filter(m => m.name !== "Key Freight Routes");
+Transport.members = Transport.members.filter(
+  (m) => m.name !== "Key Freight Routes"
+);
 
 // Create a new keyFreightRouts group.
 const keyFreightRouts = {
@@ -760,36 +866,42 @@ const keyFreightRouts = {
     "https://spatial.infrastructure.gov.au/server/rest/services/KeyFreightRoutes/Key_Freight_Routes/MapServer",
   id: "2d8b5d7f-3abc-44d7-bea1-c1161b571072",
 
-  shareKeys: [
-    "Root Group/National Datasets/Transport/Key Freight Routes"
-  ]
+  shareKeys: ["Root Group/National Datasets/Transport/Key Freight Routes"],
 };
 
 // Re-add keyFreightRouts group.
 Transport.members.push(keyFreightRouts);
 
 // Vegetation
-const Vegetation = cloneFromCatalogPath(natmap20200903v8, [
+const Vegetation = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Vegetation",
 ]);
 
 // Water
-const Water = cloneFromCatalogPath(natmap20200903v8, [
+const Water = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
   "Water",
 ]);
+
 const Surface = findInMembers(Water.members, ["Surface Water"]);
 Surface.members.push(
-  cloneFromCatalogPath(natmap20200903v8, [
+  cloneFromCatalogPath(natmap20210921v8, [
     "National Datasets",
     "Framework",
     "Water Supply Reserves",
   ])
 );
 
+// Set WaterStations data to correct custodian
+Surface.members.map((m) => {
+  if (m.name === "Water Stations Data") {
+    m.dataCustodian = "Bureau of Meteorology";
+  }
+});
+
 // assemble the National Datasets group
-const NationalDatasets = cloneFromCatalogPath(natmap20200903v8, [
+const NationalDatasets = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
 ]);
 NationalDatasets.members = recursivelySortMembersByName([
@@ -818,40 +930,39 @@ findInMembers(NationalDatasets.members, [
 ]).members = preserveOrderNOM;
 
 // Create Resources group
-const resources =     {
-  "type": "group",
-  "name": "Resources",
-  "id": "df11d3d1-0e32-4fb5-982f-bdb725406e44",
-  "members": [],
-  "shareKeys": [
-    "Root Group/National Datasets/Resources"
-  ]
-}
+const resources = {
+  type: "group",
+  name: "Resources",
+  id: "df11d3d1-0e32-4fb5-982f-bdb725406e44",
+  members: [],
+  shareKeys: ["Root Group/National Datasets/Resources"],
+};
 
 NationalDatasets.members.push(resources);
-NationalDatasets.members = recursivelySortMembersByName(NationalDatasets.members);
+NationalDatasets.members = recursivelySortMembersByName(
+  NationalDatasets.members
+);
 
 gaNewLayers["catalog"].map((m) => {
   const path = m.catalogPath;
   const group = findInMembers(NationalDatasets.members, path);
-  if (group){
+  if (group) {
     delete m.catalogPath;
     group.members.push(m);
     group.members = recursivelySortMembersByName(group.members);
-  }
-  else {
+  } else {
     console.warn(`${path} does not exist in NationalDatasets`);
   }
 });
 
 // Data.gov.au
-const DGA = cloneFromCatalogPath(natmap20200903v8, ["Data.gov.au"]);
+const DGA = cloneFromCatalogPath(natmap20210921v8, ["Data.gov.au"]);
 
 // New South Wales Government
-const NSW = cloneFromCatalogPath(natmap20200903v8, [
+const NSW = cloneFromCatalogPath(natmap20210921v8, [
   "New South Wales Government",
 ]);
-const NSWLGA = cloneFromCatalogPath(natmap20200903v8, [
+const NSWLGA = cloneFromCatalogPath(natmap20210921v8, [
   "Local Government",
   "New South Wales",
 ]);
@@ -866,11 +977,11 @@ NSW.members = [
 ];
 
 // Northern Territory Government
-const NT_old = cloneFromCatalogPath(natmap20200903v8, [
+const NT_old = cloneFromCatalogPath(natmap20210921v8, [
   "Northern Territory Government",
 ]);
 NT_old.name = "State data";
-const NTLGA = cloneFromCatalogPath(natmap20200903v8, [
+const NTLGA = cloneFromCatalogPath(natmap20210921v8, [
   "Local Government",
   "Northern Territory",
 ]);
@@ -882,8 +993,8 @@ const NT = {
 };
 
 // Queensland Government
-const QLD = cloneFromCatalogPath(natmap20200903v8, ["Queensland Government"]);
-const QLDLGA = cloneFromCatalogPath(natmap20200903v8, [
+const QLD = cloneFromCatalogPath(natmap20210921v8, ["Queensland Government"]);
+const QLDLGA = cloneFromCatalogPath(natmap20210921v8, [
   "Local Government",
   "Queensland",
 ]);
@@ -898,11 +1009,11 @@ QLD.members = [
 ];
 
 // South Australian Government
-const SA_old = cloneFromCatalogPath(natmap20200903v8, [
+const SA_old = cloneFromCatalogPath(natmap20210921v8, [
   "South Australian Government (BETA)",
 ]);
 SA_old.name = "State data";
-const SALGA = cloneFromCatalogPath(natmap20200903v8, [
+const SALGA = cloneFromCatalogPath(natmap20210921v8, [
   "Local Government",
   "South Australia",
 ]);
@@ -914,8 +1025,8 @@ const SA = {
 };
 
 // Tasmanian Government
-const TAS = cloneFromCatalogPath(natmap20200903v8, ["Tasmanian Government"]);
-const TASLGA = cloneFromCatalogPath(natmap20200903v8, [
+const TAS = cloneFromCatalogPath(natmap20210921v8, ["Tasmanian Government"]);
+const TASLGA = cloneFromCatalogPath(natmap20210921v8, [
   "Local Government",
   "Tasmania",
 ]);
@@ -930,15 +1041,29 @@ TAS.members = [
 ];
 
 // Victorian Government
-const VIC_old = cloneFromCatalogPath(natmap20200903v8, [
+const VIC_old = cloneFromCatalogPath(natmap20210921v8, [
   "Victorian Government",
 ]);
 VIC_old.name = "State data";
-const VICLGA = cloneFromCatalogPath(natmap20200903v8, [
+const VICLGA = cloneFromCatalogPath(natmap20210921v8, [
   "Local Government",
   "Victoria",
 ]);
 VICLGA.name = "Local government data";
+
+VICLGA.members = VICLGA.members.map((m) => {
+  if (m.name !== "Melbourne") return m;
+
+  return {
+    id: "vic-lga-melbourne",
+    name: "Melbourne",
+    url: "https://data.melbourne.vic.gov.au",
+    type: "socrata-group",
+    shareKeys: ["Root Group/Local Government/Victoria/Melbourne"],
+    facetGroups: ["categories"],
+  };
+});
+
 const VIC = {
   name: "Victoria Government",
   type: "group",
@@ -946,11 +1071,11 @@ const VIC = {
 };
 
 // Western Australian Government
-const WA_old = cloneFromCatalogPath(natmap20200903v8, [
+const WA_old = cloneFromCatalogPath(natmap20210921v8, [
   "Western Australian Government",
 ]);
 WA_old.name = "State data";
-const WALGA = cloneFromCatalogPath(natmap20200903v8, [
+const WALGA = cloneFromCatalogPath(natmap20210921v8, [
   "Local Government",
   "Western Australia",
 ]);
@@ -970,8 +1095,10 @@ WALGA.members.forEach((m) => {
 // Australian Capital Territory Government
 const ACT = {
   name: "Australian Capital Territory Government",
-  type: "group",
-  members: [],
+  url: "https://www.data.act.gov.au",
+  type: "socrata-group",
+  shareKeys: ["Root Group/Australian Capital Territory Government"],
+  facetGroups: ["categories"],
 };
 
 const AnalysisTools = {
@@ -995,7 +1122,7 @@ const AnalysisTools = {
 };
 
 // assemble the catalogue
-const complete = _.cloneDeep(natmap20200903v8);
+const complete = _.cloneDeep(natmap20210921v8);
 complete.catalog = [
   NationalDatasets,
   DGA,
@@ -1011,106 +1138,106 @@ complete.catalog = [
 ];
 
 complete.baseMaps = {
-  "enabledBaseMaps": [
+  enabledBaseMaps: [
     "basemap-australian-topography",
     "basemap-bing-aerial",
     "basemap-bing-aerial-with-labels",
     "basemap-positron",
     "basemap-darkmatter",
     "basemap-voyager",
-    "basemap-greyscale"
+    "basemap-greyscale",
   ],
-  "defaultBaseMapId": "basemap-bing-aerial-with-labels",
-  "previewBaseMapId": "basemap-positron",
-  "items": [
-  {
-    item: {
-      id: "basemap-australian-topography",
-      type: "esri-mapServer",
-      name: "National Base Map",
-      url:
-        "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
-      opacity: 1,
+  defaultBaseMapId: "basemap-bing-aerial-with-labels",
+  previewBaseMapId: "basemap-positron",
+  items: [
+    {
+      item: {
+        id: "basemap-australian-topography",
+        type: "esri-mapServer",
+        name: "National Base Map",
+        url:
+          "https://services.ga.gov.au/gis/rest/services/NationalBaseMap/MapServer",
+        opacity: 1,
+      },
+      image: "images/basemaps/australian-topo.png",
     },
-    image: "images/basemaps/australian-topo.png",
-  },
-  {
-    item: {
-      id: "basemap-bing-aerial-with-labels",
-      name: "Bing Maps Aerial with Labels",
-      type: "ion-imagery",
-      ionAssetId: 3,
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-bing-aerial-with-labels",
+        name: "Bing Maps Aerial with Labels",
+        type: "ion-imagery",
+        ionAssetId: 3,
+        opacity: 1,
+      },
+      image: "images/basemaps/bing-aerial-labels.png",
     },
-    image: "images/basemaps/bing-aerial-labels.png",
-  },
-  {
-    item: {
-      id: "basemap-bing-aerial",
-      name: "Bing Maps Aerial",
-      type: "ion-imagery",
-      ionAssetId: 2,
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-bing-aerial",
+        name: "Bing Maps Aerial",
+        type: "ion-imagery",
+        ionAssetId: 2,
+        opacity: 1,
+      },
+      image: "images/basemaps/bing-aerial.png",
     },
-    image: "images/basemaps/bing-aerial.png",
-  },
-  {
-    item: {
-      id: "basemap-positron",
-      name: "Positron (Light)",
-      type: "open-street-map",
-      url: "https://basemaps.cartocdn.com/light_all/",
-      attribution:
-        "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
-      subdomains: ["a", "b", "c", "d"],
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-positron",
+        name: "Positron (Light)",
+        type: "open-street-map",
+        url: "https://basemaps.cartocdn.com/light_all/",
+        attribution:
+          "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
+        subdomains: ["a", "b", "c", "d"],
+        opacity: 1,
+      },
+      image: "images/basemaps/positron.png",
     },
-    image: "images/basemaps/positron.png",
-  },
-  {
-    item: {
-      id: "basemap-darkmatter",
-      name: "Dark Matter",
-      type: "open-street-map",
-      url: "https://basemaps.cartocdn.com/dark_all/",
-      attribution:
-        "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
-      subdomains: ["a", "b", "c", "d"],
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-darkmatter",
+        name: "Dark Matter",
+        type: "open-street-map",
+        url: "https://basemaps.cartocdn.com/dark_all/",
+        attribution:
+          "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
+        subdomains: ["a", "b", "c", "d"],
+        opacity: 1,
+      },
+      image: "images/basemaps/dark-matter.png",
     },
-    image: "images/basemaps/dark-matter.png",
-  },
-  {
-    item: {
-      id: "basemap-voyager",
-      type: "open-street-map",
-      name: "Voyager",
-      url: "https://global.ssl.fastly.net/rastertiles/voyager/",
-      attribution: "© OpenStreetMap contributors ODbL, © CartoDB CC-BY 3.0",
-      opacity: 1.0,
-      subdomains: [
-        "cartodb-basemaps-a",
-        "cartodb-basemaps-b",
-        "cartodb-basemaps-c",
-        "cartodb-basemaps-d",
-      ],
+    {
+      item: {
+        id: "basemap-voyager",
+        type: "open-street-map",
+        name: "Voyager",
+        url: "https://global.ssl.fastly.net/rastertiles/voyager/",
+        attribution: "© OpenStreetMap contributors ODbL, © CartoDB CC-BY 3.0",
+        opacity: 1.0,
+        subdomains: [
+          "cartodb-basemaps-a",
+          "cartodb-basemaps-b",
+          "cartodb-basemaps-c",
+          "cartodb-basemaps-d",
+        ],
+      },
+      image:
+        "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
     },
-    image:
-      "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
-  },
-  {
-    item: {
-      id: "basemap-greyscale",
-      type: "esri-mapServer",
-      name: "Grey Scale",
-      url:
-        "https://services.ga.gov.au/gis/rest/services/NationalBaseMap_GreyScale/MapServer",
-      opacity: 1,
+    {
+      item: {
+        id: "basemap-greyscale",
+        type: "esri-mapServer",
+        name: "Grey Scale",
+        url:
+          "https://services.ga.gov.au/gis/rest/services/NationalBaseMap_GreyScale/MapServer",
+        opacity: 1,
+      },
+      image:
+        "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
     },
-    image:
-      "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
-  }
-]
+  ],
 };
 
 module.exports = complete;

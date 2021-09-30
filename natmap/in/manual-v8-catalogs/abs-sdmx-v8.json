@@ -15,6 +15,16 @@
       "selectedId": "SA2"
     },
     {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_REGION_TYPE(1.0.0)",
+      "type": "region-type",
+      "selectedId": "SA2"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).GEO_LEVEL",
+      "type": "region-type",
+      "selectedId": "SA2"
+    },
+    {
       "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).REGION_TYPE",
       "type": "region-type",
       "selectedId": "SA2"
@@ -59,6 +69,11 @@
     },
     {
       "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_SEIFA_SA1_2016(1.0.0)",
+      "type": "region",
+      "regionType": "SA1_7DIGIT_2016"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_ASGS_AAE(1.0.0)",
       "type": "region",
       "regionType": "SA1_7DIGIT_2016"
     },
@@ -159,6 +174,11 @@
       "regionType": "IREG"
     },
     {
+      "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_GEOGRAPHY(1.0.0).REGION_ARR",
+      "type": "region",
+      "regionType": "SA4_2016"
+    },
+    {
       "id": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ABS:CS_C16_COMMON(1.0.0).STATE",
       "disable": true,
       "allowUndefined": true
@@ -174,6 +194,18 @@
     {
       "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_REGIONAL_LGA2020_MEASURE(1.0.0)",
       "selectedId": "ERP_P_20"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_LEND_LOANTYPE(1.0.0)",
+      "selectedId": "DV8541"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_LEND_HOUSING_LOANPURP(1.0.0)",
+      "selectedId": "TOTHOUS"
+    },
+    {
+      "id": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=ABS:CL_LEND_PERSONAL_LOANPURP(1.0.0)",
+      "selectedId": "TOTLOANPURP_EXCLREFIN"
     }
   ]
 }

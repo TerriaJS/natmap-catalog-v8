@@ -1106,8 +1106,10 @@ const AnalysisTools = {
   type: "group",
   members: [
     {
-      name: "YourDataYourRegions (requires login)",
       id: "ydyr",
+      name: "Your Data Your Regions (Beta)",
+      description:
+        "YourDataYour Regions (YDYR) is an API for the conversion of data between different Australian geographic boundaries: a process often referred to as geographic correspondence. \n\nData is often captured for specific purposes, using particular geographies or administrative boundaries, The regions and geographies used invariably change over time or vary according to the purpose of the analysis. This creates the need for data to be converted between regions to enable its re-use beyond the original purpose, adding to it value. \n\nYDYR can help users maximise the use of new and existing data by making it available for analysis, integration and display across a range of geographic regions. \n\nDeveloped by CSIRO's Data61 in partnership with the Australian Bureau of Statistics (ABS), YDYR modernises the ABS geographic correspondence workflow through the incorporation of machine learning techniques which model the relationship between users' own data and various data collected and maintained by the ABS. \nThis is a beta version of the tool limited to a small number of users for evaluation process. Update to a production version of the tool will depend on user feedback and assessment of the results.",
       type: "ydyr",
       parameters: {
         apiUrl: "https://ydyr.info/api/v1/",

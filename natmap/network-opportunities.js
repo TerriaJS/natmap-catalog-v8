@@ -628,6 +628,29 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
 
   PeakDayCapacity.info = peakDayInfo;
 
+  const DistributionPowerlines = findInMembers(NetworkOpportunities.members, [
+    "New Generator Connection Capacity",
+    "Distribution",
+    "Distribution powerlines",
+  ]);
+
+  DistributionPowerlines.forceCesiumPrimitives = true;
+
+  const TransmisisonPowerlines = findInMembers(NetworkOpportunities.members, [
+    "New Generator Connection Capacity",
+    "Transmission",
+    "Transmission powerlines",
+  ]);
+
+  TransmisisonPowerlines.forceCesiumPrimitives = true;
+
+  const TransmisisonLines = findInMembers(NetworkOpportunities.members, [
+    "Supporting Information",
+    "Transmission Lines",
+  ]);
+
+  TransmisisonLines.forceCesiumPrimitives = true;
+
   // Can't get items to be ordered as I'd like them to be:
 
   // NetworkOpportunities.members = _.uniq([

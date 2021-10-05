@@ -63,7 +63,7 @@ The following commands will compress the content of `natmap/out.json` then uploa
 | natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
 | natmap-2021-05-12-v8.json | d9b4efd2c28ca4135b9a6dccad9ac52e7eb6d1b5 |
 | 2021-09-30.json | 0f26e8e8f0ee8fc54ef4522eb0f5e44baca38e5b |
-| 2021-10-05.json | 5cbe827ffaf0239de31337566fa919817001cc98 |
+| 2021-10-05.json | d351406fd1d0c9512bd7ed8f2a77c747ce37dd7e |
 
 **Catalogue history (in GitHub)**
 | _catalog commit_ | _this repo commit_ |

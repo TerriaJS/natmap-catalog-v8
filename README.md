@@ -42,12 +42,12 @@ Run
 
 which will produce catalog file `natmap/out.json`. Please upload this file to the `s3` bucket with different name to be used by national map config.
 
-The following commands will compress the content of `natmap/out.json` then upload it to `s3://static.nationalmap.nicta.com.au/init/2021-09-30.json` as a catalogue for https://nationalmap.gov.au.
+The following commands will compress the content of `natmap/out.json` then upload it to `s3://static.nationalmap.nicta.com.au/init/2021-10-05.json` as a catalogue for https://nationalmap.gov.au.
 
 ```
   aws sso login --profile nationalmap
   chmod +x publish.sh 
-  ./publish.sh 2021-09-30
+  ./publish.sh 2021-10-05
 ```
 
 **Catalogue history (in `s3://static.nationalmap.nicta.com.au/init)**
@@ -61,6 +61,7 @@ The following commands will compress the content of `natmap/out.json` then uploa
 | natmap-2021-04-16-v8.json | 3bd209bebcf2446715ea131ed4e52a5faf825dc5 |
 | natmap-2021-05-12-v8.json | d9b4efd2c28ca4135b9a6dccad9ac52e7eb6d1b5 |
 | 2021-09-30.json | 0f26e8e8f0ee8fc54ef4522eb0f5e44baca38e5b |
+| 2021-10-05.json | 5cbe827ffaf0239de31337566fa919817001cc98 |
 
 **Catalogue history (in GitHub)**
 | _catalog commit_ | _this repo commit_ |

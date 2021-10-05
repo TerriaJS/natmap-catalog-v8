@@ -35,6 +35,15 @@ Agriculture.members = Agriculture.members.filter(
     m.name !== "Australia’s Indigenous Forest Estate (2018)"
 );
 
+// Update URL
+Agriculture.members.map(m => {
+  if (m.name === "Forests of Australia (2018)"){
+    m.type = "esri-mapServer",
+    m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
+    m.layers = "0"
+  }
+})
+
 // Add catchment as group.
 const catchmentGroup = {
   type: "esri-mapServer-group",
@@ -418,6 +427,18 @@ Health.members = Health.members.filter(
     m.name !== "Victorian Local Government Area Stage 4 Lockdown 2 August 2020"
 );
 
+// Update URL
+Health.members.map(m => {
+  if (m.name === "Medicare Offices"){
+    m.name = "Location of Services Australia Offices",
+    m.datasetId = "70c2b2fe-2a32-450e-98dc-453fe4a02aae",
+    m.resourceId = "5a45d7b2-8579-425b-bb46-53a0e0bfa053",
+    m.shareKeys = [
+      "Root Group/National Datasets/Health/Location of Services Australia Offices"
+    ]
+  }
+})
+
 // Infrastructure group
 const Infrastructure = cloneFromCatalogPath(natmap20210921v8, [
   "National Datasets",
@@ -456,6 +477,15 @@ LandCover.members.map((landCoverMember) => {
         m.name !== "Catchment Scale Land Use 2018 [Secondary classification]" &&
         m.name !== "Australia’s Indigenous Forest Estate (2018)"
     );
+
+    // Update URL
+    landCoverMember.members.map(m => {
+      if (m.name === "Forests of Australia (2018)"){
+        m.type = "esri-mapServer",
+        m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
+        m.layers = "0"
+      }
+    })
 
     landCoverMember.members.push(catchmentGroup);
   }
@@ -620,7 +650,6 @@ const SatelliteImages = {
     "https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/terria/dea-maps-v8.json",
   name: "Satellite Images",
   isGroup: true,
-  path: ["CqkxcG"],
 };
 
 // Social and Economic

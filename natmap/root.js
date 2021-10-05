@@ -669,6 +669,7 @@ SocialEconomic.members = SocialEconomic.members.filter(
       "Migration",
       "Projections",
       "Socio-Economic Indices",
+      "Housing"
     ].includes(member.name)
 );
 

@@ -6,7 +6,7 @@ const recursivelySortMembersByName = require("../helpers/recursivelySortMembersB
 const modifyNetworkOpportunities = require("./network-opportunities");
 const natmap20210921v8 = require("./in/natmap-2021-09-21-v8.json");
 const aremi20210921v8 = require("./in/aremi-2021-09-21-v8.json");
-const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.json");
+const absSdmx = require("./in/manual-v8-catalogs/abs-sdmx-v8.js");
 const aremiEvTraffic = require("./in/manual-v8-catalogs/aremi-traffic-v8.json");
 const gaNewLayers = require("./in/manual-v8-catalogs/ga-new-layers-v8.json");
 

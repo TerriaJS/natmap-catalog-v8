@@ -620,7 +620,6 @@ const SatelliteImages = {
     "https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/terria/dea-maps-v8.json",
   name: "Satellite Images",
   isGroup: true,
-  path: ["CqkxcG"],
 };
 
 // Social and Economic

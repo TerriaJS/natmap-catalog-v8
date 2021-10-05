@@ -45,6 +45,8 @@ which will produce catalog file `natmap/out.json`. Please upload this file to th
 The following commands will compress the content of `natmap/out.json` then upload it to `s3://static.nationalmap.nicta.com.au/init/2021-10-05.json` as a catalogue for https://nationalmap.gov.au.
 
 ```
+  nvm use 15
+  node natmap/build.js
   aws sso login --profile nationalmap
   chmod +x publish.sh 
   ./publish.sh 2021-10-05

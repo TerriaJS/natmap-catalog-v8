@@ -49,7 +49,7 @@ The following commands will compress the content of `natmap/out.json` then uploa
   node natmap/build.js
   aws sso login --profile nationalmap
   chmod +x publish.sh 
-  ./publish.sh 2021-10-05
+  ./publish.sh 2021-10-14
 ```
 
 **Catalogue history (in `s3://static.nationalmap.nicta.com.au/init)**
@@ -64,6 +64,7 @@ The following commands will compress the content of `natmap/out.json` then uploa
 | natmap-2021-05-12-v8.json | d9b4efd2c28ca4135b9a6dccad9ac52e7eb6d1b5 |
 | 2021-09-30.json | 0f26e8e8f0ee8fc54ef4522eb0f5e44baca38e5b |
 | 2021-10-05.json | d351406fd1d0c9512bd7ed8f2a77c747ce37dd7e |
+| 2021-10-14.json | 8bd14c66d1975dfd53343176401cd6aa01120ba3 |
 
 **Catalogue history (in GitHub)**
 | _catalog commit_ | _this repo commit_ |

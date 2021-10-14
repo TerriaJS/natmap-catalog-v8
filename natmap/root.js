@@ -1202,26 +1202,6 @@ complete.baseMaps = {
     },
     {
       item: {
-        id: "basemap-bing-aerial-with-labels",
-        name: "Bing Maps Aerial with Labels",
-        type: "ion-imagery",
-        ionAssetId: 3,
-        opacity: 1,
-      },
-      image: "images/basemaps/bing-aerial-labels.png",
-    },
-    {
-      item: {
-        id: "basemap-bing-aerial",
-        name: "Bing Maps Aerial",
-        type: "ion-imagery",
-        ionAssetId: 2,
-        opacity: 1,
-      },
-      image: "images/basemaps/bing-aerial.png",
-    },
-    {
-      item: {
         id: "basemap-positron",
         name: "Positron (Light)",
         type: "open-street-map",

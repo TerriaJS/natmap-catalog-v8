@@ -38,10 +38,10 @@ Agriculture.members = Agriculture.members.filter(
 // Update URL
 Agriculture.members.map((m) => {
   if (m.name === "Forests of Australia (2018)") {
-    (m.type = "esri-mapServer"),
-      (m.url =
-        "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer"),
-      (m.layers = "0");
+    m.type = "esri-mapServer";
+    m.url =
+      "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer";
+    m.layers = "0";
   }
 });
 

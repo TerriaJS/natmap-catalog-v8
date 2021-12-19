@@ -92,6 +92,16 @@ Communications.members.splice(
   MobileBlackspot5
 );
 
+const NationalBroadbandNetworkTechnologyTypes = {
+  type: "wms-group",
+  name: "NBN Technology Types",
+  url:
+    "https://programs.communications.gov.au/geoserver/national-broadband-network/wms",
+  id: "VVRuTqxWLW",
+};
+
+Communications.members.splice(0, 0, NationalBroadbandNetworkTechnologyTypes);
+
 const TelecomsInNewDev = findInMembers(Communications.members, [
   "Telecommunications in New Developments",
 ]);

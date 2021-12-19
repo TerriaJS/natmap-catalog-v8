@@ -36,13 +36,14 @@ Agriculture.members = Agriculture.members.filter(
 );
 
 // Update URL
-Agriculture.members.map(m => {
-  if (m.name === "Forests of Australia (2018)"){
-    m.type = "esri-mapServer",
-    m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
-    m.layers = "0"
+Agriculture.members.map((m) => {
+  if (m.name === "Forests of Australia (2018)") {
+    (m.type = "esri-mapServer"),
+      (m.url =
+        "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer"),
+      (m.layers = "0");
   }
-})
+});
 
 // Add catchment as group.
 const catchmentGroup = {
@@ -438,16 +439,16 @@ Health.members = Health.members.filter(
 );
 
 // Update URL
-Health.members.map(m => {
-  if (m.name === "Medicare Offices"){
-    m.name = "Location of Services Australia Offices",
-    m.datasetId = "70c2b2fe-2a32-450e-98dc-453fe4a02aae",
-    m.resourceId = "5a45d7b2-8579-425b-bb46-53a0e0bfa053",
-    m.shareKeys = [
-      "Root Group/National Datasets/Health/Location of Services Australia Offices"
-    ]
+Health.members.map((m) => {
+  if (m.name === "Medicare Offices") {
+    (m.name = "Location of Services Australia Offices"),
+      (m.datasetId = "70c2b2fe-2a32-450e-98dc-453fe4a02aae"),
+      (m.resourceId = "5a45d7b2-8579-425b-bb46-53a0e0bfa053"),
+      (m.shareKeys = [
+        "Root Group/National Datasets/Health/Location of Services Australia Offices",
+      ]);
   }
-})
+});
 
 // Infrastructure group
 const Infrastructure = cloneFromCatalogPath(natmap20210921v8, [
@@ -489,13 +490,14 @@ LandCover.members.map((landCoverMember) => {
     );
 
     // Update URL
-    landCoverMember.members.map(m => {
-      if (m.name === "Forests of Australia (2018)"){
-        m.type = "esri-mapServer",
-        m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
-        m.layers = "0"
+    landCoverMember.members.map((m) => {
+      if (m.name === "Forests of Australia (2018)") {
+        (m.type = "esri-mapServer"),
+          (m.url =
+            "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer"),
+          (m.layers = "0");
       }
-    })
+    });
 
     landCoverMember.members.push(catchmentGroup);
   }
@@ -679,7 +681,7 @@ SocialEconomic.members = SocialEconomic.members.filter(
       "Migration",
       "Projections",
       "Socio-Economic Indices",
-      "Housing"
+      "Housing",
     ].includes(member.name)
 );
 

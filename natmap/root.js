@@ -321,6 +321,11 @@ const Energy = {
       "Framework",
       "Electricity Transmission Lines",
     ]),
+    cloneFromCatalogPath(natmap20210921v8, [
+      "National Datasets",
+      "Framework",
+      "Electricity Transmission Substations",
+    ]),
   ],
 };
 

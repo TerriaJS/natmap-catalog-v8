@@ -650,6 +650,7 @@ const SatelliteImages = {
     "https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/terria/dea-maps-v8.json",
   name: "Satellite Images",
   isGroup: true,
+  cacheDuration: "1h"
 };
 
 // Social and Economic
@@ -1137,6 +1138,29 @@ const ACT = {
   shareKeys: ["Root Group/Australian Capital Territory Government"],
   facetGroups: ["categories"],
 };
+
+const replaceBadUrls = (member) => {
+  if (Array.isArray(member.members)) {
+    member.members.forEach(replaceBadUrls)
+  }
+  if (typeof member.url === 'string' && member.url.includes("www.data.gov.au")) {
+    member.url = member.url.replace("www.data.gov.au", "data.gov.au")
+    member.url = member.url.replace("http://data.gov.au", "https://data.gov.au")
+  }
+}
+
+[
+  NationalDatasets,
+  DGA,
+  // ACT, Disable ACT Socrata as it has major issues
+  NSW,
+  NT,
+  QLD,
+  SA,
+  TAS,
+  VIC,
+  WA,
+].forEach(replaceBadUrls)
 
 const AnalysisTools = {
   name: "Analysis Tools",

@@ -361,11 +361,15 @@ Energy.members.map((m) => {
               m.name = "Transmission Substations";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.dataUrls[0].url = 
+                "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Transmission_Substations&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "1";
             } else if (m.name === "Transmission Lines") {
               m.name = "Electricity Transmission Lines";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.dataUrls[0].url = 
+                "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Electricity_Transmission_Lines&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "2";
             }
             return m;

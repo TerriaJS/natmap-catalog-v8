@@ -1005,38 +1005,6 @@ gaNewLayers["catalog"].map((m) => {
   }
 });
 
-// Australian Capital Territory Government
-// const ACT = {
-//   name: "Australian Capital Territory Government",
-//   url: "https://www.data.act.gov.au",
-//   type: "socrata-group",
-//   shareKeys: ["Root Group/Australian Capital Territory Government"],
-//   facetGroups: ["categories"],
-// };
-
-const replaceBadUrls = (member) => {
-  if (Array.isArray(member.members)) {
-    member.members.forEach(replaceBadUrls)
-  }
-  if (typeof member.url === 'string' && member.url.includes("www.data.gov.au")) {
-    member.url = member.url.replace("www.data.gov.au", "data.gov.au")
-    member.url = member.url.replace("http://data.gov.au", "https://data.gov.au")
-  }
-}
-
-[
-  NationalDatasets,
-  DGA,
-  // ACT, Disable ACT Socrata as it has major issues
-  NSW,
-  NT,
-  QLD,
-  SA,
-  TAS,
-  VIC,
-  WA,
-].forEach(replaceBadUrls)
-
 const AnalysisTools = {
   name: "Analysis Tools",
   type: "group",
@@ -1069,23 +1037,31 @@ const govOpenData = [
     "path": [
       "6TbYz2Jj"
     ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/data-gov-au/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/data-gov-au/prod.json",
     "type": "terria-reference",
     "isGroup": true
   },
+  // Australian Capital Territory Government
+// const ACT = {
+//   name: "Australian Capital Territory Government",
+//   url: "https://www.data.act.gov.au",
+//   type: "socrata-group",
+//   shareKeys: ["Root Group/Australian Capital Territory Government"],
+//   facetGroups: ["categories"],
+// };
   {
     "id": "5UEEtwte",
     "name": "New South Wales Government",
     "shareKeys": [
       "Root Group/New South Wales Government"
     ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nsw/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nsw/prod.json",
     "type": "terria-reference",
     "isGroup": true
   },
   {
     "name": "Northern Territory Government",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nt/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nt/prod.json",
     "id": "A3fz19Mn",
     "type": "terria-reference",
     "isGroup": true
@@ -1096,13 +1072,13 @@ const govOpenData = [
     "shareKeys": [
       "Root Group/Queensland Government"
     ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/qld/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/qld/prod.json",
     "type": "terria-reference",
     "isGroup": true
   },
   {
     "name": "South Australia Government",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/sa/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/sa/prod.json",
     "id": "i8H83Dhj",
     "type": "terria-reference",
     "isGroup": true
@@ -1113,20 +1089,20 @@ const govOpenData = [
     "shareKeys": [
       "Root Group/Tasmanian Government"
     ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/tas/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/tas/prod.json",
     "type": "terria-reference",
     "isGroup": true
   },
   {
     "name": "Victoria Government",
     "id": "E2nsA20d",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/vic/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/vic/prod.json",
     "type": "terria-reference",
     "isGroup": true
   },
   {
     "name": "Western Australia Government",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/wa/dev.json",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/wa/prod.json",
     "id": "Ne92VxU7",
     "type": "terria-reference",
     "isGroup": true

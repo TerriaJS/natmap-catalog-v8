@@ -369,11 +369,15 @@ Energy.members.map((m) => {
               m.name = "Transmission Substations";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.dataUrls[0].url = 
+                "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Transmission_Substations&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "1";
             } else if (m.name === "Transmission Lines") {
               m.name = "Electricity Transmission Lines";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.dataUrls[0].url = 
+                "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Electricity_Transmission_Lines&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "2";
             }
             return m;
@@ -658,6 +662,7 @@ const SatelliteImages = {
     "https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/terria/dea-maps-v8.json",
   name: "Satellite Images",
   isGroup: true,
+  cacheDuration: "1h"
 };
 
 // Social and Economic
@@ -1008,6 +1013,29 @@ gaNewLayers["catalog"].map((m) => {
 //   shareKeys: ["Root Group/Australian Capital Territory Government"],
 //   facetGroups: ["categories"],
 // };
+
+const replaceBadUrls = (member) => {
+  if (Array.isArray(member.members)) {
+    member.members.forEach(replaceBadUrls)
+  }
+  if (typeof member.url === 'string' && member.url.includes("www.data.gov.au")) {
+    member.url = member.url.replace("www.data.gov.au", "data.gov.au")
+    member.url = member.url.replace("http://data.gov.au", "https://data.gov.au")
+  }
+}
+
+[
+  NationalDatasets,
+  DGA,
+  // ACT, Disable ACT Socrata as it has major issues
+  NSW,
+  NT,
+  QLD,
+  SA,
+  TAS,
+  VIC,
+  WA,
+].forEach(replaceBadUrls)
 
 const AnalysisTools = {
   name: "Analysis Tools",

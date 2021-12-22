@@ -597,6 +597,35 @@ Boundaries.members = [
       findInMembers(Boundaries.members, [
         "Commonwealth Electoral Divisions (2016)",
       ]),
+      {
+        "type": "mvt",
+        "name": "Commonwealth Electoral Divisions (2021)",
+        "description": "Federal electoral divisions which will apply at general elections of members of the House of Representatives held after 2 August 2021 and until the next determination of a redistribution of federal electoral divisions of a state or territory. Produced by combining electoral division datasets provided by the AEC for each of the eight states and territories.",
+        "info": [
+          {
+            "name": "Licence",
+            "content": "[Australian Electoral Commission Data download licence](http://www.aec.gov.au/Electorates/gis/GIS_Data_Download_Data_Licence.htm)"
+          }
+        ],
+        "url": "https://tiles.terria.io/ELB_2021/{z}/{x}/{y}.pbf",
+        "opacity": 1,
+        "dataUrls": [
+          {
+            "url": "https://www.aec.gov.au/electorates/gis/index.htm"
+          }
+        ],
+        "lineColor": "hsl(180,80%,30%)",
+        "layer": "ELB_2021",
+        "maximumNativeZoom": 12,
+        "minimumZoom": 0,
+        "id": "LTLaiSttEo",
+        "rectangle": {
+          "west": 96.81,
+          "south": -43.73,
+          "east": 168,
+          "north": -9.1
+        }
+      },
       findInMembers(Boundaries.members, [
         "Commonwealth Electoral Divisions (2011)",
       ]),

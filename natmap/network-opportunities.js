@@ -530,7 +530,7 @@ module.exports = function modifyNetworkOpportunities(NetworkOpportunities) {
     s.color.colorColumn = "invest_year_str";
     s.color.legend = {
       url:
-        "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/proposed-investment-legend.png",
+        "https://terria-catalogs-public.storage.googleapis.com/nationalmap/images/proposed-investment-legend.png",
     };
   });
 

@@ -70,20 +70,3 @@ The following commands will compress the content of `natmap/out.json` then uploa
 | _catalog commit_ | _this repo commit_ |
 |----------------|------------------|
 | https://github.com/TerriaJS/saas-catalogs-public/commit/facb398ba31cf9b68ccfb92a227a566b6592555f | https://github.com/TerriaJS/natmap-catalog-v8/commit/061b2cbcbebd1fae24cfda0cf60f5886a57b0cda |
-
-## Deploy
-
-**UPDATE** catalogs are now stored in https://github.com/TerriaJS/saas-catalogs-public/tree/main/nationalmap:
-
-- https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/dev.json
-- https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/test.json
-- https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/prod.json
-
-To deploy:
-
-1.  Update files in https://github.com/TerriaJS/saas-catalogs-public/tree/main/nationalmap
-2.  Update URL in `initializationUrls` in SaaS `map-config`
-    - **Dev:** https://dev.saas.terria.io/record-editor/map-config-nationalmap
-    - **Test:** https://test.saas.terria.io/record-editor/map-config-nationalmap
-    - **Prod:** https://saas.terria.io/record-editor/map-config-nationalmap
-3. Manually update map-config.json files in https://github.com/TerriaJS/saas-catalogs-public

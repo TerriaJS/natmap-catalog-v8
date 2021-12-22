@@ -36,12 +36,11 @@ Agriculture.members = Agriculture.members.filter(
 );
 
 // Update URL
-Agriculture.members.map((m) => {
+Agriculture.members.map(m => {
   if (m.name === "Forests of Australia (2018)") {
-    m.type = "esri-mapServer";
-    m.url =
-      "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer";
-    m.layers = "0";
+    m.type = "esri-mapServer",
+      m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
+      m.layers = "0"
   }
 });
 
@@ -316,6 +315,14 @@ BioenergyQldMeatProcessing.itemProperties.defaultColumn = {
   replaceWithNullValues: ["Unknown"],
 };
 
+const BioenergyNationalCatchment = findInMembers(RenewableEnergy.members, [
+  "Bioenergy",
+  "National",
+  "Catchment Scale Land Use"
+]);
+
+BioenergyNationalCatchment.url = "https://data.gov.au"
+
 // Energy group
 const Energy = {
   type: "group",
@@ -372,11 +379,15 @@ Energy.members.map((m) => {
               m.name = "Transmission Substations";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.dataUrls[0].url = 
+                "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Transmission_Substations&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "1";
             } else if (m.name === "Transmission Lines") {
               m.name = "Electricity Transmission Lines";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
+              m.dataUrls[0].url = 
+                "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Electricity_Transmission_Lines&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "2";
             }
             return m;
@@ -439,14 +450,14 @@ Health.members = Health.members.filter(
 );
 
 // Update URL
-Health.members.map((m) => {
+Health.members.map(m => {
   if (m.name === "Medicare Offices") {
-    (m.name = "Location of Services Australia Offices"),
-      (m.datasetId = "70c2b2fe-2a32-450e-98dc-453fe4a02aae"),
-      (m.resourceId = "5a45d7b2-8579-425b-bb46-53a0e0bfa053"),
-      (m.shareKeys = [
-        "Root Group/National Datasets/Health/Location of Services Australia Offices",
-      ]);
+    m.name = "Location of Services Australia Offices",
+      m.datasetId = "70c2b2fe-2a32-450e-98dc-453fe4a02aae",
+      m.resourceId = "5a45d7b2-8579-425b-bb46-53a0e0bfa053",
+      m.shareKeys = [
+        "Root Group/National Datasets/Health/Location of Services Australia Offices"
+      ]
   }
 });
 
@@ -490,12 +501,11 @@ LandCover.members.map((landCoverMember) => {
     );
 
     // Update URL
-    landCoverMember.members.map((m) => {
+    landCoverMember.members.map(m => {
       if (m.name === "Forests of Australia (2018)") {
-        (m.type = "esri-mapServer"),
-          (m.url =
-            "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer"),
-          (m.layers = "0");
+        m.type = "esri-mapServer",
+          m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
+          m.layers = "0"
       }
     });
 
@@ -662,6 +672,7 @@ const SatelliteImages = {
     "https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/terria/dea-maps-v8.json",
   name: "Satellite Images",
   isGroup: true,
+  cacheDuration: "1h"
 };
 
 // Social and Economic
@@ -1004,152 +1015,6 @@ gaNewLayers["catalog"].map((m) => {
   }
 });
 
-// Data.gov.au
-const DGA = cloneFromCatalogPath(natmap20210921v8, ["Data.gov.au"]);
-
-// New South Wales Government
-const NSW = cloneFromCatalogPath(natmap20210921v8, [
-  "New South Wales Government",
-]);
-const NSWLGA = cloneFromCatalogPath(natmap20210921v8, [
-  "Local Government",
-  "New South Wales",
-]);
-NSWLGA.name = "Local government data";
-NSW.members = [
-  NSWLGA,
-  {
-    name: "State data",
-    type: "group",
-    members: recursivelySortMembersByName(NSW.members),
-  },
-];
-
-// Northern Territory Government
-const NT_old = cloneFromCatalogPath(natmap20210921v8, [
-  "Northern Territory Government",
-]);
-NT_old.name = "State data";
-const NTLGA = cloneFromCatalogPath(natmap20210921v8, [
-  "Local Government",
-  "Northern Territory",
-]);
-NTLGA.name = "Local government data";
-const NT = {
-  name: "Northern Territory Government",
-  type: "group",
-  members: [NTLGA, NT_old],
-};
-
-// Queensland Government
-const QLD = cloneFromCatalogPath(natmap20210921v8, ["Queensland Government"]);
-const QLDLGA = cloneFromCatalogPath(natmap20210921v8, [
-  "Local Government",
-  "Queensland",
-]);
-QLDLGA.name = "Local government data";
-QLD.members = [
-  QLDLGA,
-  {
-    name: "State data",
-    type: "group",
-    members: recursivelySortMembersByName(QLD.members),
-  },
-];
-
-// South Australian Government
-const SA_old = cloneFromCatalogPath(natmap20210921v8, [
-  "South Australian Government (BETA)",
-]);
-SA_old.name = "State data";
-const SALGA = cloneFromCatalogPath(natmap20210921v8, [
-  "Local Government",
-  "South Australia",
-]);
-SALGA.name = "Local government data";
-const SA = {
-  name: "South Australia Government",
-  type: "group",
-  members: [SALGA, SA_old],
-};
-
-// Tasmanian Government
-const TAS = cloneFromCatalogPath(natmap20210921v8, ["Tasmanian Government"]);
-const TASLGA = cloneFromCatalogPath(natmap20210921v8, [
-  "Local Government",
-  "Tasmania",
-]);
-TASLGA.name = "Local government data";
-TAS.members = [
-  TASLGA,
-  {
-    name: "State data",
-    type: "group",
-    members: recursivelySortMembersByName(TAS.members),
-  },
-];
-
-// Victorian Government
-const VIC_old = cloneFromCatalogPath(natmap20210921v8, [
-  "Victorian Government",
-]);
-VIC_old.name = "State data";
-const VICLGA = cloneFromCatalogPath(natmap20210921v8, [
-  "Local Government",
-  "Victoria",
-]);
-VICLGA.name = "Local government data";
-
-VICLGA.members = VICLGA.members.map((m) => {
-  if (m.name !== "Melbourne") return m;
-
-  return {
-    id: "vic-lga-melbourne",
-    name: "Melbourne",
-    url: "https://data.melbourne.vic.gov.au",
-    type: "socrata-group",
-    shareKeys: ["Root Group/Local Government/Victoria/Melbourne"],
-    facetGroups: ["categories"],
-  };
-});
-
-const VIC = {
-  name: "Victoria Government",
-  type: "group",
-  members: [VICLGA, VIC_old],
-};
-
-// Western Australian Government
-const WA_old = cloneFromCatalogPath(natmap20210921v8, [
-  "Western Australian Government",
-]);
-WA_old.name = "State data";
-const WALGA = cloneFromCatalogPath(natmap20210921v8, [
-  "Local Government",
-  "Western Australia",
-]);
-WALGA.name = "Local government data";
-const WA = {
-  name: "Western Australia Government",
-  type: "group",
-  members: [WALGA, WA_old],
-};
-
-WALGA.members.forEach((m) => {
-  if (m.url === "http://catalogue.beta.data.wa.gov.au") {
-    m.url = "https://catalogue.data.wa.gov.au";
-  }
-});
-
-// Australian Capital Territory Government
-const ACT = {
-  name: "Australian Capital Territory Government",
-  url: "https://www.data.act.gov.au",
-  type: "socrata-group",
-  shareKeys: ["Root Group/Australian Capital Territory Government"],
-  facetGroups: ["categories"],
-};
-
 const AnalysisTools = {
   name: "Analysis Tools",
   type: "group",
@@ -1172,21 +1037,96 @@ const AnalysisTools = {
   ],
 };
 
+const govOpenData = [
+  {
+    "name": "Data.gov.au",
+    "id": "6TbYz2Jj",
+    "shareKeys": [
+      "Root Group/Data.gov.au"
+    ],
+    "path": [
+      "6TbYz2Jj"
+    ],
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/data-gov-au/prod.json",
+    "type": "terria-reference",
+    "isGroup": true
+  },
+  // Australian Capital Territory Government
+// const ACT = {
+//   name: "Australian Capital Territory Government",
+//   url: "https://www.data.act.gov.au",
+//   type: "socrata-group",
+//   shareKeys: ["Root Group/Australian Capital Territory Government"],
+//   facetGroups: ["categories"],
+// };
+  {
+    "id": "5UEEtwte",
+    "name": "New South Wales Government",
+    "shareKeys": [
+      "Root Group/New South Wales Government"
+    ],
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nsw/prod.json",
+    "type": "terria-reference",
+    "isGroup": true
+  },
+  {
+    "name": "Northern Territory Government",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nt/prod.json",
+    "id": "A3fz19Mn",
+    "type": "terria-reference",
+    "isGroup": true
+  },
+  {
+    "id": "DCie2ghD",
+    "name": "Queensland Government",
+    "shareKeys": [
+      "Root Group/Queensland Government"
+    ],
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/qld/prod.json",
+    "type": "terria-reference",
+    "isGroup": true
+  },
+  {
+    "name": "South Australia Government",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/sa/prod.json",
+    "id": "i8H83Dhj",
+    "type": "terria-reference",
+    "isGroup": true
+  },
+  {
+    "id": "PdL1jdCG",
+    "name": "Tasmanian Government",
+    "shareKeys": [
+      "Root Group/Tasmanian Government"
+    ],
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/tas/prod.json",
+    "type": "terria-reference",
+    "isGroup": true
+  },
+  {
+    "name": "Victoria Government",
+    "id": "E2nsA20d",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/vic/prod.json",
+    "type": "terria-reference",
+    "isGroup": true
+  },
+  {
+    "name": "Western Australia Government",
+    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/wa/prod.json",
+    "id": "Ne92VxU7",
+    "type": "terria-reference",
+    "isGroup": true
+  }
+]
+
 // assemble the catalogue
 const complete = _.cloneDeep(natmap20210921v8);
 complete.catalog = [
   NationalDatasets,
-  DGA,
-  // ACT, Disable ACT Socrata as it has major issues
-  NSW,
-  NT,
-  QLD,
-  SA,
-  TAS,
-  VIC,
-  WA,
+  ...govOpenData,
   AnalysisTools,
 ];
+
 
 complete.baseMaps = {
   enabledBaseMaps: [
@@ -1214,32 +1154,6 @@ complete.baseMaps = {
     },
     {
       item: {
-        id: "basemap-positron",
-        name: "Positron (Light)",
-        type: "open-street-map",
-        url: "https://basemaps.cartocdn.com/light_all/",
-        attribution:
-          "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
-        subdomains: ["a", "b", "c", "d"],
-        opacity: 1,
-      },
-      image: "images/basemaps/positron.png",
-    },
-    {
-      item: {
-        id: "basemap-darkmatter",
-        name: "Dark Matter",
-        type: "open-street-map",
-        url: "https://basemaps.cartocdn.com/dark_all/",
-        attribution:
-          "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>, © <a href='https://carto.com/about-carto/'>CARTO</a>",
-        subdomains: ["a", "b", "c", "d"],
-        opacity: 1,
-      },
-      image: "images/basemaps/dark-matter.png",
-    },
-    {
-      item: {
         id: "basemap-voyager",
         type: "open-street-map",
         name: "Voyager",
@@ -1254,7 +1168,7 @@ complete.baseMaps = {
         ],
       },
       image:
-        "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/misc/basemaps/icons/voyager-aus.png",
+        "https://terria-catalogs-public.storage.googleapis.com/misc/basemaps/icons/voyager-aus.png",
     },
     {
       item: {
@@ -1266,7 +1180,7 @@ complete.baseMaps = {
         opacity: 1,
       },
       image:
-        "https://raw.githubusercontent.com/TerriaJS/saas-catalogs-public/main/nationalmap/images/base-maps/australia-grey-scale.png",
+        "https://terria-catalogs-public.storage.googleapis.com/nationalmap/images/base-maps/australia-grey-scale.png",
     },
   ],
 };

@@ -36,13 +36,14 @@ Agriculture.members = Agriculture.members.filter(
 );
 
 // Update URL
-Agriculture.members.map(m => {
+Agriculture.members.map((m) => {
   if (m.name === "Forests of Australia (2018)") {
-    m.type = "esri-mapServer",
-      m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
-      m.layers = "0"
+    m.type = "esri-mapServer";
+    m.url =
+      "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer";
+    m.layers = "0";
   }
-})
+});
 
 // Add catchment as group.
 const catchmentGroup = {
@@ -91,6 +92,16 @@ Communications.members.splice(
   0,
   MobileBlackspot5
 );
+
+const NationalBroadbandNetworkTechnologyTypes = {
+  type: "wms-group",
+  name: "NBN Technology Types",
+  url:
+    "https://programs.communications.gov.au/geoserver/national-broadband-network/wms",
+  id: "VVRuTqxWLW",
+};
+
+Communications.members.splice(0, 0, NationalBroadbandNetworkTechnologyTypes);
 
 const TelecomsInNewDev = findInMembers(Communications.members, [
   "Telecommunications in New Developments",
@@ -308,10 +319,10 @@ BioenergyQldMeatProcessing.itemProperties.defaultColumn = {
 const BioenergyNationalCatchment = findInMembers(RenewableEnergy.members, [
   "Bioenergy",
   "National",
-  "Catchment Scale Land Use"
+  "Catchment Scale Land Use",
 ]);
 
-BioenergyNationalCatchment.url = "https://data.gov.au"
+BioenergyNationalCatchment.url = "https://data.gov.au";
 
 // Energy group
 const Energy = {
@@ -369,14 +380,14 @@ Energy.members.map((m) => {
               m.name = "Transmission Substations";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
-              m.dataUrls[0].url = 
+              m.dataUrls[0].url =
                 "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Transmission_Substations&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "1";
             } else if (m.name === "Transmission Lines") {
               m.name = "Electricity Transmission Lines";
               m.url =
                 "https://services.ga.gov.au/gis/rest/services/Foundation_Electricity_Infrastructure/MapServer";
-              m.dataUrls[0].url = 
+              m.dataUrls[0].url =
                 "https://services.ga.gov.au/gis/services/Foundation_Electricity_Infrastructure/MapServer/WFSServer?service=WFS&request=GetFeature&typeName=Foundation_Electricity_Infrastructure:Electricity_Transmission_Lines&srsName=EPSG%3A4326&maxFeatures=10000";
               m.layers = "2";
             }
@@ -440,16 +451,16 @@ Health.members = Health.members.filter(
 );
 
 // Update URL
-Health.members.map(m => {
+Health.members.map((m) => {
   if (m.name === "Medicare Offices") {
-    m.name = "Location of Services Australia Offices",
-      m.datasetId = "70c2b2fe-2a32-450e-98dc-453fe4a02aae",
-      m.resourceId = "5a45d7b2-8579-425b-bb46-53a0e0bfa053",
-      m.shareKeys = [
-        "Root Group/National Datasets/Health/Location of Services Australia Offices"
-      ]
+    m.name = "Location of Services Australia Offices";
+    m.datasetId = "70c2b2fe-2a32-450e-98dc-453fe4a02aae";
+    m.resourceId = "5a45d7b2-8579-425b-bb46-53a0e0bfa053";
+    m.shareKeys = [
+      "Root Group/National Datasets/Health/Location of Services Australia Offices",
+    ];
   }
-})
+});
 
 // Infrastructure group
 const Infrastructure = cloneFromCatalogPath(natmap20210921v8, [
@@ -491,13 +502,14 @@ LandCover.members.map((landCoverMember) => {
     );
 
     // Update URL
-    landCoverMember.members.map(m => {
+    landCoverMember.members.map((m) => {
       if (m.name === "Forests of Australia (2018)") {
-        m.type = "esri-mapServer",
-          m.url = "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer",
-          m.layers = "0"
+        m.type = "esri-mapServer";
+        m.url =
+          "http://www.asris.csiro.au/arcgis/rest/services/abares/forests_of_australia_2018/MapServer";
+        m.layers = "0";
       }
-    })
+    });
 
     landCoverMember.members.push(catchmentGroup);
   }
@@ -585,6 +597,35 @@ Boundaries.members = [
       findInMembers(Boundaries.members, [
         "Commonwealth Electoral Divisions (2016)",
       ]),
+      {
+        "type": "mvt",
+        "name": "Commonwealth Electoral Divisions (2021)",
+        "description": "Federal electoral divisions which will apply at general elections of members of the House of Representatives held after 2 August 2021 and until the next determination of a redistribution of federal electoral divisions of a state or territory. Produced by combining electoral division datasets provided by the AEC for each of the eight states and territories.",
+        "info": [
+          {
+            "name": "Licence",
+            "content": "[Australian Electoral Commission Data download licence](http://www.aec.gov.au/Electorates/gis/GIS_Data_Download_Data_Licence.htm)"
+          }
+        ],
+        "url": "https://tiles.terria.io/ELB_2021/{z}/{x}/{y}.pbf",
+        "opacity": 1,
+        "dataUrls": [
+          {
+            "url": "https://www.aec.gov.au/electorates/gis/index.htm"
+          }
+        ],
+        "lineColor": "hsl(180,80%,30%)",
+        "layer": "ELB_2021",
+        "maximumNativeZoom": 12,
+        "minimumZoom": 0,
+        "id": "LTLaiSttEo",
+        "rectangle": {
+          "west": 96.81,
+          "south": -43.73,
+          "east": 168,
+          "north": -9.1
+        }
+      },
       findInMembers(Boundaries.members, [
         "Commonwealth Electoral Divisions (2011)",
       ]),
@@ -662,7 +703,7 @@ const SatelliteImages = {
     "https://raw.githubusercontent.com/GeoscienceAustralia/dea-config/master/dev/terria/dea-maps-v8.json",
   name: "Satellite Images",
   isGroup: true,
-  cacheDuration: "1h"
+  cacheDuration: "1h",
 };
 
 // Social and Economic
@@ -682,7 +723,7 @@ SocialEconomic.members = SocialEconomic.members.filter(
       "Migration",
       "Projections",
       "Socio-Economic Indices",
-      "Housing"
+      "Housing",
     ].includes(member.name)
 );
 
@@ -1029,94 +1070,87 @@ const AnalysisTools = {
 
 const govOpenData = [
   {
-    "name": "Data.gov.au",
-    "id": "6TbYz2Jj",
-    "shareKeys": [
-      "Root Group/Data.gov.au"
-    ],
-    "path": [
-      "6TbYz2Jj"
-    ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/data-gov-au/prod.json",
-    "type": "terria-reference",
-    "isGroup": true
+    name: "Data.gov.au",
+    id: "6TbYz2Jj",
+    shareKeys: ["Root Group/Data.gov.au"],
+    path: ["6TbYz2Jj"],
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/data-gov-au/prod.json",
+    type: "terria-reference",
+    isGroup: true,
   },
   // Australian Capital Territory Government
-// const ACT = {
-//   name: "Australian Capital Territory Government",
-//   url: "https://www.data.act.gov.au",
-//   type: "socrata-group",
-//   shareKeys: ["Root Group/Australian Capital Territory Government"],
-//   facetGroups: ["categories"],
-// };
+  // const ACT = {
+  //   name: "Australian Capital Territory Government",
+  //   url: "https://www.data.act.gov.au",
+  //   type: "socrata-group",
+  //   shareKeys: ["Root Group/Australian Capital Territory Government"],
+  //   facetGroups: ["categories"],
+  // };
   {
-    "id": "5UEEtwte",
-    "name": "New South Wales Government",
-    "shareKeys": [
-      "Root Group/New South Wales Government"
-    ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nsw/prod.json",
-    "type": "terria-reference",
-    "isGroup": true
+    id: "5UEEtwte",
+    name: "New South Wales Government",
+    shareKeys: ["Root Group/New South Wales Government"],
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nsw/prod.json",
+    type: "terria-reference",
+    isGroup: true,
   },
   {
-    "name": "Northern Territory Government",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nt/prod.json",
-    "id": "A3fz19Mn",
-    "type": "terria-reference",
-    "isGroup": true
+    name: "Northern Territory Government",
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/nt/prod.json",
+    id: "A3fz19Mn",
+    type: "terria-reference",
+    isGroup: true,
   },
   {
-    "id": "DCie2ghD",
-    "name": "Queensland Government",
-    "shareKeys": [
-      "Root Group/Queensland Government"
-    ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/qld/prod.json",
-    "type": "terria-reference",
-    "isGroup": true
+    id: "DCie2ghD",
+    name: "Queensland Government",
+    shareKeys: ["Root Group/Queensland Government"],
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/qld/prod.json",
+    type: "terria-reference",
+    isGroup: true,
   },
   {
-    "name": "South Australia Government",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/sa/prod.json",
-    "id": "i8H83Dhj",
-    "type": "terria-reference",
-    "isGroup": true
+    name: "South Australia Government",
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/sa/prod.json",
+    id: "i8H83Dhj",
+    type: "terria-reference",
+    isGroup: true,
   },
   {
-    "id": "PdL1jdCG",
-    "name": "Tasmanian Government",
-    "shareKeys": [
-      "Root Group/Tasmanian Government"
-    ],
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/tas/prod.json",
-    "type": "terria-reference",
-    "isGroup": true
+    id: "PdL1jdCG",
+    name: "Tasmanian Government",
+    shareKeys: ["Root Group/Tasmanian Government"],
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/tas/prod.json",
+    type: "terria-reference",
+    isGroup: true,
   },
   {
-    "name": "Victoria Government",
-    "id": "E2nsA20d",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/vic/prod.json",
-    "type": "terria-reference",
-    "isGroup": true
+    name: "Victoria Government",
+    id: "E2nsA20d",
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/vic/prod.json",
+    type: "terria-reference",
+    isGroup: true,
   },
   {
-    "name": "Western Australia Government",
-    "url": "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/wa/prod.json",
-    "id": "Ne92VxU7",
-    "type": "terria-reference",
-    "isGroup": true
-  }
-]
+    name: "Western Australia Government",
+    url:
+      "https://terria-catalogs-public.storage.googleapis.com/common/aus-gov-open-data/wa/prod.json",
+    id: "Ne92VxU7",
+    type: "terria-reference",
+    isGroup: true,
+  },
+];
 
 // assemble the catalogue
 const complete = _.cloneDeep(natmap20210921v8);
-complete.catalog = [
-  NationalDatasets,
-  ...govOpenData,
-  AnalysisTools,
-];
-
+complete.catalog = [NationalDatasets, ...govOpenData, AnalysisTools];
 
 complete.baseMaps = {
   enabledBaseMaps: [

@@ -1,5 +1,5 @@
 "use strict";
-const sortItemsByName = require('../helpers/sortItemsByName');
+const sortItemsByName = require("../helpers/sortItemsByName");
 
 function recursivelySortMembersByName(members) {
   for (let i = 0; i < members.length; ++i) {

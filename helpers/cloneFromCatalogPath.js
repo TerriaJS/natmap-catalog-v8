@@ -1,6 +1,6 @@
 "use strict";
-const _ = require('lodash');
-const findInMembers = require('../helpers/findInMembers');
+const _ = require("lodash");
+const findInMembers = require("../helpers/findInMembers");
 
 /*
   json: Complete catalog file.

@@ -1,9 +1,0 @@
-# Ignore everything
-*
-
-# Unignore directories (to all depths) and unignore code and style files
-!helpers/
-!helpers/*.js
-!natmap/
-!natmap/*.js
-
